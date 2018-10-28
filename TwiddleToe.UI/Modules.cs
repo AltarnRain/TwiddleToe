@@ -6,6 +6,7 @@ namespace TwiddleToe.UI
 {
     using Ninject.Modules;
     using TwiddleToe.Providers;
+    using TwiddleToe.Providers.Providers;
     using TwiddleToe.Utilities.Factories;
 
     /// <summary>
@@ -22,6 +23,8 @@ namespace TwiddleToe.UI
             this.Kernel.Bind<IdentityProvider>().ToSelf().InSingletonScope();
             this.Kernel.Bind<StateProvider>().ToSelf().InSingletonScope();
             this.Kernel.Bind<ProgramInformationProvider>().ToSelf().InSingletonScope();
+            this.Kernel.Bind<UserProvider>().ToSelf().InSingletonScope();
+
             this.Kernel.Bind<ViewFactory>().ToSelf().InSingletonScope();
         }
     }

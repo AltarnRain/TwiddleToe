@@ -4,10 +4,8 @@
 
 namespace TwiddleToe.UI.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using System.Linq;
     using System.Windows.Input;
     using TwiddleToe.Base;
@@ -30,12 +28,9 @@ namespace TwiddleToe.UI.ViewModels
         public UsersViewModel(StateProvider stateProvider)
         {
             this.Users = new ObservableCollection<UserListItemViewModel>();
-
             this.stateProvider = stateProvider;
-
-            var currentState = this.stateProvider.Get();
-
             this.AddNewUser = new RelayCommnand(this.AddUserAction);
+            this.RemoveSelectedUser = new RelayCommnand(this.RemoveSelectedUserAction, this.UserIsSelected);
         }
 
         /// <summary>
@@ -90,14 +85,6 @@ namespace TwiddleToe.UI.ViewModels
         public ICommand RemoveSelectedUser { get; private set; }
 
         /// <summary>
-        /// Gets the select user.
-        /// </summary>
-        /// <value>
-        /// The select user.
-        /// </value>
-        public ICommand SetCurrentUser { get; private set; }
-
-        /// <summary>
         /// Gets or sets the current user.
         /// </summary>
         /// <value>
@@ -120,7 +107,7 @@ namespace TwiddleToe.UI.ViewModels
         /// Users the selected.
         /// </summary>
         /// <returns>True if a user is selected</returns>
-        public bool UserSelected()
+        public bool UserIsSelected()
         {
             return this.CurrentUser != null;
         }

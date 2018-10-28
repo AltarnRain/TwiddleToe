@@ -7,6 +7,7 @@ namespace TwiddleToe.Tests
     using Ninject;
     using TwiddleToe.Models.Models;
     using TwiddleToe.Providers;
+    using TwiddleToe.Providers.Providers;
 
     /// <summary>
     /// Test scope for provider unit tests.
@@ -36,6 +37,14 @@ namespace TwiddleToe.Tests
         /// The program information.
         /// </value>
         public ProgramInformationProvider ProgramInformationProvider => this.Kernel.Get<ProgramInformationProvider>();
+
+        /// <summary>
+        /// Gets the user provider.
+        /// </summary>
+        /// <value>
+        /// The user provider.
+        /// </value>
+        public UserProvider UserProvider => this.Kernel.Get<UserProvider>();
 
         /// <summary>
         /// Starts this a test scope.
