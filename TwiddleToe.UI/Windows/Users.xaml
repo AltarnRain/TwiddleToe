@@ -23,24 +23,35 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
             <Button 
                 Margin="5"
-                Grid.Column="0" >Toevoegen
+                Grid.Column="0" 
+                Command="{Binding AddNewUser}"
+                >Toevoegen
             </Button>
             <Button 
                 Margin="5" 
                 Grid.Column="1">Verwijderen
             </Button>
-
         </Grid>
-
-
         <ListBox ItemsSource="{Binding Users}"
                  Grid.Column="0"
-                 Grid.Row="1">
-
-
+                 Grid.Row="1"
+                 SelectedValuePath="UserId"
+                 DisplayMemberPath="FullName"
+                 SelectedValue="{Binding CurrentUserId}">
         </ListBox>
+
+        <StackPanel Grid.Column="1" Grid.RowSpan="2">
+
+            <Label>Voornaam</Label>
+            <TextBox Grid.Column="1"
+                  Text="{Binding Path=CurrentUser.FirstName}">
+            </TextBox>
+            <Label>Achternaam</Label>
+            <TextBox Grid.Column="1"
+                     Text="{Binding Path=CurrentUser.LastName}">
+            </TextBox>
+        </StackPanel>
     </Grid>
 </Window>

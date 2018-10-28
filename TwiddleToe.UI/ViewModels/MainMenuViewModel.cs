@@ -36,22 +36,10 @@ namespace TwiddleToe.UI.ViewModels
         /// </value>
         public ICommand OpenUsers { get; set; }
 
-        /// <summary>
-        /// Gets the data from the view model.
-        /// </summary>
-        /// <typeparam name="TModel">The type of the model.</typeparam>
-        /// <returns>
-        /// A model
-        /// </returns>
-        public override IEnumerable<TModel> GetData<TModel>()
-        {
-            yield return null;
-        }
-
         private void OpenUserWindow()
         {
             var view = this.viewFactory.GetView<Users>();
-            view.Show();
+            view.ShowDialog();
         }
     }
 }

@@ -6,6 +6,8 @@ namespace TwiddleToe.UI.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Linq;
     using System.Windows.Input;
     using TwiddleToe.Base;
@@ -27,17 +29,22 @@ namespace TwiddleToe.UI.ViewModels
         /// <param name="stateProvider">The state provider.</param>
         public UsersViewModel(StateProvider stateProvider)
         {
-            this.Users = new List<User>();
+            this.Users = new ObservableCollection<UserListItemViewModel>();
 
             this.stateProvider = stateProvider;
 
             var currentState = this.stateProvider.Get();
-            this.Users.AddRange(currentState.Users);
 
             this.AddNewUser = new RelayCommnand(this.AddUserAction);
-
-            this.RemoveSelectedUser = new RelayCommnand(this.RemoveSelectedUserAction, this.UserSelected);
         }
+
+        /// <summary>
+        /// Gets or sets the selected value.
+        /// </summary>
+        /// <value>
+        /// The selected value.
+        /// </value>
+        public User SelectedValue { get; set; }
 
         /// <summary>
         /// Gets the users.
@@ -45,15 +52,26 @@ namespace TwiddleToe.UI.ViewModels
         /// <value>
         /// The users.
         /// </value>
-        public List<User> Users { get; private set; }
+        public ObservableCollection<UserListItemViewModel> Users { get; private set; }
 
         /// <summary>
-        /// Gets the current user.
+        /// Gets or sets the current user.
         /// </summary>
         /// <value>
         /// The current user.
         /// </value>
-        public User CurrentUser { get; private set; }
+        public int CurrentUserId
+        {
+            get => -1;
+            set
+            {
+                var foundUser = this.Users.SingleOrDefault(u => u.UserId == value);
+                if (foundUser != null)
+                {
+                    this.CurrentUser = foundUser;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the add new user command
@@ -80,15 +98,22 @@ namespace TwiddleToe.UI.ViewModels
         public ICommand SetCurrentUser { get; private set; }
 
         /// <summary>
+        /// Gets or sets the current user.
+        /// </summary>
+        /// <value>
+        /// The current user.
+        /// </value>
+        public UserListItemViewModel CurrentUser { get; set; }
+
+        /// <summary>
         /// Gets the data from the view model.
         /// </summary>
-        /// <typeparam name="TModel">The type of the model.</typeparam>
         /// <returns>
         /// A model
         /// </returns>
-        public override IEnumerable<TModel> GetData<TModel>()
+        public IEnumerable<User> GetData()
         {
-            return (IEnumerable<TModel>)this.Users;
+            return this.Users.Select(u => u.GetData());
         }
 
         /// <summary>
