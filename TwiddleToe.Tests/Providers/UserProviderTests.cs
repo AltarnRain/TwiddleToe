@@ -7,7 +7,6 @@ namespace TwiddleToe.Providers.Providers.Tests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TwiddleToe.Models;
     using TwiddleToe.Tests;
-    using TwiddleToe.Tests.TestScopes;
 
     /// <summary>
     /// Tests the <see cref="UserProvider"/>
