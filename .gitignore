@@ -4,3 +4,4 @@ obj
 packages
 /StylecopInjector.exe
 TestResults
+*.user
