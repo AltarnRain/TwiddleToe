@@ -35,7 +35,7 @@ namespace TwiddleToe.Tests
         /// <value>
         /// The program information.
         /// </value>
-        public ProgramInformation ProgramInformation => this.Kernel.Get<ProgramInformation>();
+        public ProgramInformationProvider ProgramInformationProvider => this.Kernel.Get<ProgramInformationProvider>();
 
         /// <summary>
         /// Starts this a test scope.

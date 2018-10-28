@@ -4,9 +4,8 @@
 
 namespace TwiddleToe.Providers
 {
-    using System.IO;
     using Newtonsoft.Json;
-    using TwiddleToe.Models;
+    using System.IO;
     using TwiddleToe.Models.Models;
     using TwiddleToe.Utilities;
 
@@ -32,15 +31,9 @@ namespace TwiddleToe.Providers
         public StateProvider(ProgramInformationProvider programInformationProvider)
         {
             this.programInformationProvider = programInformationProvider;
-        }
 
-        /// <summary>
-        /// Gets the <see cref="State"/>instance.
-        /// </summary>
-        /// <returns>The current state</returns>
-        public State Get()
-        {
             var programInformation = this.programInformationProvider.Get();
+
             if (File.Exists(programInformation.DataFile))
             {
                 try
@@ -49,13 +42,18 @@ namespace TwiddleToe.Providers
                 }
                 catch
                 {
-                    if (state == null)
-                    {
-                        state = new State();
-                    }
+                    state = new State();
                 }
             }
-            else
+        }
+
+        /// <summary>
+        /// Gets the <see cref="State"/>instance.
+        /// </summary>
+        /// <returns>The current state</returns>
+        public State Get()
+        {
+            if (state == null)
             {
                 state = new State();
             }

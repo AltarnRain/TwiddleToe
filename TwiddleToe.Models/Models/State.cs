@@ -6,6 +6,7 @@ namespace TwiddleToe.Models.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using TwiddleToe.Utilities;
 
@@ -19,11 +20,11 @@ namespace TwiddleToe.Models.Models
         /// </summary>
         public State()
         {
-            this.Users = new List<User>();
-            this.Subjects = new List<Subject>();
-            this.Questionaires = new List<Questionaire>();
-            this.QuestionareHistories = new List<QuestionareHistory>();
-            this.Questions = new List<Question>();
+            this.Users = new ObservableCollection<User>();
+            this.Subjects = new ObservableCollection<Subject>();
+            this.Questionaires = new ObservableCollection<Questionaire>();
+            this.QuestionareHistories = new ObservableCollection<QuestionareHistory>();
+            this.Questions = new ObservableCollection<Question>();
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace TwiddleToe.Models.Models
         /// <value>
         /// The users.
         /// </value>
-        public List<User> Users { get; set; }
+        public ObservableCollection<User> Users { get; set; }
 
         /// <summary>
         /// Gets or sets the subjects.
@@ -40,7 +41,7 @@ namespace TwiddleToe.Models.Models
         /// <value>
         /// The subjects.
         /// </value>
-        public List<Subject> Subjects { get; set; }
+        public ObservableCollection<Subject> Subjects { get; set; }
 
         /// <summary>
         /// Gets or sets the questions.
@@ -48,7 +49,7 @@ namespace TwiddleToe.Models.Models
         /// <value>
         /// The questions.
         /// </value>
-        public List<Question> Questions { get; set; }
+        public ObservableCollection<Question> Questions { get; set; }
 
         /// <summary>
         /// Gets or sets the history.
@@ -56,7 +57,7 @@ namespace TwiddleToe.Models.Models
         /// <value>
         /// The history.
         /// </value>
-        public List<QuestionareHistory> QuestionareHistories { get; set; }
+        public ObservableCollection<QuestionareHistory> QuestionareHistories { get; set; }
 
         /// <summary>
         /// Gets or sets the questionaires.
@@ -64,7 +65,7 @@ namespace TwiddleToe.Models.Models
         /// <value>
         /// The questionaires.
         /// </value>
-        public List<Questionaire> Questionaires { get; set; }
+        public ObservableCollection<Questionaire> Questionaires { get; set; }
 
         /// <summary>
         /// Gets or sets the current identifier.

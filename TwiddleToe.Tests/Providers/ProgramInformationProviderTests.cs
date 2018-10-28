@@ -12,7 +12,7 @@ namespace TwiddleToe.Models.Tests
     /// Tests the ProgramInformation class
     /// </summary>
     [TestClass]
-    public class ProgramInformationTests : TestBase<ProviderTestScope>
+    public class ProgramInformationProviderTests : TestBase<ProviderTestScope>
     {
         /// <summary>
         /// Tests the programm information get method.
@@ -23,7 +23,7 @@ namespace TwiddleToe.Models.Tests
             using (var scope = this.StartTest())
             {
                 // Act
-                var programInformation = scope.ProgramInformation;
+                var programInformation = scope.ProgramInformationProvider.Get();
 
                 // Assert
                 Assert.IsTrue(programInformation.DataFolder.EndsWith(@"\Data\"));
