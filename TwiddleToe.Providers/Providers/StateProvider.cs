@@ -4,8 +4,8 @@
 
 namespace TwiddleToe.Providers
 {
-    using Newtonsoft.Json;
     using System.IO;
+    using Newtonsoft.Json;
     using TwiddleToe.Models.Models;
     using TwiddleToe.Utilities;
 

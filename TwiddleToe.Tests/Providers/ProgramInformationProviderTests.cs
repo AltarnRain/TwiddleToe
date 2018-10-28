@@ -1,4 +1,4 @@
-﻿// <copyright file="ProgramInformationTests.cs" company="Onno Invernizzi">
+﻿// <copyright file="ProgramInformationProviderTests.cs" company="Onno Invernizzi">
 // Copyright Onno Invernizzi
 // </copyright>
 
