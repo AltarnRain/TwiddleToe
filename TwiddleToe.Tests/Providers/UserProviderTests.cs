@@ -9,6 +9,9 @@ namespace TwiddleToe.Providers.Providers.Tests
     using TwiddleToe.Tests;
     using TwiddleToe.Tests.TestScopes;
 
+    /// <summary>
+    /// Tests the <see cref="UserProvider"/>
+    /// </summary>
     [TestClass]
     public class UserProviderTests : TestBase<ProviderTestScope>
     {
