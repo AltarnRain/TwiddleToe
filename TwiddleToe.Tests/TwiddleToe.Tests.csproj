@@ -8,8 +8,8 @@
     <ProjectGuid>{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TwiddleToe.Providers.Tests</RootNamespace>
-    <AssemblyName>TwiddleToe.Providers.Tests</AssemblyName>
+    <RootNamespace>TwiddleToe.Tests</RootNamespace>
+    <AssemblyName>TwiddleToe.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -29,7 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TwiddleToe.Providers.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\TwiddleToe.Tests.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

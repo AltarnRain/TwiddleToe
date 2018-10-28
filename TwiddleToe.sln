@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Providers", "Twi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Utilities", "TwiddleToe.Utilities\TwiddleToe.Utilities.csproj", "{790D35CE-0380-46E1-8284-2A71A6180CE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Providers.Tests", "TwiddleToe.Tests\TwiddleToe.Providers.Tests.csproj", "{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Tests", "TwiddleToe.Tests\TwiddleToe.Tests.csproj", "{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
