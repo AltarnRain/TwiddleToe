@@ -52,7 +52,7 @@ namespace TwiddleToe.Tests
         protected override void RegisterServices()
         {
             base.RegisterServices();
-            this.Kernel.Load(new TwiddleToe.Providers.Modules());
+            this.Kernel.Load(new TwiddleToe.UI.Modules());
         }
     }
 }

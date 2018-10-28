@@ -32,10 +32,10 @@ namespace TwiddleToe.Utilities
         /// <typeparam name="TClonableModel">A Clonable model</typeparam>
         /// <param name="list">The list.</param>
         /// <returns>A clone of a list</returns>
-        public static ObservableCollection<TClonableModel> MakeClone<TClonableModel>(ObservableCollection<TClonableModel> list)
+        public static List<TClonableModel> MakeClone<TClonableModel>(List<TClonableModel> list)
             where TClonableModel : class, ICloneable
         {
-            var newList = new ObservableCollection<TClonableModel>();
+            var newList = new List<TClonableModel>();
 
             foreach (var item in list)
             {

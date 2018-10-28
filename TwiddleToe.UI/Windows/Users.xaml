@@ -1,0 +1,46 @@
+﻿<Window x:Class="TwiddleToe.UI.Windows.Users"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwiddleToe.UI.Windows"
+        mc:Ignorable="d"
+        Title="Users" Height="450" Width="400
+        " ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                Margin="5"
+                Grid.Column="0" >Toevoegen
+            </Button>
+            <Button 
+                Margin="5" 
+                Grid.Column="1">Verwijderen
+            </Button>
+
+        </Grid>
+
+
+        <ListBox ItemsSource="{Binding Users}"
+                 Grid.Column="0"
+                 Grid.Row="1">
+
+
+        </ListBox>
+    </Grid>
+</Window>

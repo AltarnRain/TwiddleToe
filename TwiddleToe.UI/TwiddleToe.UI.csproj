@@ -38,7 +38,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TwiddleToe.UI.Windows.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="PropertyChanged, Version=2.5.13.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.2.5.13\lib\net452\PropertyChanged.dll</HintPath>
     </Reference>
@@ -62,8 +68,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\MainMenuViewModel.cs" />
+    <Compile Include="Commands\RelayCommnand.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
+    <Compile Include="Windows\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -71,10 +83,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\Users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -113,6 +129,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TwiddleToe.Models\TwiddleToe.Models.csproj">
+      <Project>{0F687B65-24D4-4626-9979-E66EA4E6C806}</Project>
+      <Name>TwiddleToe.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwiddleToe.Providers\TwiddleToe.Providers.csproj">
+      <Project>{88eb5126-1c0a-4ba9-9bab-b6d7cbb018ce}</Project>
+      <Name>TwiddleToe.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwiddleToe.Utilities\TwiddleToe.Utilities.csproj">
+      <Project>{790D35CE-0380-46E1-8284-2A71A6180CE8}</Project>
+      <Name>TwiddleToe.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modules.cs" />
   </ItemGroup>
   <Import Project="..\packages\Fody.3.2.13\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.13\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -74,6 +74,14 @@
       <Project>{88EB5126-1C0A-4BA9-9BAB-B6D7CBB018CE}</Project>
       <Name>TwiddleToe.Providers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TwiddleToe.UI\TwiddleToe.UI.csproj">
+      <Project>{acf7473b-25f1-4238-a480-600f2869d3cc}</Project>
+      <Name>TwiddleToe.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwiddleToe.Utilities\TwiddleToe.Utilities.csproj">
+      <Project>{790d35ce-0380-46e1-8284-2a71a6180ce8}</Project>
+      <Name>TwiddleToe.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

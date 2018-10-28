@@ -2,9 +2,11 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Providers
+namespace TwiddleToe.UI
 {
     using Ninject.Modules;
+    using TwiddleToe.Providers;
+    using TwiddleToe.Utilities.Factories;
 
     /// <summary>
     /// Bindings for Modules.
@@ -20,6 +22,7 @@ namespace TwiddleToe.Providers
             this.Kernel.Bind<IdentityProvider>().ToSelf().InSingletonScope();
             this.Kernel.Bind<StateProvider>().ToSelf().InSingletonScope();
             this.Kernel.Bind<ProgramInformationProvider>().ToSelf().InSingletonScope();
+            this.Kernel.Bind<ViewFactory>().ToSelf().InSingletonScope();
         }
     }
 }
