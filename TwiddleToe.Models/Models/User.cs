@@ -4,10 +4,12 @@
 
 namespace TwiddleToe.Models
 {
+    using System;
+
     /// <summary>
     /// Een Persoon
     /// </summary>
-    public class User
+    public class User : ICloneable
     {
         /// <summary>
         /// Gets or sets the user identifier.
@@ -32,5 +34,21 @@ namespace TwiddleToe.Models
         /// The last name.
         /// </value>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        /// A new object that is a copy of this instance.
+        /// </returns>
+        public object Clone()
+        {
+            return new User
+            {
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                UserId = this.UserId,
+            };
+        }
     }
 }

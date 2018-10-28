@@ -4,10 +4,12 @@
 
 namespace TwiddleToe.Models.Models
 {
+    using System;
+
     /// <summary>
     /// A subject for a question.
     /// </summary>
-    public class Subject
+    public class Subject : ICloneable
     {
         /// <summary>
         /// Gets or sets the subject identifier.
@@ -24,5 +26,20 @@ namespace TwiddleToe.Models.Models
         /// The description.
         /// </value>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        /// A new object that is a copy of this instance.
+        /// </returns>
+        public object Clone()
+        {
+            return new Subject
+            {
+                Description = this.Description,
+                SubjectId = this.SubjectId,
+            };
+        }
     }
 }

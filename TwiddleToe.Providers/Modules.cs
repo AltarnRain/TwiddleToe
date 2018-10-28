@@ -19,7 +19,7 @@ namespace TwiddleToe.Providers
         {
             this.Kernel.Bind<IdentityProvider>().ToSelf().InSingletonScope();
             this.Kernel.Bind<StateProvider>().ToSelf().InSingletonScope();
-            this.Kernel.Bind<ProgramInformation>().ToSelf().InSingletonScope();
+            this.Kernel.Bind<ProgramInformationProvider>().ToSelf().InSingletonScope();
         }
     }
 }

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Models", "Twiddl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.UI", "TwiddleToe.UI\TwiddleToe.UI.csproj", "{ACF7473B-25F1-4238-A480-600F2869D3CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.ViewModels", "TwiddleToe.ViewModels\TwiddleToe.ViewModels.csproj", "{E5872D6C-F915-42BD-95FE-458B25849D2E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{C488FCAA-6EDB-4722-9230-CEB5ADFBE579}"
 	ProjectSection(SolutionItems) = preProject
 		stylecop.json = stylecop.json
@@ -16,9 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Providers", "TwiddleToe.Providers\TwiddleToe.Providers.csproj", "{88EB5126-1C0A-4BA9-9BAB-B6D7CBB018CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Providers.Tests", "TwiddleToe.Providers.Tests\TwiddleToe.Providers.Tests.csproj", "{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Utilities", "TwiddleToe.Utilities\TwiddleToe.Utilities.csproj", "{790D35CE-0380-46E1-8284-2A71A6180CE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Test.Base", "TwiddleToe.Test.Base\TwiddleToe.Test.Base.csproj", "{19246051-CE87-417E-ADBC-6F2EF5C8686C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Tests", "TwiddleToe.Tests\TwiddleToe.Tests.csproj", "{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,22 +32,18 @@ Global
 		{ACF7473B-25F1-4238-A480-600F2869D3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACF7473B-25F1-4238-A480-600F2869D3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACF7473B-25F1-4238-A480-600F2869D3CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5872D6C-F915-42BD-95FE-458B25849D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5872D6C-F915-42BD-95FE-458B25849D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5872D6C-F915-42BD-95FE-458B25849D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5872D6C-F915-42BD-95FE-458B25849D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88EB5126-1C0A-4BA9-9BAB-B6D7CBB018CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88EB5126-1C0A-4BA9-9BAB-B6D7CBB018CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88EB5126-1C0A-4BA9-9BAB-B6D7CBB018CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88EB5126-1C0A-4BA9-9BAB-B6D7CBB018CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{790D35CE-0380-46E1-8284-2A71A6180CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{790D35CE-0380-46E1-8284-2A71A6180CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{790D35CE-0380-46E1-8284-2A71A6180CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{790D35CE-0380-46E1-8284-2A71A6180CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B62D9C0-4038-4E03-A0BD-F3F59E633EBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19246051-CE87-417E-ADBC-6F2EF5C8686C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19246051-CE87-417E-ADBC-6F2EF5C8686C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19246051-CE87-417E-ADBC-6F2EF5C8686C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19246051-CE87-417E-ADBC-6F2EF5C8686C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

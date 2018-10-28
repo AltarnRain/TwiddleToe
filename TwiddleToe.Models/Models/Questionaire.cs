@@ -4,12 +4,14 @@
 
 namespace TwiddleToe.Models.Models
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// A list of questions
     /// </summary>
-    public class Questionaire
+    public class Questionaire : ICloneable
     {
         /// <summary>
         /// Gets or sets the questionaire identifier.
@@ -26,5 +28,20 @@ namespace TwiddleToe.Models.Models
         /// The question ids.
         /// </value>
         public List<int> Questions { get; set; }
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        /// A new object that is a copy of this instance.
+        /// </returns>
+        public object Clone()
+        {
+            return new Questionaire
+            {
+                QuestionaireId = this.QuestionaireId,
+                Questions = this.Questions.ToList(),
+            };
+        }
     }
 }

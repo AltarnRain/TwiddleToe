@@ -6,7 +6,9 @@ namespace TwiddleToe.Providers
 {
     using System.IO;
     using Newtonsoft.Json;
+    using TwiddleToe.Models;
     using TwiddleToe.Models.Models;
+    using TwiddleToe.Utilities;
 
     /// <summary>
     /// Provides the current state.
@@ -21,15 +23,15 @@ namespace TwiddleToe.Providers
         /// <summary>
         /// The programinformation
         /// </summary>
-        private readonly ProgramInformation programinformation;
+        private readonly ProgramInformationProvider programInformationProvider;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StateProvider"/> class.
+        /// Initializes a new instance of the <see cref="StateProvider" /> class.
         /// </summary>
-        /// <param name="programinformation">The programinformation.</param>
-        public StateProvider(ProgramInformation programinformation)
+        /// <param name="programInformationProvider">The program information provider.</param>
+        public StateProvider(ProgramInformationProvider programInformationProvider)
         {
-            this.programinformation = programinformation;
+            this.programInformationProvider = programInformationProvider;
         }
 
         /// <summary>
@@ -38,11 +40,12 @@ namespace TwiddleToe.Providers
         /// <returns>The current state</returns>
         public State Get()
         {
-            if (File.Exists(this.programinformation.DataFile))
+            var programInformation = this.programInformationProvider.Get();
+            if (File.Exists(programInformation.DataFile))
             {
                 try
                 {
-                    state = JsonConvert.DeserializeObject<State>(this.programinformation.DataFile);
+                    state = JsonConvert.DeserializeObject<State>(programInformation.DataFile);
                 }
                 catch
                 {
@@ -57,7 +60,8 @@ namespace TwiddleToe.Providers
                 state = new State();
             }
 
-            return state;
+            // The state is immutable.
+            return CloneFactory.MakeClone(state);
         }
 
         /// <summary>
@@ -66,7 +70,7 @@ namespace TwiddleToe.Providers
         /// <param name="newState">The new state.</param>
         public void Set(State newState)
         {
-            state = newState;
+            state = CloneFactory.MakeClone(newState);
         }
 
         /// <summary>
@@ -75,7 +79,8 @@ namespace TwiddleToe.Providers
         public void Flush()
         {
             var json = JsonConvert.SerializeObject(state);
-            File.WriteAllText(this.programinformation.DataFile, json);
+            var programInformation = this.programInformationProvider.Get();
+            File.WriteAllText(programInformation.DataFile, json);
         }
     }
 }
