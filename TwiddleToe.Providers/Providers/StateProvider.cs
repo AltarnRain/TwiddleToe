@@ -4,6 +4,7 @@
 
 namespace TwiddleToe.Providers
 {
+    using System;
     using System.IO;
     using Newtonsoft.Json;
     using TwiddleToe.Models.Models;
@@ -48,6 +49,20 @@ namespace TwiddleToe.Providers
         }
 
         /// <summary>
+        /// Gets or sets the on change.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <value>
+        /// The on change.
+        /// </value>
+        public delegate void OnStateChangedEvent(State state);
+
+        /// <summary>
+        /// Occurs when [on state changed].
+        /// </summary>
+        public event OnStateChangedEvent OnStateChanged;
+
+        /// <summary>
         /// Gets the <see cref="State"/>instance.
         /// </summary>
         /// <returns>The current state</returns>
@@ -69,6 +84,9 @@ namespace TwiddleToe.Providers
         public void Set(State newState)
         {
             state = CloneFactory.MakeClone(newState);
+
+            // Signal state subscribers the state has changed.
+            this.OnStateChanged?.Invoke(CloneFactory.MakeClone(state));
         }
 
         /// <summary>

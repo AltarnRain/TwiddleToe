@@ -22,11 +22,10 @@ namespace TwiddleToe.Providers.Tests
             using (var scope = this.StartTest())
             {
                 // Act
-                var firstResult = scope.IdentityProvider.Get();
-                var secondResult = scope.IdentityProvider.Get();
+                var identity = scope.IdentityProvider.Get();
 
                 // Assert
-                Assert.IsTrue(secondResult - firstResult == 1);
+                Assert.IsTrue(identity != string.Empty);
             }
         }
     }

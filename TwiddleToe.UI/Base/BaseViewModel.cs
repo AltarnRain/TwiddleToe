@@ -4,8 +4,8 @@
 
 namespace TwiddleToe.Base
 {
-    using System.Collections.Generic;
     using System.ComponentModel;
+    using TwiddleToe.UI.Events;
 
     /// <summary>
     /// Base view model for all view models.
@@ -17,5 +17,18 @@ namespace TwiddleToe.Base
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+
+        /// <summary>
+        /// Occurs when [on request close].
+        /// </summary>
+        public event RequestClose OnRequestClose;
+
+        /// <summary>
+        /// Closes the view.
+        /// </summary>
+        public void CloseView()
+        {
+            this.OnRequestClose?.Invoke();
+        }
     }
 }

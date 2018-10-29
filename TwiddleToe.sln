@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.UI", "TwiddleToe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{C488FCAA-6EDB-4722-9230-CEB5ADFBE579}"
 	ProjectSection(SolutionItems) = preProject
+		Architecture.txt = Architecture.txt
 		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject

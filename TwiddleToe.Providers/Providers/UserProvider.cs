@@ -2,17 +2,25 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Providers.Providers
+namespace TwiddleToe.Providers
 {
     using System.Collections.Generic;
     using TwiddleToe.Models;
+    using TwiddleToe.Providers;
 
     /// <summary>
     /// Provides and creates user models
     /// </summary>
     public class UserProvider
     {
+        /// <summary>
+        /// The identity provider
+        /// </summary>
         private readonly IdentityProvider identityProvider;
+
+        /// <summary>
+        /// The state provider
+        /// </summary>
         private readonly StateProvider stateProvider;
 
         /// <summary>
@@ -26,19 +34,6 @@ namespace TwiddleToe.Providers.Providers
         {
             this.identityProvider = identityProvider;
             this.stateProvider = stateProvider;
-        }
-
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <returns>
-        /// Creates a new User model
-        /// </returns>
-        public User Create(User user)
-        {
-            user.UserId = this.identityProvider.Get();
-            return user;
         }
 
         /// <summary>

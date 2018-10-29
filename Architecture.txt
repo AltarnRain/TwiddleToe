@@ -1,0 +1,7 @@
+﻿TwiddleToe architecture. 
+
+Utilities -> General function. Cannot have any dependancies.
+	Models -> Data models
+		Providers -> Provides of data models.
+			UI -> Windows and ViewModels, Ninject modules registration.
+				Tests -> Tests for the entire application.

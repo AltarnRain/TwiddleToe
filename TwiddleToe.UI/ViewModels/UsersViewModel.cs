@@ -4,14 +4,16 @@
 
 namespace TwiddleToe.UI.ViewModels
 {
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
     using TwiddleToe.Base;
     using TwiddleToe.Models;
+    using TwiddleToe.Models.Models;
     using TwiddleToe.Providers;
     using TwiddleToe.UI.Commands;
+    using TwiddleToe.UI.DialogWindows;
+    using TwiddleToe.UI.Factories;
 
     /// <summary>
     /// A view model for TwiddleToe users.
@@ -19,18 +21,36 @@ namespace TwiddleToe.UI.ViewModels
     /// <seealso cref="TwiddleToe.Base.BaseViewModel" />
     public class UsersViewModel : BaseViewModel
     {
+        /// <summary>
+        /// The state provider
+        /// </summary>
         private readonly StateProvider stateProvider;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UsersViewModel"/> class.
+        /// The view factory
+        /// </summary>
+        private readonly ViewFactory viewFactory;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsersViewModel" /> class.
         /// </summary>
         /// <param name="stateProvider">The state provider.</param>
-        public UsersViewModel(StateProvider stateProvider)
+        /// <param name="viewFactory">The view factory.</param>
+        public UsersViewModel(
+            StateProvider stateProvider,
+            ViewFactory viewFactory)
         {
-            this.Users = new ObservableCollection<UserListItemViewModel>();
+            this.Users = new ObservableCollection<User>();
             this.stateProvider = stateProvider;
+            this.viewFactory = viewFactory;
             this.AddNewUser = new RelayCommnand(this.AddUserAction);
             this.RemoveSelectedUser = new RelayCommnand(this.RemoveSelectedUserAction, this.UserIsSelected);
+
+            var currentState = stateProvider.Get();
+
+            this.Update(currentState);
+
+            this.stateProvider.OnStateChanged += this.Update;
         }
 
         /// <summary>
@@ -39,34 +59,22 @@ namespace TwiddleToe.UI.ViewModels
         /// <value>
         /// The selected value.
         /// </value>
-        public User SelectedValue { get; set; }
+        public string SelectedValue
+        {
+            get => string.Empty;
+            set
+            {
+                this.CurrentUser = this.Users.Single(u => u.UserId == value);
+            }
+        }
 
         /// <summary>
-        /// Gets the users.
+        /// Gets or sets the users.
         /// </summary>
         /// <value>
         /// The users.
         /// </value>
-        public ObservableCollection<UserListItemViewModel> Users { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the current user.
-        /// </summary>
-        /// <value>
-        /// The current user.
-        /// </value>
-        public int CurrentUserId
-        {
-            get => -1;
-            set
-            {
-                var foundUser = this.Users.SingleOrDefault(u => u.UserId == value);
-                if (foundUser != null)
-                {
-                    this.CurrentUser = foundUser;
-                }
-            }
-        }
+        public ObservableCollection<User> Users { get; set; }
 
         /// <summary>
         /// Gets the add new user command
@@ -85,52 +93,52 @@ namespace TwiddleToe.UI.ViewModels
         public ICommand RemoveSelectedUser { get; private set; }
 
         /// <summary>
-        /// Gets or sets the current user.
+        /// Gets the current user.
         /// </summary>
         /// <value>
         /// The current user.
         /// </value>
-        public UserListItemViewModel CurrentUser { get; set; }
-
-        /// <summary>
-        /// Gets the data from the view model.
-        /// </summary>
-        /// <returns>
-        /// A model
-        /// </returns>
-        public IEnumerable<User> GetData()
-        {
-            return this.Users.Select(u => u.GetData());
-        }
+        public User CurrentUser { get; private set; }
 
         /// <summary>
         /// Users the selected.
         /// </summary>
         /// <returns>True if a user is selected</returns>
-        public bool UserIsSelected()
+        private bool UserIsSelected()
         {
-            return this.CurrentUser != null;
+            return false;
         }
 
         /// <summary>
         /// Adds a new user
         /// </summary>
-        public void AddUserAction()
+        private void AddUserAction()
         {
+            var addUserDialog = this.viewFactory.GetView<AddUser>();
+            addUserDialog.ShowDialog();
         }
 
         /// <summary>
         /// Removes the currently selected user.
         /// </summary>
-        public void RemoveSelectedUserAction()
+        private void RemoveSelectedUserAction()
         {
         }
 
         /// <summary>
         /// Select a user.
         /// </summary>
-        public void SetCurrentUserAction()
+        private void SetCurrentUserAction()
         {
+        }
+
+        private void Update(State state)
+        {
+            this.Users.Clear();
+            foreach (var user in state.Users)
+            {
+                this.Users.Add(user);
+            }
         }
     }
 }

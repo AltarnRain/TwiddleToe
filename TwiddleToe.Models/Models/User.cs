@@ -18,7 +18,7 @@ namespace TwiddleToe.Models
         /// <value>
         /// The user identifier.
         /// </value>
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the first name.
@@ -35,6 +35,20 @@ namespace TwiddleToe.Models
         /// The last name.
         /// </value>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Gets the full name.
+        /// </summary>
+        /// <value>
+        /// The full name.
+        /// </value>
+        public string FullName
+        {
+            get
+            {
+                return $"{this.FirstName} {this.LastName}";
+            }
+        }
 
         /// <summary>
         /// Creates a new object that is a copy of the current instance.

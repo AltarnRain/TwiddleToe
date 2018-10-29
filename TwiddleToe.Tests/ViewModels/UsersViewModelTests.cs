@@ -30,23 +30,5 @@ namespace TwiddleToe.UI.ViewModels.Tests
                 Assert.IsNotNull(viewModel);
             }
         }
-
-        /// <summary>
-        /// Tests if there is a current user.
-        /// </summary>
-        [TestMethod]
-        public void UserSelectedTest()
-        {
-            using (var scope = this.StartTest())
-            {
-                var viewModel = scope.UserViewModel;
-
-                Assert.IsFalse(viewModel.UserIsSelected());
-
-                viewModel.CurrentUser = new UserListItemViewModel(new User() { FirstName = "Test", LastName = "test", UserId = 1 });
-
-                Assert.IsTrue(viewModel.UserIsSelected());
-            }
-        }
     }
 }

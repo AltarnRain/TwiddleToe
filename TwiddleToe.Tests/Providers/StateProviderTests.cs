@@ -4,7 +4,9 @@
 
 namespace TwiddleToe.Tests.Providers
 {
+    using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TwiddleToe.Models;
     using TwiddleToe.Models.Models;
 
     /// <summary>
@@ -57,6 +59,39 @@ namespace TwiddleToe.Tests.Providers
 
                 state.Questions.Add(new Question { Answer = "Test2" });
                 Assert.AreNotEqual(updatedState.Questions.Count, state.Questions.Count);
+            }
+        }
+
+        /// <summary>
+        /// Tests the on state changed event.
+        /// </summary>
+        [TestMethod]
+        public void TestOnStateChangedEvent()
+        {
+            using (var scope = this.StartTest())
+            {
+                var stateProvider = scope.StateProvider;
+
+                stateProvider.OnStateChanged += (state) =>
+                {
+                    Assert.IsNotNull(state);
+                    Assert.IsTrue(state.Users.Count == 2);
+                };
+
+                var currentState = stateProvider.Get();
+
+                var users = new List<User>
+                {
+                    scope.UserProvider.Create("Onno", "Invernizzi"),
+                    scope.UserProvider.Create("Femkje", "Akkerman"),
+                };
+
+                currentState.Users.Clear();
+                currentState.Users.AddRange(users);
+
+                // Act
+                // This should trigger the event.
+                stateProvider.Set(currentState);
             }
         }
     }
