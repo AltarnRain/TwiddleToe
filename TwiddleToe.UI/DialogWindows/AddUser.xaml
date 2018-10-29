@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Margin="10" Grid.Column="1">Ok</Button>
+            <Button Command="{Binding AddUser}" Margin="10" Grid.Column="1">Ok</Button>
             <Button Command="{Binding Cancel}" Margin="10" Grid.Column="2">Annuleren</Button>
         </Grid>
     </Grid>

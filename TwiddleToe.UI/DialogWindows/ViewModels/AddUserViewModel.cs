@@ -82,6 +82,7 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
             var currentState = this.stateProvider.Get();
             currentState.Users.Add(newUser);
             this.stateProvider.Set(currentState);
+            this.CloseView();
         }
 
         /// <summary>
