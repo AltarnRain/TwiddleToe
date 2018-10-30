@@ -7,8 +7,8 @@
     <ProjectGuid>{0F687B65-24D4-4626-9979-E66EA4E6C806}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TwiddleToe.Models</RootNamespace>
-    <AssemblyName>TwiddleToe.Models</AssemblyName>
+    <RootNamespace>TwiddleToe.Foundation</RootNamespace>
+    <AssemblyName>TwiddleToe.Foundation</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TwiddleToe.Models.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\TwiddleToe.Foundation.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\CommonEvents.cs" />
+    <Compile Include="Interfaces\IBaseViewModel.cs" />
     <Compile Include="Models\ProgramInformation.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Questionaire.cs" />

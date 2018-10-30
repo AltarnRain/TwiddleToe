@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Models.Models
+namespace TwiddleToe.Foundation.Models
 {
     using System;
     using System.Collections.Generic;

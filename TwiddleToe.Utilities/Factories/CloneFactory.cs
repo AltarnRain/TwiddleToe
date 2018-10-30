@@ -2,12 +2,10 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Utilities
+namespace TwiddleToe.Utilities.Factories
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
 
     /// <summary>
     /// A factory for creating clones of objects

@@ -2,13 +2,12 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Providers
+namespace TwiddleToe.Workers.Providers
 {
-    using System;
     using System.IO;
     using Newtonsoft.Json;
-    using TwiddleToe.Models.Models;
-    using TwiddleToe.Utilities;
+    using TwiddleToe.Foundation.Models;
+    using TwiddleToe.Utilities.Factories;
 
     /// <summary>
     /// Provides the current state.

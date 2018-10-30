@@ -2,12 +2,12 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.UI.Factories
+namespace TwiddleToe.Workers.Factories
 {
     using System.Windows;
     using Ninject;
-    using TwiddleToe.Base;
-    using TwiddleToe.UI.Events;
+    using TwiddleToe.Foundation.Events;
+    using TwiddleToe.Models.Interfaces;
 
     /// <summary>
     /// Creates view models and views and handles service injection
@@ -34,7 +34,7 @@ namespace TwiddleToe.UI.Factories
         /// A view model
         /// </returns>
         public TViewModel GetViewModel<TViewModel>(RequestClose close)
-            where TViewModel : BaseViewModel
+            where TViewModel : IBaseViewModel
         {
             var viewModel = this.kernel.Get<TViewModel>();
             viewModel.OnRequestClose += close;

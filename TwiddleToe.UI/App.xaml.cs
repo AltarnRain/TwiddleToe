@@ -6,7 +6,7 @@ namespace TwiddleToe.UI.Windows
 {
     using System.Windows;
     using Ninject;
-    using TwiddleToe.UI.Factories;
+    using TwiddleToe.Workers.Factories;
 
     /// <summary>
     /// Interaction logic for App.xaml

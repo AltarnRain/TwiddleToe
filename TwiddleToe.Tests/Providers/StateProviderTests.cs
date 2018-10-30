@@ -6,8 +6,7 @@ namespace TwiddleToe.Tests.Providers
 {
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TwiddleToe.Models;
-    using TwiddleToe.Models.Models;
+    using TwiddleToe.Foundation.Models;
 
     /// <summary>
     /// Tests the StateProvider.

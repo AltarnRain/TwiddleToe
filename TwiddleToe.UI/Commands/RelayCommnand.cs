@@ -21,16 +21,18 @@ namespace TwiddleToe.UI.Commands
         /// </summary>
         /// <param name="action">The action.</param>
         /// <param name="canExecute">A function that returns true if the action can execute. Optional.</param>
-        public RelayCommnand(Action action, Func<bool> canExecute = null)
+        /// <param name="canExecuteChanged">The can execute changed.</param>
+        public RelayCommnand(Action action, Func<bool> canExecute = null, EventHandler canExecuteChanged = null)
         {
             this.action = action;
             this.canExecute = canExecute;
+            this.CanExecuteChanged = canExecuteChanged;
         }
 
         /// <summary>
         /// Occurs when changes occur that affect whether or not the command should execute.
         /// </summary>
-        public event EventHandler CanExecuteChanged = (sender, e) => { };
+        public event EventHandler CanExecuteChanged;
 
         /// <summary>
         /// Defines the method that determines whether the command can execute in its current state.

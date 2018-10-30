@@ -2,11 +2,11 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Providers
+namespace TwiddleToe.Workers.Providers
 {
     using System.IO;
     using System.Reflection;
-    using TwiddleToe.Models.Models;
+    using TwiddleToe.Foundation.Models;
 
     /// <summary>
     /// This is a singleton class that contains a information that the entire application uses.

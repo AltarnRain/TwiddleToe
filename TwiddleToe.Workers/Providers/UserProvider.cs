@@ -2,11 +2,11 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Providers
+namespace TwiddleToe.Workers.Providers
 {
     using System.Collections.Generic;
+    using TwiddleToe.Foundation.Models;
     using TwiddleToe.Models;
-    using TwiddleToe.Providers;
 
     /// <summary>
     /// Provides and creates user models

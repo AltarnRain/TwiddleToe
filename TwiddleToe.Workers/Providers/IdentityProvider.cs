@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Providers
+namespace TwiddleToe.Workers.Providers
 {
     using System;
 

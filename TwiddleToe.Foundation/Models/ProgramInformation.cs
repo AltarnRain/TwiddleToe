@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Models.Models
+namespace TwiddleToe.Foundation.Models
 {
     /// <summary>
     /// Class with general program information.

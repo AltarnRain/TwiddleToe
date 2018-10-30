@@ -5,8 +5,8 @@
 namespace TwiddleToe.UI
 {
     using Ninject.Modules;
-    using TwiddleToe.Providers;
-    using TwiddleToe.UI.Factories;
+    using TwiddleToe.Workers.Factories;
+    using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// Bindings for Modules.

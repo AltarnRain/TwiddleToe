@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.UI.Events
+namespace TwiddleToe.Foundation.Events
 {
     /// <summary>
     /// A request to close delegate

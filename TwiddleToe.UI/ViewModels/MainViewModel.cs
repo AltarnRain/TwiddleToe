@@ -7,8 +7,8 @@ namespace TwiddleToe.UI.ViewModels
     using System.Windows.Input;
     using TwiddleToe.Base;
     using TwiddleToe.UI.Commands;
-    using TwiddleToe.UI.Factories;
     using TwiddleToe.UI.Windows;
+    using TwiddleToe.Workers.Factories;
 
     /// <summary>
     /// View model for the main menu.

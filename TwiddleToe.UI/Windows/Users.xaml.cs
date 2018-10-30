@@ -5,8 +5,8 @@
 namespace TwiddleToe.UI.Windows
 {
     using System.Windows;
-    using TwiddleToe.UI.Factories;
     using TwiddleToe.UI.ViewModels;
+    using TwiddleToe.Workers.Factories;
 
     /// <summary>
     /// Interaction logic for Users.xaml

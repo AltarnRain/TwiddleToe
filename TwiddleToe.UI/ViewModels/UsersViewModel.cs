@@ -8,12 +8,11 @@ namespace TwiddleToe.UI.ViewModels
     using System.Linq;
     using System.Windows.Input;
     using TwiddleToe.Base;
-    using TwiddleToe.Models;
-    using TwiddleToe.Models.Models;
-    using TwiddleToe.Providers;
+    using TwiddleToe.Foundation.Models;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.DialogWindows;
-    using TwiddleToe.UI.Factories;
+    using TwiddleToe.Workers.Factories;
+    using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// A view model for TwiddleToe users.

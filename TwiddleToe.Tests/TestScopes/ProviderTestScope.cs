@@ -5,9 +5,8 @@
 namespace TwiddleToe.Tests
 {
     using Ninject;
-    using TwiddleToe.Models.Models;
     using TwiddleToe.Providers;
-    using TwiddleToe.Providers.Providers;
+    using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// Test scope for provider unit tests.

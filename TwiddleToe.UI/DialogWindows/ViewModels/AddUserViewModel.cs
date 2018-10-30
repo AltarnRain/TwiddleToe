@@ -7,8 +7,9 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
     using System;
     using System.Windows.Input;
     using TwiddleToe.Base;
-    using TwiddleToe.Providers;
+    using TwiddleToe.Foundation.Models;
     using TwiddleToe.UI.Commands;
+    using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// A view model for adding users
@@ -35,7 +36,7 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
             StateProvider stateProvider,
             UserProvider userProvider)
         {
-            this.AddUser = new RelayCommnand(this.AddNewUser, this.CanAddNewUser);
+            this.AddUser = new RelayCommnand(this.AddNewUser, this.CanAddNewUser, this.CanNowAddNewUser);
             this.Cancel = new RelayCommnand(this.CancelAddition);
             this.stateProvider = stateProvider;
             this.userProvider = userProvider;
@@ -72,6 +73,15 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         /// The add user.
         /// </value>
         public ICommand Cancel { get; set; }
+
+        /// <summary>
+        /// Determines whether this instance [can now add new user] the specified sender.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        public void CanNowAddNewUser(object sender, EventArgs e)
+        {
+        }
 
         /// <summary>
         /// Adds the new user.

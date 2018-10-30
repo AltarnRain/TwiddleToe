@@ -7,8 +7,8 @@
     <ProjectGuid>{88EB5126-1C0A-4BA9-9BAB-B6D7CBB018CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TwiddleToe.Providers</RootNamespace>
-    <AssemblyName>TwiddleToe.Providers</AssemblyName>
+    <RootNamespace>TwiddleToe.Workers</RootNamespace>
+    <AssemblyName>TwiddleToe.Workers</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TwiddleToe.Providers.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\TwiddleToe.Workers.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +37,10 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\ViewFactory.cs" />
     <Compile Include="Providers\IdentityProvider.cs" />
     <Compile Include="Providers\ProgramInformationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,9 +66,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TwiddleToe.Models\TwiddleToe.Models.csproj">
+    <ProjectReference Include="..\TwiddleToe.Foundation\TwiddleToe.Foundation.csproj">
       <Project>{0F687B65-24D4-4626-9979-E66EA4E6C806}</Project>
-      <Name>TwiddleToe.Models</Name>
+      <Name>TwiddleToe.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwiddleToe.Utilities\TwiddleToe.Utilities.csproj">
       <Project>{790D35CE-0380-46E1-8284-2A71A6180CE8}</Project>

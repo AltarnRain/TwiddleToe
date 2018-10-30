@@ -5,13 +5,14 @@
 namespace TwiddleToe.Base
 {
     using System.ComponentModel;
-    using TwiddleToe.UI.Events;
+    using TwiddleToe.Foundation.Events;
+    using TwiddleToe.Models.Interfaces;
 
     /// <summary>
     /// Base view model for all view models.
     /// </summary>
     /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged, IBaseViewModel
     {
         /// <summary>
         /// Occurs when a property value changes.
