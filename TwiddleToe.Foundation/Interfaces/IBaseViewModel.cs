@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Models.Interfaces
+namespace TwiddleToe.Foundation.Interfaces
 {
     using TwiddleToe.Foundation.Events;
 
@@ -10,7 +10,7 @@ namespace TwiddleToe.Models.Interfaces
     /// Base interface for all view models. Allows inversion of control.
     /// for the ViewFactory
     /// </summary>
-    public interface IBaseViewModel
+    public interface IBaseViewModel : ISubscriber
     {
         /// <summary>
         /// Occurs when [on request close].

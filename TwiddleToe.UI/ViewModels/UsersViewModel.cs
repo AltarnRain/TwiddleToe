@@ -38,6 +38,7 @@ namespace TwiddleToe.UI.ViewModels
         public UsersViewModel(
             StateProvider stateProvider,
             ViewFactory viewFactory)
+            : base(stateProvider)
         {
             this.Users = new ObservableCollection<User>();
             this.stateProvider = stateProvider;
@@ -47,9 +48,7 @@ namespace TwiddleToe.UI.ViewModels
 
             var currentState = stateProvider.Get();
 
-            this.Update(currentState);
-
-            this.stateProvider.OnStateChanged += this.Update;
+            this.StateUpdate(currentState);
         }
 
         /// <summary>
@@ -100,6 +99,19 @@ namespace TwiddleToe.UI.ViewModels
         public User CurrentUser { get; private set; }
 
         /// <summary>
+        /// States the update.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        public override void StateUpdate(State state)
+        {
+            this.Users.Clear();
+            foreach (var user in state.Users)
+            {
+                this.Users.Add(user);
+            }
+        }
+
+        /// <summary>
         /// Users the selected.
         /// </summary>
         /// <returns>True if a user is selected</returns>
@@ -129,15 +141,6 @@ namespace TwiddleToe.UI.ViewModels
         /// </summary>
         private void SetCurrentUserAction()
         {
-        }
-
-        private void Update(State state)
-        {
-            this.Users.Clear();
-            foreach (var user in state.Users)
-            {
-                this.Users.Add(user);
-            }
         }
     }
 }

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factories\ViewFactory.cs" />
+    <Compile Include="FileHandlers\StateFileHandler.cs" />
     <Compile Include="Providers\IdentityProvider.cs" />
     <Compile Include="Providers\ProgramInformationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

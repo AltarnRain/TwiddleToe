@@ -35,6 +35,7 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         public AddUserViewModel(
             StateProvider stateProvider,
             UserProvider userProvider)
+            : base(stateProvider)
         {
             this.AddUser = new RelayCommnand(this.AddNewUser, this.CanAddNewUser, this.CanNowAddNewUser);
             this.Cancel = new RelayCommnand(this.CancelAddition);
@@ -81,6 +82,15 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void CanNowAddNewUser(object sender, EventArgs e)
         {
+        }
+
+        /// <summary>
+        /// States the update.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        public override void StateUpdate(State state)
+        {
+            // No action. This view model is not updated when the state changes.
         }
 
         /// <summary>

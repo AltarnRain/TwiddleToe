@@ -4,10 +4,11 @@
 
 namespace TwiddleToe.Workers.Providers
 {
-    using System.IO;
-    using Newtonsoft.Json;
+    using System.Collections.Generic;
+    using TwiddleToe.Foundation.Interfaces;
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.Utilities.Factories;
+    using TwiddleToe.Workers.FileHandlers;
 
     /// <summary>
     /// Provides the current state.
@@ -20,46 +21,30 @@ namespace TwiddleToe.Workers.Providers
         private static State state;
 
         /// <summary>
-        /// The programinformation
+        /// A list of classes implemting ISubscriber that will receive a cloned state each time the state is set.
         /// </summary>
-        private readonly ProgramInformationProvider programInformationProvider;
+        private readonly List<ISubscriber> subscribers;
+        private readonly StateFileHandler stateFileHandler;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StateProvider" /> class.
         /// </summary>
-        /// <param name="programInformationProvider">The program information provider.</param>
-        public StateProvider(ProgramInformationProvider programInformationProvider)
+        /// <param name="stateFileHandler">The state loader.</param>
+        public StateProvider(StateFileHandler stateFileHandler)
         {
-            this.programInformationProvider = programInformationProvider;
-
-            var programInformation = this.programInformationProvider.Get();
-
-            if (File.Exists(programInformation.DataFile))
-            {
-                try
-                {
-                    state = JsonConvert.DeserializeObject<State>(programInformation.DataFile);
-                }
-                catch
-                {
-                    state = new State();
-                }
-            }
+            state = stateFileHandler.Get();
+            this.subscribers = new List<ISubscriber>();
+            this.stateFileHandler = stateFileHandler;
         }
 
         /// <summary>
-        /// Gets or sets the on change.
+        /// Unsubscribes the specified subscriber.
         /// </summary>
-        /// <param name="state">The state.</param>
-        /// <value>
-        /// The on change.
-        /// </value>
-        public delegate void OnStateChangedEvent(State state);
-
-        /// <summary>
-        /// Occurs when [on state changed].
-        /// </summary>
-        public event OnStateChangedEvent OnStateChanged;
+        /// <param name="subscriber">The subscriber.</param>
+        public void Unsubscribe(ISubscriber subscriber)
+        {
+            this.subscribers.Remove(subscriber);
+        }
 
         /// <summary>
         /// Gets the <see cref="State"/>instance.
@@ -85,7 +70,16 @@ namespace TwiddleToe.Workers.Providers
             state = CloneFactory.MakeClone(newState);
 
             // Signal state subscribers the state has changed.
-            this.OnStateChanged?.Invoke(CloneFactory.MakeClone(state));
+            this.DispatchUpdatedStateToSubscribers();
+        }
+
+        /// <summary>
+        /// Subscribes the specified view model to changes in the state.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
+        public void Subscribe(ISubscriber viewModel)
+        {
+            this.subscribers.Add(viewModel);
         }
 
         /// <summary>
@@ -93,9 +87,19 @@ namespace TwiddleToe.Workers.Providers
         /// </summary>
         public void Flush()
         {
-            var json = JsonConvert.SerializeObject(state);
-            var programInformation = this.programInformationProvider.Get();
-            File.WriteAllText(programInformation.DataFile, json);
+            this.stateFileHandler.SaveStateToFile(state);
+        }
+
+        /// <summary>
+        /// Dispatches the updated state to subscribers.
+        /// </summary>
+        private void DispatchUpdatedStateToSubscribers()
+        {
+            foreach (var subscriber in this.subscribers)
+            {
+                var clonedState = CloneFactory.MakeClone(state);
+                subscriber.Dispatch(clonedState);
+            }
         }
     }
 }

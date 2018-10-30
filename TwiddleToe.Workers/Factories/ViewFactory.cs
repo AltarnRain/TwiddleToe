@@ -7,7 +7,7 @@ namespace TwiddleToe.Workers.Factories
     using System.Windows;
     using Ninject;
     using TwiddleToe.Foundation.Events;
-    using TwiddleToe.Models.Interfaces;
+    using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
     /// Creates view models and views and handles service injection
@@ -38,6 +38,7 @@ namespace TwiddleToe.Workers.Factories
         {
             var viewModel = this.kernel.Get<TViewModel>();
             viewModel.OnRequestClose += close;
+
             return viewModel;
         }
 

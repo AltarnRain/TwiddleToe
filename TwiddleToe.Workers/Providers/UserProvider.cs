@@ -6,7 +6,6 @@ namespace TwiddleToe.Workers.Providers
 {
     using System.Collections.Generic;
     using TwiddleToe.Foundation.Models;
-    using TwiddleToe.Models;
 
     /// <summary>
     /// Provides and creates user models

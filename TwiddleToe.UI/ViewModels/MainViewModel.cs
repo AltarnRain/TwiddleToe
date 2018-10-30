@@ -6,9 +6,11 @@ namespace TwiddleToe.UI.ViewModels
 {
     using System.Windows.Input;
     using TwiddleToe.Base;
+    using TwiddleToe.Foundation.Models;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.Windows;
     using TwiddleToe.Workers.Factories;
+    using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// View model for the main menu.
@@ -21,7 +23,11 @@ namespace TwiddleToe.UI.ViewModels
         /// Initializes a new instance of the <see cref="MainViewModel" /> class.
         /// </summary>
         /// <param name="viewModelFactory">The view model factory.</param>
-        public MainViewModel(ViewFactory viewModelFactory)
+        /// <param name="stateProvider">The state provider.</param>
+        public MainViewModel(
+            ViewFactory viewModelFactory,
+            StateProvider stateProvider)
+            : base(stateProvider)
         {
             this.OpenUsers = new RelayCommnand(this.OpenUserWindow);
             this.viewFactory = viewModelFactory;
@@ -34,6 +40,15 @@ namespace TwiddleToe.UI.ViewModels
         /// The open users.
         /// </value>
         public ICommand OpenUsers { get; set; }
+
+        /// <summary>
+        /// States the update.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        public override void StateUpdate(State state)
+        {
+            // Does nothing. This view model doesn't show the state.
+        }
 
         private void OpenUserWindow()
         {
