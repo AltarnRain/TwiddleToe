@@ -1,4 +1,4 @@
-﻿// <copyright file="StateLoader.cs" company="Onno Invernizzi">
+﻿// <copyright file="StateFileHandler.cs" company="Onno Invernizzi">
 // Copyright Onno Invernizzi
 // </copyright>
 

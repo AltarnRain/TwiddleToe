@@ -58,11 +58,6 @@ namespace TwiddleToe.Base
         public event RequestClose OnRequestClose;
 
         /// <summary>
-        /// Occurs when [on dispatch state].
-        /// </summary>
-        public event DispatchState OnDispatchState;
-
-        /// <summary>
         /// Closes the view.
         /// </summary>
         public void CloseView()

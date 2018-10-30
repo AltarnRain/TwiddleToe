@@ -60,38 +60,5 @@ namespace TwiddleToe.Tests.Providers
                 Assert.AreNotEqual(updatedState.Questions.Count, state.Questions.Count);
             }
         }
-
-        /// <summary>
-        /// Tests the on state changed event.
-        /// </summary>
-        [TestMethod]
-        public void TestOnStateChangedEvent()
-        {
-            using (var scope = this.StartTest())
-            {
-                var stateProvider = scope.StateProvider;
-
-                stateProvider.OnStateChanged += (state) =>
-                {
-                    Assert.IsNotNull(state);
-                    Assert.IsTrue(state.Users.Count == 2);
-                };
-
-                var currentState = stateProvider.Get();
-
-                var users = new List<User>
-                {
-                    scope.UserProvider.Create("Onno", "Invernizzi"),
-                    scope.UserProvider.Create("Femkje", "Akkerman"),
-                };
-
-                currentState.Users.Clear();
-                currentState.Users.AddRange(users);
-
-                // Act
-                // This should trigger the event.
-                stateProvider.Set(currentState);
-            }
-        }
     }
 }
