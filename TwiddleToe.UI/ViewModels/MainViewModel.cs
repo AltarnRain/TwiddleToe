@@ -5,8 +5,8 @@
 namespace TwiddleToe.UI.ViewModels
 {
     using System.Windows.Input;
-    using TwiddleToe.Base;
     using TwiddleToe.Foundation.Models;
+    using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.Windows;
     using TwiddleToe.Workers.Factories;
@@ -15,7 +15,7 @@ namespace TwiddleToe.UI.ViewModels
     /// <summary>
     /// View model for the main menu.
     /// </summary>
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseSubscriberViewModel
     {
         private readonly ViewFactory viewFactory;
 

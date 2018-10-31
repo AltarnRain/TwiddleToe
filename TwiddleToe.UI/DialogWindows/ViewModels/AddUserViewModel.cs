@@ -6,15 +6,14 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
 {
     using System;
     using System.Windows.Input;
-    using TwiddleToe.Base;
-    using TwiddleToe.Foundation.Models;
+    using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// A view model for adding users
     /// </summary>
-    /// <seealso cref="TwiddleToe.Base.BaseViewModel" />
+    /// <seealso cref="TwiddleToe.UI.Base.BaseViewModel" />
     public class AddUserViewModel : BaseViewModel
     {
         /// <summary>
@@ -30,17 +29,15 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="AddUserViewModel" /> class.
         /// </summary>
-        /// <param name="stateProvider">The state provider.</param>
         /// <param name="userProvider">The user provider.</param>
-        public AddUserViewModel(
-            StateProvider stateProvider,
-            UserProvider userProvider)
-            : base(stateProvider)
+        /// <param name="stateProvider">The state provider.</param>
+        public AddUserViewModel(UserProvider userProvider, StateProvider stateProvider)
         {
             this.AddUser = new RelayCommnand(this.AddNewUser, this.CanAddNewUser, this.CanNowAddNewUser);
             this.Cancel = new RelayCommnand(this.CancelAddition);
-            this.stateProvider = stateProvider;
+
             this.userProvider = userProvider;
+            this.stateProvider = stateProvider;
         }
 
         /// <summary>
@@ -82,15 +79,6 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void CanNowAddNewUser(object sender, EventArgs e)
         {
-        }
-
-        /// <summary>
-        /// States the update.
-        /// </summary>
-        /// <param name="state">The state.</param>
-        public override void StateUpdate(State state)
-        {
-            // No action. This view model is not updated when the state changes.
         }
 
         /// <summary>

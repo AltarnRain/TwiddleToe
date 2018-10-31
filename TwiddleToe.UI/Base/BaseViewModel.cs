@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Base
+namespace TwiddleToe.UI.Base
 {
     using System;
     using System.ComponentModel;
@@ -23,28 +23,11 @@ namespace TwiddleToe.Base
         private readonly string identifier;
 
         /// <summary>
-        /// The state provider
+        /// Initializes a new instance of the <see cref="BaseViewModel" /> class.
         /// </summary>
-        private readonly StateProvider stateProvider;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseViewModel"/> class.
-        /// </summary>
-        /// <param name="stateProvider">The state provider.</param>
-        public BaseViewModel(StateProvider stateProvider)
+        public BaseViewModel()
         {
-            this.stateProvider = stateProvider;
-            this.stateProvider.Subscribe(this);
-
             this.identifier = Guid.NewGuid().ToString();
-        }
-
-        /// <summary>
-        /// Finalizes an instance of the <see cref="BaseViewModel"/> class.
-        /// </summary>
-        ~BaseViewModel()
-        {
-            this.stateProvider.Unsubscribe(this);
         }
 
         /// <summary>
@@ -63,21 +46,6 @@ namespace TwiddleToe.Base
         public void CloseView()
         {
             this.OnRequestClose?.Invoke();
-        }
-
-        /// <summary>
-        /// States the update.
-        /// </summary>
-        /// <param name="state">The state.</param>
-        public abstract void StateUpdate(State state);
-
-        /// <summary>
-        /// Dispatches the specified state.
-        /// </summary>
-        /// <param name="state">The state.</param>
-        public void Dispatch(State state)
-        {
-            this.StateUpdate(state);
         }
     }
 }

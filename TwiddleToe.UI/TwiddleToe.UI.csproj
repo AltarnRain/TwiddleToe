@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\BaseSubscriberViewModel.cs" />
     <Compile Include="Base\BaseViewModel.cs" />
     <Compile Include="DialogWindows\AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>

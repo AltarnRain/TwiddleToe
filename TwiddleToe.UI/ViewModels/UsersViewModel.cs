@@ -7,8 +7,8 @@ namespace TwiddleToe.UI.ViewModels
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
-    using TwiddleToe.Base;
     using TwiddleToe.Foundation.Models;
+    using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.DialogWindows;
     using TwiddleToe.Workers.Factories;
@@ -17,8 +17,8 @@ namespace TwiddleToe.UI.ViewModels
     /// <summary>
     /// A view model for TwiddleToe users.
     /// </summary>
-    /// <seealso cref="TwiddleToe.Base.BaseViewModel" />
-    public class UsersViewModel : BaseViewModel
+    /// <seealso cref="TwiddleToe.UI.Base.BaseSubscriberViewModel" />
+    public class UsersViewModel : BaseSubscriberViewModel
     {
         /// <summary>
         /// The state provider

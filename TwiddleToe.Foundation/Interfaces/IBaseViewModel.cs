@@ -10,7 +10,7 @@ namespace TwiddleToe.Foundation.Interfaces
     /// Base interface for all view models. Allows inversion of control.
     /// for the ViewFactory
     /// </summary>
-    public interface IBaseViewModel : ISubscriber
+    public interface IBaseViewModel
     {
         /// <summary>
         /// Occurs when [on request close].
