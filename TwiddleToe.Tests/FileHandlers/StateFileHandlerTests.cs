@@ -1,38 +1,108 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TwiddleToe.Workers.FileHandlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TwiddleToe.Tests;
+﻿// <copyright file="StateFileHandlerTests.cs" company="Onno Invernizzi">
+// Copyright Onno Invernizzi
+// </copyright>
 
 namespace TwiddleToe.Workers.FileHandlers.Tests
 {
-    [TestClass()]
+    using System.IO;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TwiddleToe.Tests.Base;
+
+    /// <summary>
+    /// Tests the <see cref="StateFileHandler"/>
+    /// </summary>
+    [TestClass]
     public class StateFileHandlerTests : TestBase<TestScope>
     {
-        [TestMethod()]
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        [TestMethod]
         public void Initialize()
         {
-            using (var scope= this.StartTest())
+            using (var scope = this.StartTest())
             {
                 // Arrang & Act
                 var provider = scope.StateFileHandler;
 
-    }
+                // Assert
+                Assert.IsNotNull(provider);
+            }
         }
 
-        [TestMethod()]
-        public void GetTest()
+        /// <summary>
+        /// Gets the state.
+        /// </summary>
+        [TestMethod]
+        public void GetState()
         {
-            Assert.Fail();
+            using (var scope = this.StartTest())
+            {
+                // Arrang & Act
+                var provider = scope.StateFileHandler;
+
+                var state = provider.Get();
+
+                // Assert
+                Assert.IsNotNull(state);
+            }
         }
 
-        [TestMethod()]
-        public void SaveStateToFileTest()
+        /// <summary>
+        /// Gets the state.
+        /// </summary>
+        [TestMethod]
+        public void SaveStateToFile()
         {
-            Assert.Fail();
+            using (var scope = this.StartTest())
+            {
+                // Arrang & Act
+                var provider = scope.StateFileHandler;
+                var userProvider = scope.UserProvider;
+                var programInformationProvider = scope.ProgramInformationProvider;
+
+                var state = provider.Get();
+
+                var newUser = userProvider.Create("John", "Doe");
+
+                state.Users.Add(newUser);
+
+                provider.SaveStateToFile(state);
+
+                // Assert
+                var expetedFileName = this.TestContext.DeploymentDirectory + @"\TestData.json";
+                var fileExists = File.Exists(expetedFileName);
+                Assert.IsTrue(fileExists);
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the state from file.
+        /// </summary>
+        [TestMethod]
+        public void RetrieveStateFromFile()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange
+                var provider = scope.StateFileHandler;
+                var userProvider = scope.UserProvider;
+                var programInformationProvider = scope.ProgramInformationProvider;
+
+                var state = provider.Get();
+
+                var newUser = userProvider.Create("John", "Doe");
+
+                state.Users.Add(newUser);
+
+                provider.SaveStateToFile(state);
+
+                // Act
+                var updatedState = provider.Get();
+
+                // Assert
+                Assert.AreEqual(state.Users.Count, updatedState.Users.Count);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace TwiddleToe.Workers.Providers
     /// <summary>
     /// This is a singleton class that contains a information that the entire application uses.
     /// </summary>
-    public class ProgramInformationProvider
+    public class ProgramInformationProvider : IProgramInformationProvider
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProgramInformationProvider" /> class.

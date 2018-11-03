@@ -4,9 +4,9 @@
 
 namespace TwiddleToe.Tests.Providers
 {
-    using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TwiddleToe.Foundation.Models;
+    using TwiddleToe.Tests.Base;
 
     /// <summary>
     /// Tests the StateProvider.

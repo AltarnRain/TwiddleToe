@@ -5,7 +5,7 @@
 namespace TwiddleToe.UI.ViewModels.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TwiddleToe.Tests;
+    using TwiddleToe.Tests.Base;
 
     /// <summary>
     /// Test for the UsersViewModel
@@ -74,11 +74,11 @@ namespace TwiddleToe.UI.ViewModels.Tests
 
                 var model = scope.UserViewModel;
 
-                Assert.AreEqual(0, model.Users.Count);
+                Assert.AreEqual(currentState.Users.Count - 1, model.Users.Count);
 
                 stateProvider.Current = currentState;
 
-                Assert.AreEqual(1, model.Users.Count);
+                Assert.AreEqual(currentState.Users.Count, model.Users.Count);
             }
         }
     }

@@ -17,13 +17,13 @@ namespace TwiddleToe.Workers.FileHandlers
         /// <summary>
         /// The program information provider
         /// </summary>
-        private readonly ProgramInformationProvider programInformationProvider;
+        private readonly IProgramInformationProvider programInformationProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StateFileHandler"/> class.
         /// </summary>
         /// <param name="programInformationProvider">The program information provider.</param>
-        public StateFileHandler(ProgramInformationProvider programInformationProvider)
+        public StateFileHandler(IProgramInformationProvider programInformationProvider)
         {
             this.programInformationProvider = programInformationProvider;
         }
@@ -40,12 +40,17 @@ namespace TwiddleToe.Workers.FileHandlers
             {
                 try
                 {
-                    state = JsonConvert.DeserializeObject<State>(programInformation.DataFile);
+                    var json = File.ReadAllText(programInformation.DataFile);
+                    state = JsonConvert.DeserializeObject<State>(json);
                 }
                 catch
                 {
                     state = new State();
                 }
+            }
+            else
+            {
+                state = new State();
             }
 
             return state;

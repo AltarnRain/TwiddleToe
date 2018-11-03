@@ -2,8 +2,9 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Tests
+namespace TwiddleToe.Tests.Base
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;
 
     /// <summary>
@@ -19,6 +20,14 @@ namespace TwiddleToe.Tests
         private IKernel kernel;
 
         /// <summary>
+        /// Gets or sets the test context.
+        /// </summary>
+        /// <value>
+        /// The test context.
+        /// </value>
+        public TestContext TestContext { get; set; }
+
+        /// <summary>
         /// Starts the test scope.
         /// </summary>
         /// <returns>A test scope</returns>
@@ -27,7 +36,7 @@ namespace TwiddleToe.Tests
             this.kernel = new StandardKernel();
 
             var scope = new TTestScope();
-            scope.Start();
+            scope.Start(this.TestContext);
             return scope;
         }
     }

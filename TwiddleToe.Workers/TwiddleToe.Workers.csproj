@@ -55,6 +55,7 @@
     <Compile Include="Factories\ViewModelFactory.cs" />
     <Compile Include="FileHandlers\StateFileHandler.cs" />
     <Compile Include="Providers\IdentityProvider.cs" />
+    <Compile Include="Providers\IProgramInformationProvider.cs" />
     <Compile Include="Providers\ProgramInformationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\StateProvider.cs" />

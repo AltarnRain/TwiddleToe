@@ -2,9 +2,10 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Tests
+namespace TwiddleToe.Tests.Base
 {
     using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
     /// Base interface for all test scopes.
@@ -15,6 +16,7 @@ namespace TwiddleToe.Tests
         /// <summary>
         /// Starts this a test scope.
         /// </summary>
-        void Start();
+        /// <param name="testContext">The test context.</param>
+        void Start(TestContext testContext);
     }
 }

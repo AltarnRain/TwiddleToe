@@ -2,11 +2,14 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Tests
+namespace TwiddleToe.Tests.Base
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;
+    using TwiddleToe.Tests.TestClasses;
     using TwiddleToe.UI.DialogWindows.ViewModels;
     using TwiddleToe.UI.ViewModels;
+    using TwiddleToe.Workers.FileHandlers;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
@@ -36,7 +39,19 @@ namespace TwiddleToe.Tests
         /// <value>
         /// The program information.
         /// </value>
-        public ProgramInformationProvider ProgramInformationProvider => this.Kernel.Get<ProgramInformationProvider>();
+        public IProgramInformationProvider ProgramInformationProvider
+        {
+            get
+            {
+                // Unit tests testing the ProgramInformationProvider need the real ProgramInformationProvider and
+                // not a test implementation
+                this.Kernel.Rebind<IProgramInformationProvider>().To<ProgramInformationProvider>();
+                var returnValue = this.Kernel.Get<IProgramInformationProvider>();
+                this.SetTestProgramInformationProvider();
+
+                return returnValue;
+            }
+        }
 
         /// <summary>
         /// Gets the user provider.
@@ -70,14 +85,21 @@ namespace TwiddleToe.Tests
         /// </value>
         public MainViewModel MainViewModel => this.Kernel.Get<MainViewModel>();
 
-        public object StateFileHandler { get; internal set; }
+        /// <summary>
+        /// Gets the state file handler.
+        /// </summary>
+        /// <value>
+        /// The state file handler.
+        /// </value>
+        public StateFileHandler StateFileHandler => this.Kernel.Get<StateFileHandler>();
 
         /// <summary>
         /// Starts this a test scope.
         /// </summary>
-        public override void Start()
+        /// <param name="testContext">The test context.</param>
+        public override void Start(TestContext testContext)
         {
-            base.Start();
+            base.Start(testContext);
             this.RegisterServices();
         }
 
@@ -88,6 +110,19 @@ namespace TwiddleToe.Tests
         {
             base.RegisterServices();
             this.Kernel.Load(new TwiddleToe.UI.Modules());
+
+            this.SetTestProgramInformationProvider();
+        }
+
+        /// <summary>
+        /// Sets the test program information provider. This method ensures all
+        /// classes using the ProgramInformationProvider use the TestProgramInformationProvider
+        /// </summary>
+        private void SetTestProgramInformationProvider()
+        {
+            this.Kernel.Rebind<IProgramInformationProvider>().To<TestProgramInformationProvider>().InSingletonScope();
+            var testProgramInformationProvider = this.Kernel.Get<IProgramInformationProvider>() as TestProgramInformationProvider;
+            testProgramInformationProvider.SetTestContext(this.TestContext);
         }
     }
 }
