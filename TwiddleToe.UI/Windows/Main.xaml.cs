@@ -16,11 +16,11 @@ namespace TwiddleToe.UI.Windows
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow" /> class.
         /// </summary>
-        /// <param name="viewFactory">The view factory.</param>
-        public MainWindow(ViewFactory viewFactory)
+        /// <param name="viewModelFactory">The view model factory.</param>
+        public MainWindow(ViewModelFactory viewModelFactory)
         {
             this.InitializeComponent();
-            this.DataContext = viewFactory.GetViewModel<MainViewModel>(() => this.Close());
+            this.DataContext = viewModelFactory.GetViewModel<MainViewModel>(() => this.Close());
 #if !DEBUG
             this.Top = 0;
             this.Left = 0;

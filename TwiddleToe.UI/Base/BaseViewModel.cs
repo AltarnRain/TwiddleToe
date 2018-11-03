@@ -8,8 +8,6 @@ namespace TwiddleToe.UI.Base
     using System.ComponentModel;
     using TwiddleToe.Foundation.Events;
     using TwiddleToe.Foundation.Interfaces;
-    using TwiddleToe.Foundation.Models;
-    using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// Base view model for all view models.

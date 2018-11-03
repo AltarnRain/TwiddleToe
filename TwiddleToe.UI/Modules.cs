@@ -26,6 +26,7 @@ namespace TwiddleToe.UI
             this.Kernel.Bind<ProgramInformationProvider>().ToSelf().InSingletonScope();
             this.Kernel.Bind<UserProvider>().ToSelf().InSingletonScope();
             this.Kernel.Bind<ViewFactory>().ToSelf().InSingletonScope();
+            this.Kernel.Bind<ViewModelFactory>().ToSelf().InSingletonScope();
         }
     }
 }

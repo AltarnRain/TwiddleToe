@@ -5,7 +5,6 @@
 namespace TwiddleToe.UI.ViewModels
 {
     using System.Windows.Input;
-    using TwiddleToe.Foundation.Models;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.Windows;
@@ -15,22 +14,24 @@ namespace TwiddleToe.UI.ViewModels
     /// <summary>
     /// View model for the main menu.
     /// </summary>
-    public class MainViewModel : BaseSubscriberViewModel
+    public class MainViewModel : BaseViewModel
     {
-        private readonly ViewFactory viewFactory;
+        /// <summary>
+        /// The view factory
+        /// </summary>
+        private readonly ViewLoader viewLoader;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel" /> class.
         /// </summary>
-        /// <param name="viewModelFactory">The view model factory.</param>
+        /// <param name="viewLoader">The view factory.</param>
         /// <param name="stateProvider">The state provider.</param>
         public MainViewModel(
-            ViewFactory viewModelFactory,
+            ViewLoader viewLoader,
             StateProvider stateProvider)
-            : base(stateProvider)
         {
             this.OpenUsers = new RelayCommnand(this.OpenUserWindow);
-            this.viewFactory = viewModelFactory;
+            this.viewLoader = viewLoader;
         }
 
         /// <summary>
@@ -42,18 +43,11 @@ namespace TwiddleToe.UI.ViewModels
         public ICommand OpenUsers { get; set; }
 
         /// <summary>
-        /// States the update.
+        /// Opens the user window.
         /// </summary>
-        /// <param name="state">The state.</param>
-        public override void StateUpdate(State state)
-        {
-            // Does nothing. This view model doesn't show the state.
-        }
-
         private void OpenUserWindow()
         {
-            var view = this.viewFactory.GetView<Users>();
-            view.ShowDialog();
+            this.viewLoader.LoadView<Users>();
         }
     }
 }

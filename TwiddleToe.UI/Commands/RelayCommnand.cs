@@ -13,7 +13,14 @@ namespace TwiddleToe.UI.Commands
     /// <seealso cref="System.Windows.Input.ICommand" />
     public class RelayCommnand : ICommand
     {
+        /// <summary>
+        /// The action
+        /// </summary>
         private readonly Action action;
+
+        /// <summary>
+        /// The can execute
+        /// </summary>
         private readonly Func<bool> canExecute;
 
         /// <summary>
@@ -21,18 +28,20 @@ namespace TwiddleToe.UI.Commands
         /// </summary>
         /// <param name="action">The action.</param>
         /// <param name="canExecute">A function that returns true if the action can execute. Optional.</param>
-        /// <param name="canExecuteChanged">The can execute changed.</param>
-        public RelayCommnand(Action action, Func<bool> canExecute = null, EventHandler canExecuteChanged = null)
+        public RelayCommnand(Action action, Func<bool> canExecute = null)
         {
             this.action = action;
             this.canExecute = canExecute;
-            this.CanExecuteChanged = canExecuteChanged;
         }
 
         /// <summary>
         /// Occurs when changes occur that affect whether or not the command should execute.
         /// </summary>
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         /// <summary>
         /// Defines the method that determines whether the command can execute in its current state.

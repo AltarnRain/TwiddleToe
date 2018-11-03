@@ -28,23 +28,6 @@ namespace TwiddleToe.Workers.Factories
         /// <summary>
         /// Gets the view.
         /// </summary>
-        /// <typeparam name="TViewModel">The type of the view.</typeparam>
-        /// <param name="close">The close.</param>
-        /// <returns>
-        /// A view model
-        /// </returns>
-        public TViewModel GetViewModel<TViewModel>(RequestClose close)
-            where TViewModel : IBaseViewModel
-        {
-            var viewModel = this.kernel.Get<TViewModel>();
-            viewModel.OnRequestClose += close;
-
-            return viewModel;
-        }
-
-        /// <summary>
-        /// Gets the view.
-        /// </summary>
         /// <typeparam name="TView">The type of the view.</typeparam>
         /// <returns>A view</returns>
         public TView GetView<TView>()

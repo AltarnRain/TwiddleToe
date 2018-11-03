@@ -17,7 +17,7 @@ namespace TwiddleToe.UI.Windows
         /// Initializes a new instance of the <see cref="Users" /> class.
         /// </summary>
         /// <param name="viewModelFactory">The view model factory.</param>
-        public Users(ViewFactory viewModelFactory)
+        public Users(ViewModelFactory viewModelFactory)
         {
             this.InitializeComponent();
             this.DataContext = viewModelFactory.GetViewModel<UsersViewModel>(() => { });

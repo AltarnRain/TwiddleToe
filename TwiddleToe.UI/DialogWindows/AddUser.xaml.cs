@@ -16,14 +16,12 @@ namespace TwiddleToe.UI.DialogWindows
         /// <summary>
         /// Initializes a new instance of the <see cref="AddUser" /> class.
         /// </summary>
-        /// <param name="viewFactory">The view factory.</param>
-        public AddUser(ViewFactory viewFactory)
+        /// <param name="viewModelFactory">The view model factory.</param>
+        public AddUser(ViewModelFactory viewModelFactory)
         {
             this.InitializeComponent();
-            var viewModel = viewFactory.GetViewModel<AddUserViewModel>(() => this.Close());
+            var viewModel = viewModelFactory.GetViewModel<AddUserViewModel>(() => this.Close());
             this.DataContext = viewModel;
-
-            viewModel.OnRequestClose += () => { this.Close(); };
         }
     }
 }

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Events\CommonEvents.cs" />
     <Compile Include="Interfaces\IBaseViewModel.cs" />
+    <Compile Include="Interfaces\IShowDialog.cs" />
     <Compile Include="Interfaces\ISubscriber.cs" />
     <Compile Include="Models\ProgramInformation.cs" />
     <Compile Include="Models\Question.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelRegistry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
