@@ -62,7 +62,6 @@ namespace TwiddleToe.Workers.FileHandlers
         /// <param name="state">The state.</param>
         public void SaveStateToFile(State state)
         {
-
             var json = JsonConvert.SerializeObject(state, Formatting.Indented);
             var programInformation = this.programInformationProvider.Get();
             File.WriteAllText(programInformation.DataFile, json);
