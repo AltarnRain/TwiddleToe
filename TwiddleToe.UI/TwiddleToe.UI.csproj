@@ -74,7 +74,7 @@
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\ViewModels\AddUserViewModel.cs" />
-    <Compile Include="ViewLoader.cs" />
+    <Compile Include="ViewShower.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Commands\RelayCommnand.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />

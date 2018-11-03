@@ -6,8 +6,8 @@ namespace TwiddleToe.UI.Windows
 {
     using System.Windows;
     using Ninject;
-    using TwiddleToe.Foundation;
-    using TwiddleToe.Workers.Factories;
+    using TwiddleToe.Foundation.Registries;
+    using TwiddleToe.UI.ViewModels;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -23,10 +23,12 @@ namespace TwiddleToe.UI.Windows
         {
             using (var kernel = new StandardKernel(new Modules()))
             {
-                var viewFactory = kernel.Get<ViewFactory>();
+                var viewLoader = kernel.Get<ViewShower>();
                 var viewModelRegistry = kernel.Get<ViewModelRegistry>();
-                var mainWindow = viewFactory.GetView<MainWindow>();
-                mainWindow.ShowDialog();
+                viewLoader.Load<MainWindow, MainViewModel>();
+
+                // Use the view model registry to issue a command to all active view models that their
+                // bound views should issue a close command.
                 viewModelRegistry.CloseAllActive();
             }
         }

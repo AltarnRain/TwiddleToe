@@ -4,13 +4,15 @@
 
 namespace TwiddleToe.Foundation.Interfaces
 {
+    using System;
     using TwiddleToe.Foundation.Events;
 
     /// <summary>
     /// Base interface for all view models. Allows inversion of control.
     /// for the ViewFactory
     /// </summary>
-    public interface IBaseViewModel
+    /// <seealso cref="System.IDisposable" />
+    public interface IBaseViewModel : IDisposable
     {
         /// <summary>
         /// Occurs when [on request close].

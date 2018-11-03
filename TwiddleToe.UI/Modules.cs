@@ -6,6 +6,7 @@ namespace TwiddleToe.UI
 {
     using Ninject.Modules;
     using TwiddleToe.Foundation;
+    using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.FileHandlers;
     using TwiddleToe.Workers.Providers;

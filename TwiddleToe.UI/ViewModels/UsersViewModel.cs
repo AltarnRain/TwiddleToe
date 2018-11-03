@@ -7,8 +7,8 @@ namespace TwiddleToe.UI.ViewModels
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
-    using TwiddleToe.Foundation;
     using TwiddleToe.Foundation.Models;
+    using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.DialogWindows;

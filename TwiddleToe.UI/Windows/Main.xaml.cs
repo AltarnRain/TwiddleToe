@@ -5,22 +5,20 @@
 namespace TwiddleToe.UI.Windows
 {
     using System.Windows;
-    using TwiddleToe.UI.ViewModels;
-    using TwiddleToe.Workers.Factories;
+    using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IShowDialog
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow" /> class.
         /// </summary>
-        /// <param name="viewModelFactory">The view model factory.</param>
-        public MainWindow(ViewModelFactory viewModelFactory)
+        public MainWindow()
         {
             this.InitializeComponent();
-            this.DataContext = viewModelFactory.GetViewModel<MainViewModel>(() => this.Close());
+
 #if !DEBUG
             this.Top = 0;
             this.Left = 0;

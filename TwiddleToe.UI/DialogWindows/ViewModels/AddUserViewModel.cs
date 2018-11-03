@@ -6,7 +6,7 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
 {
     using System;
     using System.Windows.Input;
-    using TwiddleToe.Foundation;
+    using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.Workers.Providers;

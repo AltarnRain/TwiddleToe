@@ -4,9 +4,9 @@
 
 namespace TwiddleToe.UI.Base
 {
-    using TwiddleToe.Foundation;
     using TwiddleToe.Foundation.Interfaces;
     using TwiddleToe.Foundation.Models;
+    using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>

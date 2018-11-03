@@ -5,8 +5,6 @@
 namespace TwiddleToe.UI.Windows
 {
     using System.Windows;
-    using TwiddleToe.UI.ViewModels;
-    using TwiddleToe.Workers.Factories;
 
     /// <summary>
     /// Interaction logic for Users.xaml
@@ -16,11 +14,9 @@ namespace TwiddleToe.UI.Windows
         /// <summary>
         /// Initializes a new instance of the <see cref="Users" /> class.
         /// </summary>
-        /// <param name="viewModelFactory">The view model factory.</param>
-        public Users(ViewModelFactory viewModelFactory)
+        public Users()
         {
             this.InitializeComponent();
-            this.DataContext = viewModelFactory.GetViewModel<UsersViewModel>(() => { this.Close(); });
         }
     }
 }
