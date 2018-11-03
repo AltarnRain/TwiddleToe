@@ -20,7 +20,7 @@ namespace TwiddleToe.UI.Windows
         public Users(ViewModelFactory viewModelFactory)
         {
             this.InitializeComponent();
-            this.DataContext = viewModelFactory.GetViewModel<UsersViewModel>(() => { });
+            this.DataContext = viewModelFactory.GetViewModel<UsersViewModel>(() => { this.Close(); });
         }
     }
 }

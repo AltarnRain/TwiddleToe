@@ -4,6 +4,7 @@
 
 namespace TwiddleToe.UI.Base
 {
+    using TwiddleToe.Foundation;
     using TwiddleToe.Foundation.Interfaces;
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.Workers.Providers;
@@ -18,10 +19,12 @@ namespace TwiddleToe.UI.Base
         private readonly StateProvider stateProvider;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseSubscriberViewModel"/> class.
+        /// Initializes a new instance of the <see cref="BaseSubscriberViewModel" /> class.
         /// </summary>
         /// <param name="stateProvider">The state provider.</param>
-        public BaseSubscriberViewModel(StateProvider stateProvider)
+        /// <param name="viewModelRegistry">The view model registry.</param>
+        public BaseSubscriberViewModel(StateProvider stateProvider, ViewModelRegistry viewModelRegistry)
+            : base(viewModelRegistry)
         {
             this.stateProvider = stateProvider;
             this.stateProvider.Subscribe(this);

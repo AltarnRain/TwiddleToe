@@ -7,6 +7,7 @@ namespace TwiddleToe.UI.ViewModels
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
+    using TwiddleToe.Foundation;
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
@@ -35,10 +36,12 @@ namespace TwiddleToe.UI.ViewModels
         /// </summary>
         /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewFactory">The view factory.</param>
+        /// <param name="viewModelRegistry">The view model registry.</param>
         public UsersViewModel(
             StateProvider stateProvider,
-            ViewFactory viewFactory)
-            : base(stateProvider)
+            ViewFactory viewFactory,
+            ViewModelRegistry viewModelRegistry)
+            : base(stateProvider, viewModelRegistry)
         {
             this.Users = new ObservableCollection<User>();
             this.stateProvider = stateProvider;

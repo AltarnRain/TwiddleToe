@@ -5,6 +5,7 @@
 namespace TwiddleToe.UI
 {
     using Ninject.Modules;
+    using TwiddleToe.Foundation;
     using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.FileHandlers;
     using TwiddleToe.Workers.Providers;
@@ -27,6 +28,7 @@ namespace TwiddleToe.UI
             this.Kernel.Bind<UserProvider>().ToSelf().InSingletonScope();
             this.Kernel.Bind<ViewFactory>().ToSelf().InSingletonScope();
             this.Kernel.Bind<ViewModelFactory>().ToSelf().InSingletonScope();
+            this.Kernel.Bind<ViewModelRegistry>().ToSelf().InSingletonScope();
         }
     }
 }

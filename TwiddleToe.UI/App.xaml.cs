@@ -6,6 +6,7 @@ namespace TwiddleToe.UI.Windows
 {
     using System.Windows;
     using Ninject;
+    using TwiddleToe.Foundation;
     using TwiddleToe.Workers.Factories;
 
     /// <summary>
@@ -23,8 +24,10 @@ namespace TwiddleToe.UI.Windows
             using (var kernel = new StandardKernel(new Modules()))
             {
                 var viewFactory = kernel.Get<ViewFactory>();
+                var viewModelRegistry = kernel.Get<ViewModelRegistry>();
                 var mainWindow = viewFactory.GetView<MainWindow>();
                 mainWindow.ShowDialog();
+                viewModelRegistry.CloseAllActive();
             }
         }
     }

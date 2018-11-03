@@ -48,7 +48,10 @@ namespace TwiddleToe.Foundation
         /// </summary>
         public void CloseAllActive()
         {
-            this.activeViewModels.ForEach(vm => vm.CloseView());
+            foreach (var activeVieWModel in this.activeViewModels)
+            {
+                activeVieWModel.CloseView();
+            }
         }
     }
 }

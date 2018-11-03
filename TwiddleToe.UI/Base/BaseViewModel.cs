@@ -6,6 +6,7 @@ namespace TwiddleToe.UI.Base
 {
     using System;
     using System.ComponentModel;
+    using TwiddleToe.Foundation;
     using TwiddleToe.Foundation.Events;
     using TwiddleToe.Foundation.Interfaces;
 
@@ -20,12 +21,25 @@ namespace TwiddleToe.UI.Base
         /// </summary>
         private readonly string identifier;
 
+        private readonly ViewModelRegistry viewModelRegistry;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseViewModel" /> class.
         /// </summary>
-        public BaseViewModel()
+        /// <param name="viewModelRegistry">The view model registry.</param>
+        public BaseViewModel(ViewModelRegistry viewModelRegistry)
         {
             this.identifier = Guid.NewGuid().ToString();
+            this.viewModelRegistry = viewModelRegistry;
+            this.viewModelRegistry.Activated(this);
+        }
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="BaseViewModel"/> class.
+        /// </summary>
+        ~BaseViewModel()
+        {
+            this.viewModelRegistry.Deactivated(this);
         }
 
         /// <summary>
