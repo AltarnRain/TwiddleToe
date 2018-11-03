@@ -1,17 +1,18 @@
-﻿// <copyright file="ProviderTestScope.cs" company="Onno Invernizzi">
+﻿// <copyright file="TestScope.cs" company="Onno Invernizzi">
 // Copyright Onno Invernizzi
 // </copyright>
 
 namespace TwiddleToe.Tests
 {
     using Ninject;
-    using TwiddleToe.Providers;
+    using TwiddleToe.UI.DialogWindows.ViewModels;
+    using TwiddleToe.UI.ViewModels;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// Test scope for provider unit tests.
     /// </summary>
-    public class ProviderTestScope : TestScopeBase
+    public class TestScope : TestScopeBase
     {
         /// <summary>
         /// Gets the identity provider.
@@ -44,6 +45,32 @@ namespace TwiddleToe.Tests
         /// The user provider.
         /// </value>
         public UserProvider UserProvider => this.Kernel.Get<UserProvider>();
+
+        /// <summary>
+        /// Gets the user view model.
+        /// </summary>
+        /// <value>
+        /// The user view model.
+        /// </value>
+        public UsersViewModel UserViewModel => this.Kernel.Get<UsersViewModel>();
+
+        /// <summary>
+        /// Gets the add user view model.
+        /// </summary>
+        /// <value>
+        /// The add user view model.
+        /// </value>
+        public AddUserViewModel AddUserViewModel => this.Kernel.Get<AddUserViewModel>();
+
+        /// <summary>
+        /// Gets the main view model.
+        /// </summary>
+        /// <value>
+        /// The main view model.
+        /// </value>
+        public MainViewModel MainViewModel => this.Kernel.Get<MainViewModel>();
+
+        public object StateFileHandler { get; internal set; }
 
         /// <summary>
         /// Starts this a test scope.

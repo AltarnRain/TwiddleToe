@@ -5,15 +5,13 @@
 namespace TwiddleToe.UI.ViewModels.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TwiddleToe.Models;
     using TwiddleToe.Tests;
-    using TwiddleToe.Tests.TestScopes;
 
     /// <summary>
     /// Test for the UsersViewModel
     /// </summary>
     [TestClass]
-    public class UsersViewModelTests : TestBase<ViewModelsTestScope>
+    public class UsersViewModelTests : TestBase<TestScope>
     {
         /// <summary>
         /// Get the view model
@@ -28,6 +26,59 @@ namespace TwiddleToe.UI.ViewModels.Tests
 
                 // Assert
                 Assert.IsNotNull(viewModel);
+            }
+        }
+
+        /// <summary>
+        /// Gets the and set current user.
+        /// </summary>
+        [TestMethod]
+        public void GetAndSetSelectedValue()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange
+                var stateProvider = scope.StateProvider;
+                var user = scope.UserProvider.Create("John", "Doe");
+                var currentState = stateProvider.Current;
+
+                currentState.Users.Add(user);
+
+                stateProvider.Current = currentState;
+
+                var model = scope.UserViewModel;
+
+                Assert.AreEqual(string.Empty, model.SelectedValue);
+
+                model.SelectedValue = user.UserId;
+
+                Assert.AreEqual(model.CurrentUser.FirstName, "John");
+                Assert.AreEqual(model.CurrentUser.LastName, "Doe");
+            }
+        }
+
+        /// <summary>
+        /// Gets the and set current user.
+        /// </summary>
+        [TestMethod]
+        public void LoadsStateChange()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange
+                var stateProvider = scope.StateProvider;
+                var user = scope.UserProvider.Create("John", "Doe");
+                var currentState = stateProvider.Current;
+
+                currentState.Users.Add(user);
+
+                var model = scope.UserViewModel;
+
+                Assert.AreEqual(0, model.Users.Count);
+
+                stateProvider.Current = currentState;
+
+                Assert.AreEqual(1, model.Users.Count);
             }
         }
     }

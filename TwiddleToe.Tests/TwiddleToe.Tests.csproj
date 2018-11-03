@@ -56,13 +56,15 @@
     <Compile Include="Base\ITestScope.cs" />
     <Compile Include="Base\TestBase.cs" />
     <Compile Include="Base\TestScopeBase.cs" />
+    <Compile Include="DialogWindows\ViewModels\AddUserViewModelTests.cs" />
+    <Compile Include="FileHandlers\StateFileHandlerTests.cs" />
     <Compile Include="Providers\IdentityProviderTests.cs" />
     <Compile Include="Providers\ProgramInformationProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\StateProviderTests.cs" />
     <Compile Include="Providers\UserProviderTests.cs" />
-    <Compile Include="TestScopes\ProviderTestScope.cs" />
-    <Compile Include="TestScopes\ViewModelsTestScope.cs" />
+    <Compile Include="TestScopes\TestScope.cs" />
+    <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\UsersViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

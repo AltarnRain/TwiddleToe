@@ -8,6 +8,8 @@ namespace TwiddleToe.Foundation.Interfaces
 
     /// <summary>
     /// This interface provides an absraction layer for the Wpf Window class.
+    /// Every window in this application uses this interface and it allows
+    /// the view factory to be implemented at a much lower level.
     /// </summary>
     public interface IBaseView
     {

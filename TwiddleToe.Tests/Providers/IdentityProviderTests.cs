@@ -11,7 +11,7 @@ namespace TwiddleToe.Providers.Tests
     /// Tests the identity provider.
     /// </summary>
     [TestClass]
-    public class IdentityProviderTests : TestBase<ProviderTestScope>
+    public class IdentityProviderTests : TestBase<TestScope>
     {
         /// <summary>
         /// Tests the getting a new identifier.

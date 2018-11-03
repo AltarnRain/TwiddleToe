@@ -59,9 +59,9 @@ namespace TwiddleToe.Workers.Providers
         /// <param name="users">The users.</param>
         public void Set(List<User> users)
         {
-            var currentState = this.stateProvider.Get();
+            var currentState = this.stateProvider.Current;
             currentState.Users = users;
-            this.stateProvider.Set(currentState);
+            this.stateProvider.Current = currentState;
         }
     }
 }

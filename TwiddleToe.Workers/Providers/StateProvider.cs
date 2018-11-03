@@ -16,15 +16,19 @@ namespace TwiddleToe.Workers.Providers
     public class StateProvider
     {
         /// <summary>
-        /// The state
-        /// </summary>
-        private static State state;
-
-        /// <summary>
         /// A list of classes implemting ISubscriber that will receive a cloned state each time the state is set.
         /// </summary>
         private readonly List<ISubscriber> subscribers;
+
+        /// <summary>
+        /// The state file handler
+        /// </summary>
         private readonly StateFileHandler stateFileHandler;
+
+        /// <summary>
+        /// The state
+        /// </summary>
+        private State state;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StateProvider" /> class.
@@ -32,9 +36,36 @@ namespace TwiddleToe.Workers.Providers
         /// <param name="stateFileHandler">The state loader.</param>
         public StateProvider(StateFileHandler stateFileHandler)
         {
-            state = stateFileHandler.Get();
+            this.state = stateFileHandler.Get();
             this.subscribers = new List<ISubscriber>();
             this.stateFileHandler = stateFileHandler;
+        }
+
+        /// <summary>
+        /// Gets or sets the current.
+        /// </summary>
+        /// <value>
+        /// The current.
+        /// </value>
+        public State Current
+        {
+            get
+            {
+                if (this.state == null)
+                {
+                    this.state = new State();
+                }
+
+                return CloneFactory.MakeClone(this.state);
+            }
+
+            set
+            {
+                this.state = CloneFactory.MakeClone(value);
+
+                // Signal state subscribers the state has changed.
+                this.DispatchUpdatedStateToSubscribers();
+            }
         }
 
         /// <summary>
@@ -44,33 +75,6 @@ namespace TwiddleToe.Workers.Providers
         public void Unsubscribe(ISubscriber subscriber)
         {
             this.subscribers.Remove(subscriber);
-        }
-
-        /// <summary>
-        /// Gets the <see cref="State"/>instance.
-        /// </summary>
-        /// <returns>The current state</returns>
-        public State Get()
-        {
-            if (state == null)
-            {
-                state = new State();
-            }
-
-            // The state is immutable.
-            return CloneFactory.MakeClone(state);
-        }
-
-        /// <summary>
-        /// Sets the specified state.
-        /// </summary>
-        /// <param name="newState">The new state.</param>
-        public void Set(State newState)
-        {
-            state = CloneFactory.MakeClone(newState);
-
-            // Signal state subscribers the state has changed.
-            this.DispatchUpdatedStateToSubscribers();
         }
 
         /// <summary>
@@ -87,7 +91,7 @@ namespace TwiddleToe.Workers.Providers
         /// </summary>
         public void Flush()
         {
-            this.stateFileHandler.SaveStateToFile(state);
+            this.stateFileHandler.SaveStateToFile(this.state);
         }
 
         /// <summary>
@@ -97,7 +101,7 @@ namespace TwiddleToe.Workers.Providers
         {
             foreach (var subscriber in this.subscribers)
             {
-                var clonedState = CloneFactory.MakeClone(state);
+                var clonedState = CloneFactory.MakeClone(this.state);
                 subscriber.Dispatch(clonedState);
             }
         }

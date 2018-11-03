@@ -76,12 +76,14 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         public ICommand Cancel { get; set; }
 
         /// <summary>
-        /// Determines whether this instance [can now add new user] the specified sender.
+        /// Determines whether this instance [can add new user].
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        public void CanNowAddNewUser(object sender, EventArgs e)
+        /// <returns>
+        ///   <c>true</c> if this instance [can add new user]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanAddNewUser()
         {
+            return !string.IsNullOrWhiteSpace(this.FirstName) && !string.IsNullOrWhiteSpace(this.LastName);
         }
 
         /// <summary>
@@ -90,9 +92,9 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         private void AddNewUser()
         {
             var newUser = this.userProvider.Create(this.FirstName, this.LastName);
-            var currentState = this.stateProvider.Get();
+            var currentState = this.stateProvider.Current;
             currentState.Users.Add(newUser);
-            this.stateProvider.Set(currentState);
+            this.stateProvider.Current = currentState;
             this.CloseView();
         }
 
@@ -105,17 +107,6 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         private void CancelAddition()
         {
             this.CloseView();
-        }
-
-        /// <summary>
-        /// Determines whether this instance [can add new user].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if this instance [can add new user]; otherwise, <c>false</c>.
-        /// </returns>
-        private bool CanAddNewUser()
-        {
-            return !string.IsNullOrWhiteSpace(this.FirstName) && !string.IsNullOrWhiteSpace(this.LastName);
         }
     }
 }

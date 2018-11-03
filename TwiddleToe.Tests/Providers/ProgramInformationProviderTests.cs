@@ -12,7 +12,7 @@ namespace TwiddleToe.Models.Tests
     /// Tests the ProgramInformation class
     /// </summary>
     [TestClass]
-    public class ProgramInformationProviderTests : TestBase<ProviderTestScope>
+    public class ProgramInformationProviderTests : TestBase<TestScope>
     {
         /// <summary>
         /// Tests the programm information get method.

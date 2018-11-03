@@ -12,7 +12,7 @@ namespace TwiddleToe.Tests.Providers
     /// Tests the StateProvider.
     /// </summary>
     [TestClass]
-    public class StateProviderTests : TestBase<ProviderTestScope>
+    public class StateProviderTests : TestBase<TestScope>
     {
         /// <summary>
         /// Tests the state of the get.
@@ -22,7 +22,7 @@ namespace TwiddleToe.Tests.Providers
         {
             using (var scope = this.StartTest())
             {
-                var state = scope.StateProvider.Get();
+                var state = scope.StateProvider.Current;
 
                 // Assert
                 Assert.IsNotNull(state);
@@ -42,18 +42,18 @@ namespace TwiddleToe.Tests.Providers
         {
             using (var scope = this.StartTest())
             {
-                var state = scope.StateProvider.Get();
+                var state = scope.StateProvider.Current;
                 state.Questions.Add(new Question { Answer = "Test" });
 
-                var originalState = scope.StateProvider.Get();
+                var originalState = scope.StateProvider.Current;
 
                 // If the state works with references the number of questions will be equal.
                 Assert.AreNotEqual(originalState.Questions.Count, state.Questions.Count);
 
                 // Update the state. This is also done using clones. The state passed into the Set method
                 // is cloned so no reference exists.
-                scope.StateProvider.Set(state);
-                var updatedState = scope.StateProvider.Get();
+                scope.StateProvider.Current = state;
+                var updatedState = scope.StateProvider.Current;
                 Assert.AreEqual(state.Questions.Count, updatedState.Questions.Count);
 
                 state.Questions.Add(new Question { Answer = "Test2" });

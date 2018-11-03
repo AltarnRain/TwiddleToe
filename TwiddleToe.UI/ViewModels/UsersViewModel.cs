@@ -50,7 +50,7 @@ namespace TwiddleToe.UI.ViewModels
             this.AddNewUser = new RelayCommnand(this.AddUserAction);
             this.RemoveSelectedUser = new RelayCommnand(this.RemoveSelectedUserAction, this.UserIsSelected);
 
-            var currentState = stateProvider.Get();
+            var currentState = stateProvider.Current;
 
             this.StateUpdate(currentState);
         }
@@ -63,7 +63,18 @@ namespace TwiddleToe.UI.ViewModels
         /// </value>
         public string SelectedValue
         {
-            get => string.Empty;
+            get
+            {
+                if (this.CurrentUser != null)
+                {
+                    return this.CurrentUser.FullName;
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+
             set
             {
                 this.CurrentUser = this.Users.Single(u => u.UserId == value);
@@ -116,12 +127,12 @@ namespace TwiddleToe.UI.ViewModels
         }
 
         /// <summary>
-        /// Users the selected.
+        /// Users the is selected.
         /// </summary>
         /// <returns>True if a user is selected</returns>
         private bool UserIsSelected()
         {
-            return false;
+            return this.CurrentUser != null;
         }
 
         /// <summary>

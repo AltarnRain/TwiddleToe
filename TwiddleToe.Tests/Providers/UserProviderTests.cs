@@ -12,7 +12,7 @@ namespace TwiddleToe.Providers.Providers.Tests
     /// Tests the <see cref="UserProvider"/>
     /// </summary>
     [TestClass]
-    public class UserProviderTests : TestBase<ProviderTestScope>
+    public class UserProviderTests : TestBase<TestScope>
     {
         /// <summary>
         /// Creates the test.
