@@ -9,6 +9,7 @@ namespace TwiddleToe.UI.Windows
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.ViewModels;
     using TwiddleToe.Workers.Factories;
+    using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -26,11 +27,15 @@ namespace TwiddleToe.UI.Windows
             {
                 var viewFactory = kernel.Get<ViewFactory>();
                 var viewModelRegistry = kernel.Get<ViewModelRegistry>();
+                var stateProvider = kernel.Get<StateProvider>();
                 viewFactory.Show<MainWindow, MainViewModel>();
 
                 // Use the view model registry to issue a command to all active view models that their
                 // bound views should issue a close command.
                 viewModelRegistry.CloseAllActive();
+
+                // Flush the state to a file to file.
+                stateProvider.Flush();
             }
         }
     }

@@ -34,7 +34,7 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels
         /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
         public AddUserViewModel(UserProvider userProvider, StateProvider stateProvider, ViewModelRegistry viewModelRegistry)
-            : base(viewModelRegistry)
+            : base(viewModelRegistry, stateProvider)
         {
             this.AddUser = new RelayCommnand(this.AddNewUser, this.CanAddNewUser);
             this.Cancel = new RelayCommnand(this.CancelAddition);

@@ -8,6 +8,7 @@ namespace TwiddleToe.UI.Base
     using TwiddleToe.Foundation.Events;
     using TwiddleToe.Foundation.Interfaces;
     using TwiddleToe.Foundation.Registries;
+    using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// Base view model for all view models.
@@ -21,12 +22,21 @@ namespace TwiddleToe.UI.Base
         private readonly ViewModelRegistry viewModelRegistry;
 
         /// <summary>
+        /// The state provider
+        /// </summary>
+        private readonly StateProvider stateProvider;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BaseViewModel" /> class.
         /// </summary>
         /// <param name="viewModelRegistry">The view model registry.</param>
-        public BaseViewModel(ViewModelRegistry viewModelRegistry)
+        /// <param name="stateProvider">The state provider.</param>
+        public BaseViewModel(
+            ViewModelRegistry viewModelRegistry,
+            StateProvider stateProvider)
         {
             this.viewModelRegistry = viewModelRegistry;
+            this.stateProvider = stateProvider;
             this.viewModelRegistry.Activated(this);
         }
 
@@ -54,6 +64,7 @@ namespace TwiddleToe.UI.Base
         public void Dispose()
         {
             this.viewModelRegistry.Deactivated(this);
+            this.stateProvider.Flush();
         }
     }
 }

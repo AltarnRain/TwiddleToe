@@ -24,7 +24,7 @@ namespace TwiddleToe.UI.Base
         /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
         public BaseSubscriberViewModel(StateProvider stateProvider, ViewModelRegistry viewModelRegistry)
-            : base(viewModelRegistry)
+            : base(viewModelRegistry, stateProvider)
         {
             this.stateProvider = stateProvider;
             this.stateProvider.Subscribe(this);
