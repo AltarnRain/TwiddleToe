@@ -10,7 +10,7 @@ namespace TwiddleToe.UI.Windows
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IShowDialog
+    public partial class MainWindow : Window, IShowDialog, IBaseView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow" /> class.

@@ -12,6 +12,7 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.DialogWindows;
+    using TwiddleToe.UI.DialogWindows.ViewModels;
     using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.Providers;
 
@@ -22,30 +23,30 @@ namespace TwiddleToe.UI.ViewModels
     public class UsersViewModel : BaseSubscriberViewModel
     {
         /// <summary>
-        /// The state provider
-        /// </summary>
-        private readonly StateProvider stateProvider;
-
-        /// <summary>
         /// The view factory
         /// </summary>
         private readonly ViewFactory viewFactory;
 
         /// <summary>
+        /// The state provider
+        /// </summary>
+        private readonly StateProvider stateProvider;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="UsersViewModel" /> class.
         /// </summary>
-        /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewFactory">The view factory.</param>
+        /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
         public UsersViewModel(
-            StateProvider stateProvider,
             ViewFactory viewFactory,
+            StateProvider stateProvider,
             ViewModelRegistry viewModelRegistry)
             : base(stateProvider, viewModelRegistry)
         {
             this.Users = new ObservableCollection<User>();
-            this.stateProvider = stateProvider;
             this.viewFactory = viewFactory;
+            this.stateProvider = stateProvider;
             this.AddNewUser = new RelayCommnand(this.AddUserAction);
             this.RemoveSelectedUser = new RelayCommnand(this.RemoveSelectedUserAction, this.UserIsSelected);
 
@@ -128,8 +129,7 @@ namespace TwiddleToe.UI.ViewModels
         /// </summary>
         private void AddUserAction()
         {
-            var addUserDialog = this.viewFactory.GetView<AddUser>();
-            addUserDialog.ShowDialog();
+            this.viewFactory.Show<AddUser, AddUserViewModel>();
         }
 
         /// <summary>

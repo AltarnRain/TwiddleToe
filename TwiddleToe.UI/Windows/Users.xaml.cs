@@ -5,11 +5,12 @@
 namespace TwiddleToe.UI.Windows
 {
     using System.Windows;
+    using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
     /// Interaction logic for Users.xaml
     /// </summary>
-    public partial class Users : Window
+    public partial class Users : Window, IBaseView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Users" /> class.
@@ -17,6 +18,8 @@ namespace TwiddleToe.UI.Windows
         public Users()
         {
             this.InitializeComponent();
+
+            this.Show();
         }
     }
 }

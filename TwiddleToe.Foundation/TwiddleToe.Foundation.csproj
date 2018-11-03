@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\CommonEvents.cs" />
+    <Compile Include="Interfaces\IBaseView.cs" />
     <Compile Include="Interfaces\IBaseViewModel.cs" />
     <Compile Include="Interfaces\IShowDialog.cs" />
     <Compile Include="Interfaces\ISubscriber.cs" />

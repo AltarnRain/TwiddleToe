@@ -4,36 +4,56 @@
 
 namespace TwiddleToe.Workers.Factories
 {
+    using System;
     using System.Windows;
-    using Ninject;
-    using TwiddleToe.Foundation.Events;
     using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
-    /// Creates view models and views and handles service injection
+    /// This class handles the creation of views and view models. It assigns the view model to the view
+    /// and registeres the events needed for disposing and unregistering view models.
     /// </summary>
     public class ViewFactory
     {
-        private readonly IKernel kernel;
+        /// <summary>
+        /// The view model factory
+        /// </summary>
+        private readonly ViewModelFactory viewModelFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewFactory"/> class.
         /// </summary>
-        /// <param name="kernel">The kernel.</param>
-        public ViewFactory(IKernel kernel)
+        /// <param name="viewModelFactory">The view model factory.</param>
+        public ViewFactory(ViewModelFactory viewModelFactory)
         {
-            this.kernel = kernel;
+            this.viewModelFactory = viewModelFactory;
         }
 
         /// <summary>
-        /// Gets the view.
+        /// Loads the view.
         /// </summary>
         /// <typeparam name="TView">The type of the view.</typeparam>
-        /// <returns>A view</returns>
-        public TView GetView<TView>()
-            where TView : Window
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        public void Show<TView, TViewModel>()
+            where TView : IBaseView, new()
+            where TViewModel : IBaseViewModel
         {
-            return this.kernel.Get<TView>();
+            var view = new TView();
+
+            if (view.DataContext is IDisposable viewModel)
+            {
+                view.Closed += (sender, e) => { viewModel.Dispose(); };
+            }
+
+            view.DataContext = this.viewModelFactory.GetViewModel<TViewModel>(() => { view.Close(); });
+
+            if (view is IShowDialog)
+            {
+                view.ShowDialog();
+            }
+            else
+            {
+                view.Show();
+            }
         }
     }
 }
