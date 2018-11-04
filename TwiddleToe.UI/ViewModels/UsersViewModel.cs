@@ -32,21 +32,28 @@ namespace TwiddleToe.UI.ViewModels
         private readonly StateProvider stateProvider;
 
         /// <summary>
+        /// The user provider
+        /// </summary>
+        private readonly UserProvider userProvider;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="UsersViewModel" /> class.
         /// </summary>
         /// <param name="viewProvider">The view provider.</param>
         /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
+        /// <param name="userProvider">The user provider.</param>
         public UsersViewModel(
             ViewProvider viewProvider,
             StateProvider stateProvider,
-            ViewModelRegistry viewModelRegistry)
+            ViewModelRegistry viewModelRegistry,
+            UserProvider userProvider)
             : base(stateProvider, viewModelRegistry)
         {
             this.viewProvider = viewProvider;
             this.stateProvider = stateProvider;
-            this.AddNewUser = new RelayCommnand(this.AddUserAction);
-            this.RemoveSelectedUser = new RelayCommnand(this.RemoveSelectedUserAction, this.UserIsSelected);
+            this.userProvider = userProvider;
+            this.InitializeCommands();
         }
 
         /// <summary>
@@ -57,23 +64,32 @@ namespace TwiddleToe.UI.ViewModels
         /// </value>
         public string SelectedValue
         {
-            get
-            {
-                if (this.CurrentUser != null)
-                {
-                    return this.CurrentUser.FullName;
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-
+            get => this.CurrentUser?.Identity;
             set
             {
                 this.CurrentUser = this.Users.SingleOrDefault(u => u.Identity == value);
+
+                // Keep track of the original first and last name so we can detect changes to the current user data.
+                this.FirstName = this.CurrentUser?.FirstName;
+                this.LastName = this.CurrentUser?.LastName;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the first name.
+        /// </summary>
+        /// <value>
+        /// The first name.
+        /// </value>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last name.
+        /// </summary>
+        /// <value>
+        /// The last name.
+        /// </value>
+        public string LastName { get; set; }
 
         /// <summary>
         /// Gets or sets the users.
@@ -98,6 +114,14 @@ namespace TwiddleToe.UI.ViewModels
         /// The remove user.
         /// </value>
         public ICommand RemoveSelectedUser { get; private set; }
+
+        /// <summary>
+        /// Gets the update user.
+        /// </summary>
+        /// <value>
+        /// The update user.
+        /// </value>
+        public ICommand UpdateUser { get; private set; }
 
         /// <summary>
         /// Gets the current user.
@@ -134,30 +158,26 @@ namespace TwiddleToe.UI.ViewModels
             this.Users.AddRange(users);
         }
 
-        /// <summary>
-        /// Users the is selected.
-        /// </summary>
-        /// <returns>True if a user is selected</returns>
-        private bool UserIsSelected()
+        private void InitializeCommands()
         {
-            return this.CurrentUser != null;
-        }
+            this.AddNewUser = new RelayCommnand(() => this.viewProvider.Show<AddUser, AddUserViewModel>());
 
-        /// <summary>
-        /// Adds a new user
-        /// </summary>
-        private void AddUserAction()
-        {
-            this.viewProvider.Show<AddUser, AddUserViewModel>();
-        }
+            this.RemoveSelectedUser = new RelayCommnand(
+                () =>
+                {
+                    var currentUser = this.CurrentUser;
+                    this.stateProvider.RemoveFromState(currentUser);
+                },
+                () => this.CurrentUser != null);
 
-        /// <summary>
-        /// Removes the currently selected user.
-        /// </summary>
-        private void RemoveSelectedUserAction()
-        {
-            var currentUser = this.CurrentUser;
-            this.stateProvider.RemoveFromState(currentUser);
+            this.UpdateUser = new RelayCommnand(
+                () =>
+                {
+                    this.CurrentUser.FirstName = this.FirstName;
+                    this.CurrentUser.LastName = this.LastName;
+                    this.stateProvider.Update(this.CurrentUser);
+                },
+                () => this.CurrentUser?.FirstName != this.FirstName || this.CurrentUser?.LastName != this.LastName);
         }
     }
 }

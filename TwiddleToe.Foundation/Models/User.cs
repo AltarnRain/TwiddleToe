@@ -10,7 +10,7 @@ namespace TwiddleToe.Foundation.Models
     /// <summary>
     /// Een Persoon
     /// </summary>
-    public class User : BaseModel, ICloneable, IDeletable
+    public class User : BaseModel, IDeletable
     {
         /// <summary>
         /// Gets or sets the first name.
@@ -48,21 +48,6 @@ namespace TwiddleToe.Foundation.Models
             {
                 return $"{this.FirstName} {this.LastName}";
             }
-        }
-
-        /// <summary>
-        /// Creates a new object that is a copy of the current instance.
-        /// </summary>
-        /// <returns>
-        /// A new object that is a copy of this instance.
-        /// </returns>
-        public object Clone()
-        {
-            return new User
-            {
-                FirstName = this.FirstName,
-                LastName = this.LastName,
-            };
         }
     }
 }

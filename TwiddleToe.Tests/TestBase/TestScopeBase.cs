@@ -5,13 +5,14 @@
 namespace TwiddleToe.Tests.TestBase
 {
     using System;
+    using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;
 
     /// <summary>
     /// Test scope for provider unit tests.
     /// </summary>
-    public abstract class TestScopeBase : ITestScope, IDisposable
+    public abstract class TestScopeBase : ITestScope
     {
         /// <summary>
         /// Gets or sets the test scope.
@@ -31,6 +32,12 @@ namespace TwiddleToe.Tests.TestBase
         /// </summary>
         public void Dispose()
         {
+            var files = Directory.GetFiles(this.TestContext.DeploymentDirectory);
+            foreach (var file in files)
+            {
+                File.Delete(file);
+            }
+
             this.Kernel.Dispose();
         }
 

@@ -1,4 +1,4 @@
-﻿// <copyright file="System.Collections.ObjectModel.ObservableCollection.cs" company="Onno Invernizzi">
+﻿// <copyright file="ObservableCollection{T}.cs" company="Onno Invernizzi">
 // Copyright Onno Invernizzi
 // </copyright>
 

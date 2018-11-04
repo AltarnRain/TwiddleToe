@@ -4,8 +4,8 @@
 
 namespace TwiddleToe.UI.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Windows;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TwiddleToe.Tests.TestBase;
     using TwiddleToe.Tests.TestClasses;
 
@@ -31,6 +31,8 @@ namespace TwiddleToe.UI.Tests
 
                 // Assert
                 Assert.IsTrue(view.ShowCalled);
+                Assert.AreEqual(0, view.Top);
+                Assert.AreEqual(ResizeMode.NoResize, view.ResizeMode);
             }
         }
 
@@ -50,7 +52,6 @@ namespace TwiddleToe.UI.Tests
 
                 // Assert
                 Assert.IsTrue(view.ShowDialogCalled);
-                Assert.AreEqual(WindowStartupLocation.CenterScreen, view.WindowStartupLocation);
                 Assert.AreEqual(ResizeMode.NoResize, view.ResizeMode);
             }
         }

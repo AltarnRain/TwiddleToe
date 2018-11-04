@@ -33,7 +33,8 @@ namespace TwiddleToe.UI.ViewModels
             StateProvider stateProvider)
             : base(viewModelRegistry, stateProvider)
         {
-            this.OpenUsers = new RelayCommnand(this.OpenUserWindow);
+            this.OpenUsers = new RelayCommnand(() => this.viewProvider.Show<Users, UsersViewModel>());
+            this.OpenSubjects = new RelayCommnand(() => this.viewProvider.Show<Subjects, SubjectViewModel>());
             this.viewProvider = viewProvider;
         }
 
@@ -46,11 +47,11 @@ namespace TwiddleToe.UI.ViewModels
         public ICommand OpenUsers { get; set; }
 
         /// <summary>
-        /// Opens the user window.
+        /// Gets or sets the open subjects.
         /// </summary>
-        private void OpenUserWindow()
-        {
-            this.viewProvider.Show<Users, UsersViewModel>();
-        }
+        /// <value>
+        /// The open subjects.
+        /// </value>
+        public ICommand OpenSubjects { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace TwiddleToe.UI.ViewModels.Tests
 
                 var model = scope.UserViewModel;
 
-                Assert.AreEqual(string.Empty, model.SelectedValue);
+                Assert.AreEqual(null, model.SelectedValue);
 
                 model.SelectedValue = user.Identity;
 

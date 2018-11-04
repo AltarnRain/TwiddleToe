@@ -76,11 +76,15 @@
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AddUserViewModel.cs" />
+    <Compile Include="ViewModels\GenericInputViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Commands\RelayCommnand.cs" />
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewProvider.cs" />
+    <Compile Include="Windows\GenericInput.xaml.cs">
+      <DependentUpon>GenericInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Subjects.xaml.cs">
       <DependentUpon>Subjects.xaml</DependentUpon>
     </Compile>
@@ -88,6 +92,10 @@
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
     <Page Include="DialogWindows\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GenericInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

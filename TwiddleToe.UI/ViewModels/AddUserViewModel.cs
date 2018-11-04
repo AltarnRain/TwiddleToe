@@ -4,7 +4,6 @@
 
 namespace TwiddleToe.UI.ViewModels
 {
-    using System;
     using System.Windows.Input;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;

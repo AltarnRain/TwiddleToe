@@ -6,11 +6,12 @@ namespace TwiddleToe.UI.Windows
 {
     using System.Windows;
     using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Locations;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IShowDialog, IBaseView
+    public partial class MainWindow : Window, ITop, ICenterHorizantal, IShowDialog, IBaseView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow" /> class.
@@ -18,11 +19,6 @@ namespace TwiddleToe.UI.Windows
         public MainWindow()
         {
             this.InitializeComponent();
-#if !DEBUG
-            this.Top = 0;
-            this.Left = 0;
-            this.Width = SystemParameters.WorkArea.Width;
-#endif
         }
     }
 }

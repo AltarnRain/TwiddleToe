@@ -1,0 +1,24 @@
+﻿<Window x:Class="TwiddleToe.UI.Windows.GenericInput"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwiddleToe.UI.Windows"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Height="150" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Margin="10" DataContext="{Binding Label}"/>
+            <TextBox Text="{Binding Input}" Margin="10" Grid.Row="0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin ="10" Grid.Row="1">
+            <Button Width="60" Margin="5">Ok</Button>
+            <Button Width="60" Margin="5">Annuleren</Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -4,8 +4,8 @@
 
 namespace TwiddleToe.Tests.Providers
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.Tests.TestBase;
     using TwiddleToe.Tests.TestClasses;
@@ -167,6 +167,37 @@ namespace TwiddleToe.Tests.Providers
                 // Assert
                 var deletedRecord = stateProvider.Current.Users.SingleOrDefault(u => u.Identity == questionaire.Identity);
                 Assert.IsNull(deletedRecord);
+            }
+        }
+
+        /// <summary>
+        /// Tests the update.
+        /// </summary>
+        [TestMethod]
+        public void TestUpdate()
+        {
+            using (var scope = this.StartTest())
+            {
+                var stateProvider = scope.StateProvider;
+                var userProvider = scope.UserProvider;
+
+                var state = new State();
+                var user = userProvider.Create("John", "Doe");
+
+                state.Users.Add(user);
+
+                stateProvider.Current = state;
+
+                user.FirstName = "Peter";
+                user.LastName = "Smith";
+
+                // Act
+                stateProvider.Update(user);
+
+                // Assert
+                var updatedUser = stateProvider.Current.Users.Single(u => u.Identity == user.Identity);
+                Assert.AreEqual(user.FirstName, updatedUser.FirstName);
+                Assert.AreEqual(user.LastName, updatedUser.LastName);
             }
         }
     }

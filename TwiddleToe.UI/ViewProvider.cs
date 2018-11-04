@@ -6,6 +6,7 @@ namespace TwiddleToe.UI
 {
     using System.Windows;
     using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Locations;
     using TwiddleToe.Workers.Factories;
 
     /// <summary>
@@ -36,14 +37,28 @@ namespace TwiddleToe.UI
         {
             var view = this.viewFactory.Create<TView, TViewModel>();
 
-            if (view is IShowDialog)
+            if (view is Window window)
             {
-                if (view is Window window)
+                window.ResizeMode = ResizeMode.NoResize;
+
+                if (view is ITop)
                 {
-                    window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                    window.ResizeMode = ResizeMode.NoResize;
+                    window.Top = 0;
                 }
 
+                if (view is ICenterHorizantal)
+                {
+                    window.Left = (SystemParameters.WorkArea.Width / 2) - (window.Width / 2);
+                }
+
+                if (view is ICenterVertical)
+                {
+                    window.Top = (SystemParameters.WorkArea.Height / 2) - (window.Height / 2);
+                }
+            }
+
+            if (view is IShowDialog)
+            {
                 view.ShowDialog();
             }
             else

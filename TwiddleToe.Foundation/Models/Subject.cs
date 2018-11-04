@@ -10,7 +10,7 @@ namespace TwiddleToe.Foundation.Models
     /// <summary>
     /// A subject for a question.
     /// </summary>
-    public class Subject : BaseModel, ICloneable, IDeletable
+    public class Subject : BaseModel, IDeletable
     {
         /// <summary>
         /// Gets or sets the description.
@@ -27,20 +27,5 @@ namespace TwiddleToe.Foundation.Models
         ///   <c>true</c> if deleted; otherwise, <c>false</c>.
         /// </value>
         public bool Deleted { get; set; }
-
-        /// <summary>
-        /// Creates a new object that is a copy of the current instance.
-        /// </summary>
-        /// <returns>
-        /// A new object that is a copy of this instance.
-        /// </returns>
-        public object Clone()
-        {
-            return new Subject
-            {
-                Description = this.Description,
-                Identity = this.Identity,
-            };
-        }
     }
 }

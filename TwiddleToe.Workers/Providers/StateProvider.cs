@@ -5,6 +5,7 @@
 namespace TwiddleToe.Workers.Providers
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using TwiddleToe.Foundation.Interfaces;
     using TwiddleToe.Foundation.Models;
@@ -69,20 +70,6 @@ namespace TwiddleToe.Workers.Providers
         }
 
         /// <summary>
-        /// Clones the state.
-        /// </summary>
-        /// <param name="state">The state.</param>
-        /// <returns>
-        /// A cloned state
-        /// </returns>
-        private static State CloneState(State state)
-        {
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(state);
-            var clone = Newtonsoft.Json.JsonConvert.DeserializeObject<State>(json);
-            return clone;
-        }
-
-        /// <summary>
         /// Unsubscribes the specified subscriber.
         /// </summary>
         /// <param name="subscriber">The subscriber.</param>
@@ -108,8 +95,12 @@ namespace TwiddleToe.Workers.Providers
         public void RemoveFromState<TRecord>(TRecord model)
             where TRecord : BaseModel
         {
-            var name = model.GetType().Name;
-            var pluralName = name + "s";
+            if (string.IsNullOrWhiteSpace(model.Identity))
+            {
+                throw new InvalidDataException("Model does not have a set Identity property");
+            }
+
+            var pluralName = GetPluralName(model);
 
             if (this.state[pluralName] is List<TRecord> contents)
             {
@@ -132,11 +123,67 @@ namespace TwiddleToe.Workers.Providers
         }
 
         /// <summary>
+        /// Updates the specified current user.
+        /// </summary>
+        /// <typeparam name="TRecord">The type of the record.</typeparam>
+        /// <param name="model">The model.</param>
+        public void Update<TRecord>(TRecord model)
+            where TRecord : BaseModel
+        {
+            if (string.IsNullOrWhiteSpace(model.Identity))
+            {
+                throw new InvalidDataException("Model does not have a set Identity property");
+            }
+
+            var pluralName = GetPluralName(model);
+
+            if (this.state[pluralName] is List<TRecord> contents)
+            {
+                var record = contents.SingleOrDefault(r => r.Identity == model.Identity);
+
+                if (record != null)
+                {
+                    contents.Remove(record);
+                    contents.Add(model);
+                    this.DispatchUpdatedStateToSubscribers();
+                }
+            }
+        }
+
+        /// <summary>
         /// Flushes the content of the state to a file.
         /// </summary>
         public void Flush()
         {
             this.stateFileHandler.SaveStateToFile(this.state);
+        }
+
+        /// <summary>
+        /// Clones the state.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <returns>
+        /// A cloned state
+        /// </returns>
+        private static State CloneState(State state)
+        {
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(state);
+            var clone = Newtonsoft.Json.JsonConvert.DeserializeObject<State>(json);
+            return clone;
+        }
+
+        /// <summary>
+        /// Gets the name of the plural.
+        /// </summary>
+        /// <typeparam name="TRecord">The type of the record.</typeparam>
+        /// <param name="model">The model.</param>
+        /// <returns>The plural name</returns>
+        private static string GetPluralName<TRecord>(TRecord model)
+            where TRecord : BaseModel
+        {
+            var name = model.GetType().Name;
+            var pluralName = name + "s";
+            return pluralName;
         }
 
         /// <summary>

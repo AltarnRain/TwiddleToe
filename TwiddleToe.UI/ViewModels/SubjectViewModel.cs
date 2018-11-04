@@ -5,27 +5,45 @@
 namespace TwiddleToe.UI.ViewModels
 {
     using System.Collections.ObjectModel;
+    using System.Windows.Input;
+    using TwiddleToe.Foundation.Extentions;
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
+    using TwiddleToe.UI.Commands;
+    using TwiddleToe.UI.Windows;
     using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// A View model for subjects
     /// </summary>
+    /// <seealso cref="TwiddleToe.UI.Base.BaseSubscriberViewModel" />
     public class SubjectViewModel : BaseSubscriberViewModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubjectViewModel"/> class.
+        /// The subject provider
         /// </summary>
+        private readonly SubjectProvider subjectProvider;
+        private readonly ViewProvider viewProvider;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubjectViewModel" /> class.
+        /// </summary>
+        /// <param name="subjectProvider">The subject provider.</param>
         /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
+        /// <param name="viewProvider">The view provider.</param>
         public SubjectViewModel(
+            SubjectProvider subjectProvider,
             StateProvider stateProvider,
-            ViewModelRegistry viewModelRegistry)
+            ViewModelRegistry viewModelRegistry,
+            ViewProvider viewProvider)
             : base(stateProvider, viewModelRegistry)
         {
+            this.subjectProvider = subjectProvider;
+            this.viewProvider = viewProvider;
+            this.InitializeCommands();
         }
 
         /// <summary>
@@ -35,6 +53,50 @@ namespace TwiddleToe.UI.ViewModels
         /// The subjects.
         /// </value>
         public ObservableCollection<Subject> Subjects { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current subject.
+        /// </summary>
+        /// <value>
+        /// The current subject.
+        /// </value>
+        public Subject CurrentSubject { get; set; }
+
+        /// <summary>
+        /// Gets or sets the add subject.
+        /// </summary>
+        /// <value>
+        /// The add subject.
+        /// </value>
+        public ICommand AddSubject { get; set; }
+
+        /// <summary>
+        /// Gets or sets the remove subject.
+        /// </summary>
+        /// <value>
+        /// The remove subject.
+        /// </value>
+        public ICommand RemoveSubject { get; set; }
+
+        /// <summary>
+        /// Gets or sets the update subject.
+        /// </summary>
+        /// <value>
+        /// The update subject.
+        /// </value>
+        public ICommand UpdateSubject { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected value.
+        /// </summary>
+        /// <value>
+        /// The selected value.
+        /// </value>
+        public string SelectedValue
+        {
+            get => this.CurrentSubject?.Identity;
+            set => this.CurrentSubject = this.Subjects.Find(value);
+        }
 
         /// <summary>
         /// Called before updating the state. The view model inheriting from <see cref="BaseSubscriberViewModel" />
@@ -59,6 +121,16 @@ namespace TwiddleToe.UI.ViewModels
         public override void HandleStateUpdate(State state)
         {
             this.Subjects.AddRange(state.Subjects);
+        }
+
+        /// <summary>
+        /// Initializes the commands.
+        /// </summary>
+        private void InitializeCommands()
+        {
+            this.AddSubject = new RelayCommnand(() => this.viewProvider.Show<GenericInput, GenericInputViewModel>());
+            this.RemoveSubject = new RelayCommnand(() => { }, () => false);
+            this.UpdateSubject = new RelayCommnand(() => { }, () => false);
         }
     }
 }

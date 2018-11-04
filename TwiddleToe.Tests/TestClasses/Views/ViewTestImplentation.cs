@@ -4,13 +4,13 @@
 
 namespace TwiddleToe.Tests.TestClasses
 {
-    using TwiddleToe.Foundation.Registries;
-    using TwiddleToe.Workers.Providers;
+    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Locations;
 
     /// <summary>
     /// A test implentation for a view not shown as a dialog
     /// </summary>
-    public class ViewTestImplentation : BaseViewTestImplentation
+    public class ViewTestImplentation : BaseViewTestImplentation, ITop
     {
     }
 }

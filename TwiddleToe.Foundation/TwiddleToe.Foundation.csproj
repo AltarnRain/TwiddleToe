@@ -47,11 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\CommonEvents.cs" />
+    <Compile Include="Extentions\List{T}.cs" />
     <Compile Include="Interfaces\IBaseView.cs" />
     <Compile Include="Interfaces\IBaseViewModel.cs" />
     <Compile Include="Interfaces\IDeletable.cs" />
+    <Compile Include="Interfaces\Locations\ICenterHorizantal.cs" />
+    <Compile Include="Interfaces\Locations\ICenterScreen.cs" />
     <Compile Include="Interfaces\IShowDialog.cs" />
     <Compile Include="Interfaces\ISubscriber.cs" />
+    <Compile Include="Interfaces\Locations\ICenterVertical.cs" />
+    <Compile Include="Interfaces\Locations\ITop.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ProgramInformation.cs" />
     <Compile Include="Models\Question.cs" />

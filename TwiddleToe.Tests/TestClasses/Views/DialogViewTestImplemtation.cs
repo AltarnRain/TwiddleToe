@@ -5,11 +5,12 @@
 namespace TwiddleToe.Tests.TestClasses
 {
     using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Locations;
 
     /// <summary>
     /// Test implementation for a view shown as a dialog.
     /// </summary>
-    public class DialogViewTestImplemtation : BaseViewTestImplentation, IShowDialog
+    public class DialogViewTestImplemtation : BaseViewTestImplentation, IShowDialog, ICenterScreen
     {
     }
 }
