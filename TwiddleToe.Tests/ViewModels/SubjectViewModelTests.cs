@@ -28,5 +28,31 @@ namespace TwiddleToe.Tests.ViewModels
                 Assert.IsNotNull(model);
             }
         }
+
+        /// <summary>
+        /// Loads the state.
+        /// </summary>
+        [TestMethod]
+        public void LoadState()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange
+                var model = scope.SubjectViewModel;
+                var currentNumberOfSubjects = model.Subjects.Count;
+                var stateProvider = scope.StateProvider;
+                var currentState = stateProvider.Current;
+                var subjectProvider = scope.SubjectProvider;
+
+                var newSubject = subjectProvider.Create("Test subject");
+                currentState.Subjects.Add(newSubject);
+
+                // Act
+                stateProvider.Current = currentState;
+
+                // Assert
+                Assert.AreEqual(model.Subjects.Count - 1, currentNumberOfSubjects);
+            }
+        }
     }
 }

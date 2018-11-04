@@ -9,7 +9,6 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.Windows;
-    using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
@@ -20,7 +19,7 @@ namespace TwiddleToe.UI.ViewModels
         /// <summary>
         /// The view factory
         /// </summary>
-        private readonly ViewFactory viewFactory;
+        private readonly ViewProvider viewProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel" /> class.
@@ -29,13 +28,13 @@ namespace TwiddleToe.UI.ViewModels
         /// <param name="viewModelRegistry">The view model registry.</param>
         /// <param name="stateProvider">The state provider.</param>
         public MainViewModel(
-            ViewFactory viewFactory,
+            ViewProvider viewProvider,
             ViewModelRegistry viewModelRegistry,
             StateProvider stateProvider)
             : base(viewModelRegistry, stateProvider)
         {
             this.OpenUsers = new RelayCommnand(this.OpenUserWindow);
-            this.viewFactory = viewFactory;
+            this.viewProvider = viewProvider;
         }
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace TwiddleToe.UI.ViewModels
         /// </summary>
         private void OpenUserWindow()
         {
-            this.viewFactory.Show<Users, UsersViewModel>();
+            this.viewProvider.Show<Users, UsersViewModel>();
         }
     }
 }

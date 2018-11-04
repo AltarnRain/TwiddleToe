@@ -4,11 +4,11 @@
 
 namespace TwiddleToe.UI.ViewModels
 {
-    using System;
     using System.Collections.ObjectModel;
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
+    using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
@@ -37,12 +37,28 @@ namespace TwiddleToe.UI.ViewModels
         public ObservableCollection<Subject> Subjects { get; set; }
 
         /// <summary>
-        /// States the update.
+        /// Called before updating the state. The view model inheriting from <see cref="BaseSubscriberViewModel" />
+        /// decides how to implement it.
+        /// </summary>
+        public override void PrepareForStateStateUpdate()
+        {
+            if (this.Subjects == null)
+            {
+                this.Subjects = new ObservableCollection<Subject>();
+            }
+            else
+            {
+                this.Subjects.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Called when the state is updated.
         /// </summary>
         /// <param name="state">The state.</param>
-        public override void StateUpdate(State state)
+        public override void HandleStateUpdate(State state)
         {
-            // No implentation
+            this.Subjects.AddRange(state.Subjects);
         }
     }
 }

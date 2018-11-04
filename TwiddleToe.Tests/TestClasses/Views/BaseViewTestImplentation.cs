@@ -5,18 +5,19 @@
 namespace TwiddleToe.Tests.TestClasses
 {
     using System;
+    using System.Windows;
     using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
     /// Test implentation of IBaseView
     /// </summary>
-    /// <seealso cref="TwiddleToe.Foundation.Interfaces.IBaseView" />
-    public abstract class BaseViewTestImplentation : IBaseView
+    /// <seealso cref="IBaseView" />
+    public abstract class BaseViewTestImplentation : Window, IBaseView
     {
         /// <summary>
         /// Occurs when [closed].
         /// </summary>
-        public event EventHandler Closed;
+        public new event EventHandler Closed;
 
         /// <summary>
         /// Gets or sets the data context.
@@ -24,7 +25,7 @@ namespace TwiddleToe.Tests.TestClasses
         /// <value>
         /// The data context.
         /// </value>
-        public object DataContext { get; set; }
+        public new object DataContext { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether [show dialog called].
@@ -45,7 +46,7 @@ namespace TwiddleToe.Tests.TestClasses
         /// <summary>
         /// Closes this instance.
         /// </summary>
-        public void Close()
+        public new void Close()
         {
             // No implentation
         }
@@ -53,7 +54,7 @@ namespace TwiddleToe.Tests.TestClasses
         /// <summary>
         /// Shows this instance.
         /// </summary>
-        public void Show()
+        public new void Show()
         {
             this.ShowCalled = true;
         }
@@ -64,7 +65,7 @@ namespace TwiddleToe.Tests.TestClasses
         /// <returns>
         /// True, null, or false
         /// </returns>
-        public bool? ShowDialog()
+        public new bool? ShowDialog()
         {
             this.ShowDialogCalled = true;
             return null;

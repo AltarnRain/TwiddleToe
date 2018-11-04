@@ -25,10 +25,10 @@ namespace TwiddleToe.UI.Windows
         {
             using (var kernel = new StandardKernel(new Modules()))
             {
-                var viewFactory = kernel.Get<ViewFactory>();
+                var viewProvider = kernel.Get<ViewProvider>();
                 var viewModelRegistry = kernel.Get<ViewModelRegistry>();
                 var stateProvider = kernel.Get<StateProvider>();
-                viewFactory.Show<MainWindow, MainViewModel>();
+                viewProvider.Show<MainWindow, MainViewModel>();
 
                 // Use the view model registry to issue a command to all active view models that their
                 // bound views should issue a close command.

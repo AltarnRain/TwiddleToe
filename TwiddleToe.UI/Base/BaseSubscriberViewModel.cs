@@ -31,7 +31,7 @@ namespace TwiddleToe.UI.Base
         {
             this.stateProvider = stateProvider;
             this.stateProvider.Subscribe(this);
-            this.StateUpdate(stateProvider.Current);
+            this.UpdateViewModelState(stateProvider.Current);
         }
 
         /// <summary>
@@ -44,10 +44,17 @@ namespace TwiddleToe.UI.Base
         }
 
         /// <summary>
-        /// States the update.
+        /// Called before updating the state. The view model inheriting from <see cref="BaseSubscriberViewModel"/>
+        /// decides how to implement it.
+        /// </summary>
+        public abstract void PrepareForStateStateUpdate();
+
+        /// <summary>
+        /// Called after PreparingState. The view model inheriting from <see cref="BaseSubscriberViewModel"/>
+        /// decides how to implement it.
         /// </summary>
         /// <param name="state">The state.</param>
-        public abstract void StateUpdate(State state);
+        public abstract void HandleStateUpdate(State state);
 
         /// <summary>
         /// Dispatches the specified state.
@@ -55,7 +62,17 @@ namespace TwiddleToe.UI.Base
         /// <param name="state">The state.</param>
         public void Dispatch(State state)
         {
-            this.StateUpdate(state);
+            this.UpdateViewModelState(state);
+        }
+
+        /// <summary>
+        /// Updates the state of the view model.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        private void UpdateViewModelState(State state)
+        {
+            this.PrepareForStateStateUpdate();
+            this.HandleStateUpdate(state);
         }
     }
 }

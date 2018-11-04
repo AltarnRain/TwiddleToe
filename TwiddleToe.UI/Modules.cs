@@ -22,13 +22,15 @@ namespace TwiddleToe.UI
         /// </summary>
         public override void Load()
         {
-            this.Kernel.Bind<IdentityProvider>().ToSelf().InSingletonScope();
-            this.Kernel.Bind<StateProvider>().ToSelf().InSingletonScope();
-            this.Kernel.Bind<StateFileHandler>().ToSelf().InSingletonScope();
-            this.Kernel.Bind<IProgramInformationProvider>().To<ProgramInformationProvider>().InSingletonScope();
-            this.Kernel.Bind<UserProvider>().ToSelf().InSingletonScope();
-            this.Kernel.Bind<ViewModelFactory>().ToSelf().InSingletonScope();
-            this.Kernel.Bind<ViewModelRegistry>().ToSelf().InSingletonScope();
+            this.Bind<IdentityProvider>().ToSelf().InSingletonScope();
+            this.Bind<StateProvider>().ToSelf().InSingletonScope();
+            this.Bind<StateFileHandler>().ToSelf().InSingletonScope();
+            this.Bind<IProgramInformationProvider>().To<ProgramInformationProvider>().InSingletonScope();
+            this.Bind<UserProvider>().ToSelf().InSingletonScope();
+            this.Bind<ViewModelFactory>().ToSelf().InSingletonScope();
+            this.Bind<ViewModelRegistry>().ToSelf().InSingletonScope();
+            this.Bind<SubjectProvider>().ToSelf().InSingletonScope();
+            this.Bind<ViewProvider>().ToSelf().InSingletonScope();
         }
     }
 }

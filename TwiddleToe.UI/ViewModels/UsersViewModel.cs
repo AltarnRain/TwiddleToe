@@ -12,7 +12,7 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.DialogWindows;
-    using TwiddleToe.Workers.Factories;
+    using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
@@ -24,7 +24,7 @@ namespace TwiddleToe.UI.ViewModels
         /// <summary>
         /// The view factory
         /// </summary>
-        private readonly ViewFactory viewFactory;
+        private readonly ViewProvider viewProvider;
 
         /// <summary>
         /// The state provider
@@ -34,16 +34,16 @@ namespace TwiddleToe.UI.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="UsersViewModel" /> class.
         /// </summary>
-        /// <param name="viewFactory">The view factory.</param>
+        /// <param name="viewProvider">The view provider.</param>
         /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
         public UsersViewModel(
-            ViewFactory viewFactory,
+            ViewProvider viewProvider,
             StateProvider stateProvider,
             ViewModelRegistry viewModelRegistry)
             : base(stateProvider, viewModelRegistry)
         {
-            this.viewFactory = viewFactory;
+            this.viewProvider = viewProvider;
             this.stateProvider = stateProvider;
             this.AddNewUser = new RelayCommnand(this.AddUserAction);
             this.RemoveSelectedUser = new RelayCommnand(this.RemoveSelectedUserAction, this.UserIsSelected);
@@ -108,10 +108,10 @@ namespace TwiddleToe.UI.ViewModels
         public User CurrentUser { get; private set; }
 
         /// <summary>
-        /// States the update.
+        /// Called before updating the state. The view model inheriting from <see cref="BaseSubscriberViewModel" />
+        /// decides how to implement it.
         /// </summary>
-        /// <param name="state">The state.</param>
-        public override void StateUpdate(State state)
+        public override void PrepareForStateStateUpdate()
         {
             if (this.Users == null)
             {
@@ -121,11 +121,15 @@ namespace TwiddleToe.UI.ViewModels
             {
                 this.Users.Clear();
             }
+        }
 
-            foreach (var user in state.Users)
-            {
-                this.Users.Add(user);
-            }
+        /// <summary>
+        /// States the update.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        public override void HandleStateUpdate(State state)
+        {
+            this.Users.AddRange(state.Users);
         }
 
         /// <summary>
@@ -142,7 +146,7 @@ namespace TwiddleToe.UI.ViewModels
         /// </summary>
         private void AddUserAction()
         {
-            this.viewFactory.Show<AddUser, AddUserViewModel>();
+            this.viewProvider.Show<AddUser, AddUserViewModel>();
         }
 
         /// <summary>

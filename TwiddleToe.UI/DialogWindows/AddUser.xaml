@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwiddleToe.UI.DialogWindows"
         mc:Ignorable="d"
-        Title="Nieuwe gebruiker toevoegen" Height="150" Width="477.5" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Nieuwe gebruiker toevoegen" Height="150" Width="477.5" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>

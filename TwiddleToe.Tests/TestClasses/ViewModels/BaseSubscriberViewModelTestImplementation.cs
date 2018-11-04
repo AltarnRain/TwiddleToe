@@ -37,9 +37,18 @@ namespace TwiddleToe.Tests.TestClasses
         /// Called when the state updates.
         /// </summary>
         /// <param name="state">The state.</param>
-        public override void StateUpdate(State state)
+        public override void HandleStateUpdate(State state)
         {
             this.StateUpdated = true;
+        }
+
+        /// <summary>
+        /// Called before updating the state. The view model inheriting from <see cref="T:TwiddleToe.UI.Base.BaseSubscriberViewModel" />
+        /// decides how to implement it.
+        /// </summary>
+        public override void PrepareForStateStateUpdate()
+        {
+            this.StateUpdated = false;
         }
     }
 }

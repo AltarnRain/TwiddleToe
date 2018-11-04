@@ -28,6 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\TwiddleToe.UI.xml</DocumentationFile>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>TwiddleToe.UI.Windows.App</StartupObject>
@@ -78,6 +80,7 @@
     <Compile Include="Commands\RelayCommnand.cs" />
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
+    <Compile Include="ViewProvider.cs" />
     <Compile Include="Windows\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>

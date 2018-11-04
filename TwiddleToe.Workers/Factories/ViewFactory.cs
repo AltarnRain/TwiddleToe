@@ -50,29 +50,5 @@ namespace TwiddleToe.Workers.Factories
 
             return view;
         }
-
-        /// <summary>
-        /// Shows the view model according to its marker interface.
-        /// </summary>
-        /// <typeparam name="TView">The type of the view.</typeparam>
-        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
-        /// <returns>The created view</returns>
-        public TView Show<TView, TViewModel>()
-            where TView : IBaseView, new()
-            where TViewModel : IBaseViewModel
-        {
-            var view = this.Create<TView, TViewModel>();
-
-            if (view is IShowDialog)
-            {
-                view.ShowDialog();
-            }
-            else
-            {
-                view.Show();
-            }
-
-            return view;
-        }
     }
 }

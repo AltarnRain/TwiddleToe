@@ -17,7 +17,7 @@ namespace TwiddleToe.Foundation.Models
         /// <value>
         /// The subject identifier.
         /// </value>
-        public int SubjectId { get; set; }
+        public string SubjectId { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
