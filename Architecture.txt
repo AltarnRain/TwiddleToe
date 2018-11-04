@@ -2,6 +2,7 @@
 
 Utilities -> General function. Cannot have any dependancies.
 	Foundation -> Data models
-		Workers -> Provides of data models.
+		Workers -> Providres of data models and factories that rely on absraction. 
+				   NO REREFENRCE TO PresentationFramework, etc. 
 			UI -> Windows and ViewModels, Ninject modules registration.
 				Tests -> Tests for the entire application.

@@ -4,14 +4,12 @@
 
 namespace TwiddleToe.Foundation.Models
 {
-    using System;
     using System.Collections.Generic;
-    using TwiddleToe.Utilities.Factories;
 
     /// <summary>
     /// The application state
     /// </summary>
-    public class State : ICloneable
+    public class State
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="State"/> class.
@@ -66,37 +64,16 @@ namespace TwiddleToe.Foundation.Models
         public List<Questionaire> Questionaires { get; set; }
 
         /// <summary>
-        /// Gets or sets the current identifier.
-        /// Used to provide unique Ids to other classes.
+        /// Gets or sets the <see cref="object"/> with the specified property name.
         /// </summary>
         /// <value>
-        /// The current identifier.
+        /// The <see cref="object"/>.
         /// </value>
-        public int CurrentId { get; set; }
-
-        /// <summary>
-        /// Makes the clone.
-        /// </summary>
-        /// <returns>
-        /// A copy of the inheriting class
-        /// </returns>
-        public object Clone()
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns>The value of a property</returns>
+        public object this[string propertyName]
         {
-            var users = CloneFactory.MakeClone(this.Users);
-            var subjects = CloneFactory.MakeClone(this.Subjects);
-            var questions = CloneFactory.MakeClone(this.Questions);
-            var questionaireHistories = CloneFactory.MakeClone(this.QuestionareHistories);
-            var questionaires = CloneFactory.MakeClone(this.Questionaires);
-
-            return new State
-            {
-                CurrentId = this.CurrentId,
-                QuestionareHistories = questionaireHistories,
-                Questionaires = questionaires,
-                Questions = questions,
-                Subjects = subjects,
-                Users = users,
-            };
+            get { return this.GetType().GetProperty(propertyName).GetValue(this, null); }
         }
     }
 }

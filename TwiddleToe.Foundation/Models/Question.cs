@@ -5,20 +5,13 @@
 namespace TwiddleToe.Foundation.Models
 {
     using System;
+    using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
     /// Model for a question
     /// </summary>
-    public class Question : ICloneable
+    public class Question : BaseModel, IDeletable
     {
-        /// <summary>
-        /// Gets or sets the subject identifier.
-        /// </summary>
-        /// <value>
-        /// The subject identifier.
-        /// </value>
-        public int SubjectId { get; set; }
-
         /// <summary>
         /// Gets or sets the question identifier.
         /// </summary>
@@ -44,20 +37,11 @@ namespace TwiddleToe.Foundation.Models
         public string Answer { get; set; }
 
         /// <summary>
-        /// Creates a new object that is a copy of the current instance.
+        /// Gets or sets a value indicating whether this <see cref="IDeletable" /> is deleted.
         /// </summary>
-        /// <returns>
-        /// A new object that is a copy of this instance.
-        /// </returns>
-        public object Clone()
-        {
-            return new Question
-            {
-                Answer = this.Answer,
-                Description = this.Description,
-                QuestionId = this.QuestionId,
-                SubjectId = this.SubjectId
-            };
-        }
+        /// <value>
+        ///   <c>true</c> if deleted; otherwise, <c>false</c>.
+        /// </value>
+        public bool Deleted { get; set; }
     }
 }

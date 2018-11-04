@@ -28,7 +28,7 @@ namespace TwiddleToe.Providers.Providers.Tests
                 // Assert
                 Assert.AreEqual("Onno", user.FirstName);
                 Assert.AreEqual("Invernizzi", user.LastName);
-                Assert.IsTrue(user.UserId != string.Empty);
+                Assert.IsTrue(user.Identity != string.Empty);
             }
         }
     }

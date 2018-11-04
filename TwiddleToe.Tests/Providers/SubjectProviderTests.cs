@@ -30,7 +30,7 @@ namespace TwiddleToe.Workers.Providers.Tests
                 var subject = provider.Create(Description);
 
                 // Assert
-                Assert.IsNotNull(subject.SubjectId);
+                Assert.IsNotNull(subject.Identity);
                 Assert.AreEqual(Description, subject.Description);
             }
         }

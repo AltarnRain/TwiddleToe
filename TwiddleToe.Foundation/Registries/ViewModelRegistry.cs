@@ -5,6 +5,7 @@
 namespace TwiddleToe.Foundation.Registries
 {
     using System.Collections.Generic;
+    using System.Linq;
     using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
@@ -62,7 +63,7 @@ namespace TwiddleToe.Foundation.Registries
         /// </summary>
         public void CloseAllActive()
         {
-            foreach (var activeVieWModel in this.activeViewModels)
+            foreach (var activeVieWModel in this.activeViewModels.ToList())
             {
                 activeVieWModel.CloseView();
             }

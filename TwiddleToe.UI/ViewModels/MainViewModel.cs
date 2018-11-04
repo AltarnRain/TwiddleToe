@@ -24,7 +24,7 @@ namespace TwiddleToe.UI.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel" /> class.
         /// </summary>
-        /// <param name="viewFactory">The view factory.</param>
+        /// <param name="viewProvider">The view provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
         /// <param name="stateProvider">The state provider.</param>
         public MainViewModel(

@@ -10,16 +10,8 @@ namespace TwiddleToe.Foundation.Models
     /// <summary>
     /// A history record for a taken questionary
     /// </summary>
-    public class QuestionareHistory : ICloneable
+    public class QuestionareHistory : BaseModel
     {
-        /// <summary>
-        /// Gets or sets the questionare identifier.
-        /// </summary>
-        /// <value>
-        /// The questionare identifier.
-        /// </value>
-        public int? QuestionareId { get; set; }
-
         /// <summary>
         /// Gets or sets the user.
         /// </summary>
@@ -51,23 +43,5 @@ namespace TwiddleToe.Foundation.Models
         /// The date taken.
         /// </value>
         public DateTime DateTaken { get; set; }
-
-        /// <summary>
-        /// Creates a new object that is a copy of the current instance.
-        /// </summary>
-        /// <returns>
-        /// A new object that is a copy of this instance.
-        /// </returns>
-        public object Clone()
-        {
-            return new QuestionareHistory
-            {
-                CorrectAnswers = this.CorrectAnswers,
-                DateTaken = this.DateTaken,
-                QuestionareId = this.QuestionareId,
-                User = this.User,
-                WrongAnswers = this.WrongAnswers,
-            };
-        }
     }
 }

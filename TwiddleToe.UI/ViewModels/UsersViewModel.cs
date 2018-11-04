@@ -71,7 +71,7 @@ namespace TwiddleToe.UI.ViewModels
 
             set
             {
-                this.CurrentUser = this.Users.Single(u => u.UserId == value);
+                this.CurrentUser = this.Users.SingleOrDefault(u => u.Identity == value);
             }
         }
 
@@ -129,7 +129,9 @@ namespace TwiddleToe.UI.ViewModels
         /// <param name="state">The state.</param>
         public override void HandleStateUpdate(State state)
         {
-            this.Users.AddRange(state.Users);
+            var users = state.Users.Where(u => u.Deleted == false).ToList();
+            users.Sort();
+            this.Users.AddRange(users);
         }
 
         /// <summary>
@@ -154,13 +156,8 @@ namespace TwiddleToe.UI.ViewModels
         /// </summary>
         private void RemoveSelectedUserAction()
         {
-        }
-
-        /// <summary>
-        /// Select a user.
-        /// </summary>
-        private void SetCurrentUserAction()
-        {
+            var currentUser = this.CurrentUser;
+            this.stateProvider.RemoveFromState(currentUser);
         }
     }
 }

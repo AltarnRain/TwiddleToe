@@ -5,6 +5,7 @@
 namespace TwiddleToe.Tests.Providers
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.Tests.TestBase;
     using TwiddleToe.Tests.TestClasses;
@@ -110,6 +111,62 @@ namespace TwiddleToe.Tests.Providers
                 // Assert
                 Assert.IsFalse(stateDispatchedBefore);
                 Assert.IsFalse(testClass.StateUpdated);
+            }
+        }
+
+        /// <summary>
+        /// Removes from state.
+        /// </summary>
+        [TestMethod]
+        public void RemoveFromStateWithIDeletable()
+        {
+            using (var scope = this.StartTest())
+            {
+                var stateProvider = scope.StateProvider;
+                var userProvider = scope.UserProvider;
+
+                var state = new State();
+                var user = userProvider.Create("John", "Doe");
+
+                state.Users.Add(user);
+
+                stateProvider.Current = state;
+
+                // Act
+                stateProvider.RemoveFromState(user);
+
+                // Assert
+                var deletedRecord = stateProvider.Current.Users.Single(u => u.Identity == user.Identity);
+                Assert.IsTrue(deletedRecord.Deleted);
+            }
+        }
+
+        /// <summary>
+        /// Removes from state.
+        /// </summary>
+        [TestMethod]
+        public void RemoveFromStateWithoutIDeletable()
+        {
+            using (var scope = this.StartTest())
+            {
+                var stateProvider = scope.StateProvider;
+
+                var questionaire = new Questionaire
+                {
+                    Identity = scope.IdentityProvider.Get()
+                };
+
+                var state = new State();
+                state.Questionaires.Add(questionaire);
+
+                stateProvider.Current = state;
+
+                // Act
+                stateProvider.RemoveFromState(questionaire);
+
+                // Assert
+                var deletedRecord = stateProvider.Current.Users.SingleOrDefault(u => u.Identity == questionaire.Identity);
+                Assert.IsNull(deletedRecord);
             }
         }
     }

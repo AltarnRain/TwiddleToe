@@ -50,7 +50,7 @@ namespace TwiddleToe.UI.ViewModels.Tests
 
                 Assert.AreEqual(string.Empty, model.SelectedValue);
 
-                model.SelectedValue = user.UserId;
+                model.SelectedValue = user.Identity;
 
                 Assert.AreEqual(model.CurrentUser.FirstName, "John");
                 Assert.AreEqual(model.CurrentUser.LastName, "Doe");

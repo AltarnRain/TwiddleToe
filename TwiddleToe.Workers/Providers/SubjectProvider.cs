@@ -36,7 +36,7 @@ namespace TwiddleToe.Workers.Providers
         {
             return new Subject
             {
-                SubjectId = this.identityProvider.Get(),
+                Identity = this.identityProvider.Get(),
                 Description = description
             };
         }

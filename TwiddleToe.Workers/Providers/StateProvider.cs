@@ -5,9 +5,9 @@
 namespace TwiddleToe.Workers.Providers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using TwiddleToe.Foundation.Interfaces;
     using TwiddleToe.Foundation.Models;
-    using TwiddleToe.Utilities.Factories;
     using TwiddleToe.Workers.FileHandlers;
 
     /// <summary>
@@ -56,16 +56,30 @@ namespace TwiddleToe.Workers.Providers
                     this.state = new State();
                 }
 
-                return CloneFactory.MakeClone(this.state);
+                return CloneState(this.state);
             }
 
             set
             {
-                this.state = CloneFactory.MakeClone(value);
+                this.state = CloneState(value);
 
                 // Signal state subscribers the state has changed.
                 this.DispatchUpdatedStateToSubscribers();
             }
+        }
+
+        /// <summary>
+        /// Clones the state.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <returns>
+        /// A cloned state
+        /// </returns>
+        private static State CloneState(State state)
+        {
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(state);
+            var clone = Newtonsoft.Json.JsonConvert.DeserializeObject<State>(json);
+            return clone;
         }
 
         /// <summary>
@@ -87,6 +101,37 @@ namespace TwiddleToe.Workers.Providers
         }
 
         /// <summary>
+        /// Removes from state.
+        /// </summary>
+        /// <typeparam name="TRecord">The type of the record.</typeparam>
+        /// <param name="model">The model.</param>
+        public void RemoveFromState<TRecord>(TRecord model)
+            where TRecord : BaseModel
+        {
+            var name = model.GetType().Name;
+            var pluralName = name + "s";
+
+            if (this.state[pluralName] is List<TRecord> contents)
+            {
+                var record = contents.SingleOrDefault(r => r.Identity == model.Identity);
+
+                if (record != null)
+                {
+                    if (record is IDeletable)
+                    {
+                        ((IDeletable)record).Deleted = true;
+                    }
+                    else
+                    {
+                        contents.Remove(model);
+                    }
+
+                    this.DispatchUpdatedStateToSubscribers();
+                }
+            }
+        }
+
+        /// <summary>
         /// Flushes the content of the state to a file.
         /// </summary>
         public void Flush()
@@ -101,7 +146,7 @@ namespace TwiddleToe.Workers.Providers
         {
             foreach (var subscriber in this.subscribers)
             {
-                var clonedState = CloneFactory.MakeClone(this.state);
+                var clonedState = CloneState(this.state);
                 subscriber.Dispatch(clonedState);
             }
         }

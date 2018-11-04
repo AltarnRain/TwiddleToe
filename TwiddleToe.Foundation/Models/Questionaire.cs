@@ -4,44 +4,28 @@
 
 namespace TwiddleToe.Foundation.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
     /// A list of questions
     /// </summary>
-    public class Questionaire : ICloneable
+    public class Questionaire : BaseModel, IDeletable
     {
-        /// <summary>
-        /// Gets or sets the questionaire identifier.
-        /// </summary>
-        /// <value>
-        /// The questionaire identifier.
-        /// </value>
-        public int QuestionaireId { get; set; }
-
         /// <summary>
         /// Gets or sets the question ids.
         /// </summary>
         /// <value>
         /// The question ids.
         /// </value>
-        public List<int> Questions { get; set; }
+        public List<string> Questions { get; set; }
 
         /// <summary>
-        /// Creates a new object that is a copy of the current instance.
+        /// Gets or sets a value indicating whether this <see cref="IDeletable" /> is deleted.
         /// </summary>
-        /// <returns>
-        /// A new object that is a copy of this instance.
-        /// </returns>
-        public object Clone()
-        {
-            return new Questionaire
-            {
-                QuestionaireId = this.QuestionaireId,
-                Questions = this.Questions.ToList(),
-            };
-        }
+        /// <value>
+        ///   <c>true</c> if deleted; otherwise, <c>false</c>.
+        /// </value>
+        public bool Deleted { get; set; }
     }
 }

@@ -49,8 +49,10 @@
     <Compile Include="Events\CommonEvents.cs" />
     <Compile Include="Interfaces\IBaseView.cs" />
     <Compile Include="Interfaces\IBaseViewModel.cs" />
+    <Compile Include="Interfaces\IDeletable.cs" />
     <Compile Include="Interfaces\IShowDialog.cs" />
     <Compile Include="Interfaces\ISubscriber.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ProgramInformation.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Questionaire.cs" />
@@ -64,12 +66,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TwiddleToe.Utilities\TwiddleToe.Utilities.csproj">
-      <Project>{790D35CE-0380-46E1-8284-2A71A6180CE8}</Project>
-      <Name>TwiddleToe.Utilities</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

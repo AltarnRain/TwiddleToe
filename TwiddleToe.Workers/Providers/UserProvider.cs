@@ -47,7 +47,7 @@ namespace TwiddleToe.Workers.Providers
             {
                 FirstName = firstName,
                 LastName = lastName,
-                UserId = this.identityProvider.Get()
+                Identity = this.identityProvider.Get()
             };
 
             return returnValue;
