@@ -5,7 +5,6 @@
 namespace TwiddleToe.Workers.Factories
 {
     using System;
-    using System.Windows;
     using TwiddleToe.Foundation.Interfaces;
 
     /// <summary>
@@ -29,11 +28,12 @@ namespace TwiddleToe.Workers.Factories
         }
 
         /// <summary>
-        /// Loads the view.
+        /// Creates the view, binds the data context and its close event.
         /// </summary>
         /// <typeparam name="TView">The type of the view.</typeparam>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
-        public void Show<TView, TViewModel>()
+        /// <returns>A view object</returns>
+        public TView Create<TView, TViewModel>()
             where TView : IBaseView, new()
             where TViewModel : IBaseViewModel
         {
@@ -47,6 +47,20 @@ namespace TwiddleToe.Workers.Factories
                     viewModel.Dispose();
                 };
             }
+
+            return view;
+        }
+
+        /// <summary>
+        /// Shows the view model according to its marker interface.
+        /// </summary>
+        /// <typeparam name="TView">The type of the view.</typeparam>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        public void Show<TView, TViewModel>()
+            where TView : IBaseView, new()
+            where TViewModel : IBaseViewModel
+        {
+            var view = this.Create<TView, TViewModel>();
 
             if (view is IShowDialog)
             {

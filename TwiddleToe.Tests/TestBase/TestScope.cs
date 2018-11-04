@@ -8,15 +8,16 @@ namespace TwiddleToe.Tests.TestBase
     using Ninject;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Tests.TestClasses;
-    using TwiddleToe.Tests.UI.Base;
     using TwiddleToe.UI.DialogWindows.ViewModels;
     using TwiddleToe.UI.ViewModels;
+    using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.FileHandlers;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// Test scope for provider unit tests.
     /// </summary>
+    /// <seealso cref="TwiddleToe.Tests.TestBase.TestScopeBase" />
     public class TestScope : TestScopeBase
     {
         /// <summary>
@@ -118,6 +119,14 @@ namespace TwiddleToe.Tests.TestBase
         /// The base subscriber view model test implentation.
         /// </value>
         public BaseSubscriberViewModelTestImplementation BaseSubscriberViewModelTestImplentation => this.Kernel.Get<BaseSubscriberViewModelTestImplementation>();
+
+        /// <summary>
+        /// Gets the view factory.
+        /// </summary>
+        /// <value>
+        /// The view factory.
+        /// </value>
+        public ViewFactory ViewFactory => this.Kernel.Get<ViewFactory>();
 
         /// <summary>
         /// Starts this a test scope.

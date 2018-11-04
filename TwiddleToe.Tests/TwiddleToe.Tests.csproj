@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseSubscriberViewModelTests.cs" />
     <Compile Include="Base\BaseViewModelTests.cs" />
+    <Compile Include="Factories\ViewFactoryTests.cs" />
     <Compile Include="TestBase\ITestScope.cs" />
     <Compile Include="TestBase\TestBase.cs" />
     <Compile Include="TestBase\TestScopeBase.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="TestClasses\BaseViewModelTestImplentation.cs" />
     <Compile Include="TestClasses\ProgramInformationProviderTestImplementation.cs" />
     <Compile Include="TestClasses\SubscriberTestImplementation.cs" />
+    <Compile Include="TestClasses\ViewTestImplentation.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\UsersViewModelTests.cs" />
   </ItemGroup>
