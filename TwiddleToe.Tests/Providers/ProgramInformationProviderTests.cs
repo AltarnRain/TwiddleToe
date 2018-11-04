@@ -6,7 +6,7 @@ namespace TwiddleToe.Models.Tests
 {
     using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TwiddleToe.Tests.Base;
+    using TwiddleToe.Tests.TestBase;
 
     /// <summary>
     /// Tests the ProgramInformation class

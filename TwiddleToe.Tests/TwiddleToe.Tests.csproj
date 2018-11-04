@@ -53,9 +53,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\ITestScope.cs" />
-    <Compile Include="Base\TestBase.cs" />
-    <Compile Include="Base\TestScopeBase.cs" />
+    <Compile Include="Base\BaseSubscriberViewModelTests.cs" />
+    <Compile Include="Base\BaseViewModelTests.cs" />
+    <Compile Include="TestBase\ITestScope.cs" />
+    <Compile Include="TestBase\TestBase.cs" />
+    <Compile Include="TestBase\TestScopeBase.cs" />
     <Compile Include="DialogWindows\ViewModels\AddUserViewModelTests.cs" />
     <Compile Include="FileHandlers\StateFileHandlerTests.cs" />
     <Compile Include="Providers\IdentityProviderTests.cs" />
@@ -63,8 +65,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\StateProviderTests.cs" />
     <Compile Include="Providers\UserProviderTests.cs" />
-    <Compile Include="TestClasses\TestProgramInformationProvider.cs" />
-    <Compile Include="Base\TestScope.cs" />
+    <Compile Include="TestClasses\BaseSubscriberViewModelTestImplementation.cs" />
+    <Compile Include="TestBase\TestScope.cs" />
+    <Compile Include="TestClasses\BaseViewModelTestImplentation.cs" />
+    <Compile Include="TestClasses\ProgramInformationProviderTestImplementation.cs" />
+    <Compile Include="TestClasses\SubscriberTestImplementation.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\UsersViewModelTests.cs" />
   </ItemGroup>

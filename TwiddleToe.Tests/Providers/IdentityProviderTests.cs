@@ -5,7 +5,7 @@
 namespace TwiddleToe.Providers.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TwiddleToe.Tests.Base;
+    using TwiddleToe.Tests.TestBase;
 
     /// <summary>
     /// Tests the identity provider.

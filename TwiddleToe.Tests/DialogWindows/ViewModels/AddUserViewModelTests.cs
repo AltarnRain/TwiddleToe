@@ -6,7 +6,7 @@ namespace TwiddleToe.UI.DialogWindows.ViewModels.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TwiddleToe.Tests;
-    using TwiddleToe.Tests.Base;
+    using TwiddleToe.Tests.TestBase;
 
     /// <summary>
     /// Tests for the AddUserViewModel

@@ -2,11 +2,13 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Tests.Base
+namespace TwiddleToe.Tests.TestBase
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;
+    using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Tests.TestClasses;
+    using TwiddleToe.Tests.UI.Base;
     using TwiddleToe.UI.DialogWindows.ViewModels;
     using TwiddleToe.UI.ViewModels;
     using TwiddleToe.Workers.FileHandlers;
@@ -94,6 +96,30 @@ namespace TwiddleToe.Tests.Base
         public StateFileHandler StateFileHandler => this.Kernel.Get<StateFileHandler>();
 
         /// <summary>
+        /// Gets the test base view model.
+        /// </summary>
+        /// <value>
+        /// The test base view model.
+        /// </value>
+        public BaseViewModelTestImplentation BaseViewModelTestImplentation => this.Kernel.Get<BaseViewModelTestImplentation>();
+
+        /// <summary>
+        /// Gets the view model registry.
+        /// </summary>
+        /// <value>
+        /// The view model registry.
+        /// </value>
+        public ViewModelRegistry ViewModelRegistry => this.Kernel.Get<ViewModelRegistry>();
+
+        /// <summary>
+        /// Gets the base subscriber view model test implentation.
+        /// </summary>
+        /// <value>
+        /// The base subscriber view model test implentation.
+        /// </value>
+        public BaseSubscriberViewModelTestImplementation BaseSubscriberViewModelTestImplentation => this.Kernel.Get<BaseSubscriberViewModelTestImplementation>();
+
+        /// <summary>
         /// Starts this a test scope.
         /// </summary>
         /// <param name="testContext">The test context.</param>
@@ -120,8 +146,8 @@ namespace TwiddleToe.Tests.Base
         /// </summary>
         private void SetTestProgramInformationProvider()
         {
-            this.Kernel.Rebind<IProgramInformationProvider>().To<TestProgramInformationProvider>().InSingletonScope();
-            var testProgramInformationProvider = this.Kernel.Get<IProgramInformationProvider>() as TestProgramInformationProvider;
+            this.Kernel.Rebind<IProgramInformationProvider>().To<ProgramInformationProviderTestImplementation>().InSingletonScope();
+            var testProgramInformationProvider = this.Kernel.Get<IProgramInformationProvider>() as ProgramInformationProviderTestImplementation;
             testProgramInformationProvider.SetTestContext(this.TestContext);
         }
     }

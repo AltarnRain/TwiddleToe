@@ -6,7 +6,7 @@ namespace TwiddleToe.Workers.FileHandlers.Tests
 {
     using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TwiddleToe.Tests.Base;
+    using TwiddleToe.Tests.TestBase;
 
     /// <summary>
     /// Tests the <see cref="StateFileHandler"/>

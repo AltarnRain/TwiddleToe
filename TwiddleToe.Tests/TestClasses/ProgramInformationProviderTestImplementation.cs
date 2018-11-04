@@ -1,4 +1,4 @@
-﻿// <copyright file="TestProgramInformationProvider.cs" company="Onno Invernizzi">
+﻿// <copyright file="ProgramInformationProviderTestImplementation.cs" company="Onno Invernizzi">
 // Copyright Onno Invernizzi
 // </copyright>
 
@@ -12,7 +12,7 @@ namespace TwiddleToe.Tests.TestClasses
     /// A ProgramInformation Provider used in unit tests.
     /// </summary>
     /// <seealso cref="TwiddleToe.Workers.Providers.IProgramInformationProvider" />
-    public class TestProgramInformationProvider : IProgramInformationProvider
+    public class ProgramInformationProviderTestImplementation : IProgramInformationProvider
     {
         /// <summary>
         /// The test context

@@ -16,6 +16,9 @@ namespace TwiddleToe.UI.Base
     /// <seealso cref="TwiddleToe.Foundation.Interfaces.ISubscriber" />
     public abstract class BaseSubscriberViewModel : BaseViewModel, ISubscriber
     {
+        /// <summary>
+        /// The state provider
+        /// </summary>
         private readonly StateProvider stateProvider;
 
         /// <summary>
@@ -33,8 +36,9 @@ namespace TwiddleToe.UI.Base
         /// <summary>
         /// Finalizes an instance of the <see cref="BaseSubscriberViewModel"/> class.
         /// </summary>
-        ~BaseSubscriberViewModel()
+        public override void Dispose()
         {
+            base.Dispose();
             this.stateProvider.Unsubscribe(this);
         }
 

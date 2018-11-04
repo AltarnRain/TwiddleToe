@@ -38,13 +38,15 @@ namespace TwiddleToe.Workers.Factories
             where TViewModel : IBaseViewModel
         {
             var view = new TView();
+            view.DataContext = this.viewModelFactory.GetViewModel<TViewModel>(() => { view.Close(); });
 
             if (view.DataContext is IDisposable viewModel)
             {
-                view.Closed += (sender, e) => { viewModel.Dispose(); };
+                view.Closed += (sender, e) =>
+                {
+                    viewModel.Dispose();
+                };
             }
-
-            view.DataContext = this.viewModelFactory.GetViewModel<TViewModel>(() => { view.Close(); });
 
             if (view is IShowDialog)
             {

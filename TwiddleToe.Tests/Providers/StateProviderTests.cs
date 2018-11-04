@@ -6,7 +6,8 @@ namespace TwiddleToe.Tests.Providers
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TwiddleToe.Foundation.Models;
-    using TwiddleToe.Tests.Base;
+    using TwiddleToe.Tests.TestBase;
+    using TwiddleToe.Tests.TestClasses;
 
     /// <summary>
     /// Tests the StateProvider.
@@ -58,6 +59,57 @@ namespace TwiddleToe.Tests.Providers
 
                 state.Questions.Add(new Question { Answer = "Test2" });
                 Assert.AreNotEqual(updatedState.Questions.Count, state.Questions.Count);
+            }
+        }
+
+        /// <summary>
+        /// Tests the state provider registration.
+        /// </summary>
+        [TestMethod]
+        public void TestStateProviderRegistration()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange
+                var provider = scope.StateProvider;
+                var testClass = new SubscriberTestImplementation();
+                provider.Subscribe(testClass);
+                var stateDispatchedBefore = testClass.StateUpdated;
+
+                var state = scope.StateProvider.Current;
+
+                // Act
+                provider.Current = state;
+
+                // Assert
+                Assert.IsFalse(stateDispatchedBefore);
+                Assert.IsTrue(testClass.StateUpdated);
+            }
+        }
+
+        /// <summary>
+        /// Tests the state provider registration.
+        /// </summary>
+        [TestMethod]
+        public void TestStateProviderReRegistration()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange
+                var provider = scope.StateProvider;
+                var testClass = new SubscriberTestImplementation();
+                provider.Subscribe(testClass);
+                var stateDispatchedBefore = testClass.StateUpdated;
+                provider.Unsubscribe(testClass);
+
+                var state = scope.StateProvider.Current;
+
+                // Act
+                provider.Current = state;
+
+                // Assert
+                Assert.IsFalse(stateDispatchedBefore);
+                Assert.IsFalse(testClass.StateUpdated);
             }
         }
     }

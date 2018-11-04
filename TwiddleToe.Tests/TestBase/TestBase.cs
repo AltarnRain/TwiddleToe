@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Tests.Base
+namespace TwiddleToe.Tests.TestBase
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;

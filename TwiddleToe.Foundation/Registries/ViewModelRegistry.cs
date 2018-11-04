@@ -26,6 +26,20 @@ namespace TwiddleToe.Foundation.Registries
         }
 
         /// <summary>
+        /// Gets the number of active view models.
+        /// </summary>
+        /// <value>
+        /// The number of active view models.
+        /// </value>
+        public int NumberOfActiveViewModels
+        {
+            get
+            {
+                return this.activeViewModels.Count;
+            }
+        }
+
+        /// <summary>
         /// Activateds the specified view model.
         /// </summary>
         /// <param name="viewModel">The view model.</param>
