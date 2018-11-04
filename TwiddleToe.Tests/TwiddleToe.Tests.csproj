@@ -59,7 +59,10 @@
     <Compile Include="TestBase\ITestScope.cs" />
     <Compile Include="TestBase\TestBase.cs" />
     <Compile Include="TestBase\TestScopeBase.cs" />
-    <Compile Include="DialogWindows\ViewModels\AddUserViewModelTests.cs" />
+    <Compile Include="TestClasses\BaseViewTestImplentation.cs" />
+    <Compile Include="TestClasses\DialogViewTestImplemtation.cs" />
+    <Compile Include="TestClasses\ViewTestImplentation.cs" />
+    <Compile Include="ViewModels\AddUserViewModelTests.cs" />
     <Compile Include="FileHandlers\StateFileHandlerTests.cs" />
     <Compile Include="Providers\IdentityProviderTests.cs" />
     <Compile Include="Providers\ProgramInformationProviderTests.cs" />
@@ -71,8 +74,8 @@
     <Compile Include="TestClasses\BaseViewModelTestImplentation.cs" />
     <Compile Include="TestClasses\ProgramInformationProviderTestImplementation.cs" />
     <Compile Include="TestClasses\SubscriberTestImplementation.cs" />
-    <Compile Include="TestClasses\ViewTestImplentation.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
+    <Compile Include="ViewModels\SubjectViewModelTests.cs" />
     <Compile Include="ViewModels\UsersViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

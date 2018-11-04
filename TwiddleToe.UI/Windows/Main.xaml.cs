@@ -18,7 +18,6 @@ namespace TwiddleToe.UI.Windows
         public MainWindow()
         {
             this.InitializeComponent();
-
 #if !DEBUG
             this.Top = 0;
             this.Left = 0;

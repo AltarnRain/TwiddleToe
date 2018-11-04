@@ -50,5 +50,43 @@ namespace TwiddleToe.Workers.Factories.Tests
                 Assert.IsTrue(view.ClosedWasSet());
             }
         }
+
+        /// <summary>
+        /// Tests the load view method.
+        /// </summary>
+        [TestMethod]
+        public void TestShowView()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange.
+                var viewFactory = scope.ViewFactory;
+
+                // Act
+                var view = viewFactory.Show<ViewTestImplentation, BaseViewModelTestImplentation>();
+
+                // Assert
+                Assert.IsTrue(view.ShowCalled);
+            }
+        }
+
+        /// <summary>
+        /// Tests the load view method.
+        /// </summary>
+        [TestMethod]
+        public void TestShowViewAsDialog()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange.
+                var viewFactory = scope.ViewFactory;
+
+                // Act
+                var view = viewFactory.Show<DialogViewTestImplemtation, BaseViewModelTestImplentation>();
+
+                // Assert
+                Assert.IsTrue(view.ShowDialogCalled);
+            }
+        }
     }
 }

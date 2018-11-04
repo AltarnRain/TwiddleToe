@@ -6,8 +6,6 @@ namespace TwiddleToe.UI.DialogWindows
 {
     using System.Windows;
     using TwiddleToe.Foundation.Interfaces;
-    using TwiddleToe.UI.DialogWindows.ViewModels;
-    using TwiddleToe.Workers.Factories;
 
     /// <summary>
     /// Interaction logic for AddUser.xaml

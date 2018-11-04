@@ -12,7 +12,6 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.DialogWindows;
-    using TwiddleToe.UI.DialogWindows.ViewModels;
     using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.Providers;
 
@@ -44,15 +43,10 @@ namespace TwiddleToe.UI.ViewModels
             ViewModelRegistry viewModelRegistry)
             : base(stateProvider, viewModelRegistry)
         {
-            this.Users = new ObservableCollection<User>();
             this.viewFactory = viewFactory;
             this.stateProvider = stateProvider;
             this.AddNewUser = new RelayCommnand(this.AddUserAction);
             this.RemoveSelectedUser = new RelayCommnand(this.RemoveSelectedUserAction, this.UserIsSelected);
-
-            var currentState = stateProvider.Current;
-
-            this.StateUpdate(currentState);
         }
 
         /// <summary>
@@ -119,7 +113,15 @@ namespace TwiddleToe.UI.ViewModels
         /// <param name="state">The state.</param>
         public override void StateUpdate(State state)
         {
-            this.Users.Clear();
+            if (this.Users == null)
+            {
+                this.Users = new ObservableCollection<User>();
+            }
+            else
+            {
+                this.Users.Clear();
+            }
+
             foreach (var user in state.Users)
             {
                 this.Users.Add(user);

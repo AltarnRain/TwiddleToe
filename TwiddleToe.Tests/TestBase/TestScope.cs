@@ -8,7 +8,6 @@ namespace TwiddleToe.Tests.TestBase
     using Ninject;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Tests.TestClasses;
-    using TwiddleToe.UI.DialogWindows.ViewModels;
     using TwiddleToe.UI.ViewModels;
     using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.FileHandlers;
@@ -127,6 +126,14 @@ namespace TwiddleToe.Tests.TestBase
         /// The view factory.
         /// </value>
         public ViewFactory ViewFactory => this.Kernel.Get<ViewFactory>();
+
+        /// <summary>
+        /// Gets the subject view model.
+        /// </summary>
+        /// <value>
+        /// The subject view model.
+        /// </value>
+        public SubjectViewModel SubjectViewModel => this.Kernel.Get<SubjectViewModel>();
 
         /// <summary>
         /// Starts this a test scope.

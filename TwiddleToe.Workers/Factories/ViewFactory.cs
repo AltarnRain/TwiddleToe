@@ -56,7 +56,8 @@ namespace TwiddleToe.Workers.Factories
         /// </summary>
         /// <typeparam name="TView">The type of the view.</typeparam>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
-        public void Show<TView, TViewModel>()
+        /// <returns>The created view</returns>
+        public TView Show<TView, TViewModel>()
             where TView : IBaseView, new()
             where TViewModel : IBaseViewModel
         {
@@ -70,6 +71,8 @@ namespace TwiddleToe.Workers.Factories
             {
                 view.Show();
             }
+
+            return view;
         }
     }
 }

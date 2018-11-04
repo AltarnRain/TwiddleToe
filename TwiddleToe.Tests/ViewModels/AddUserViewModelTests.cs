@@ -2,10 +2,9 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.UI.DialogWindows.ViewModels.Tests
+namespace TwiddleToe.UI.ViewModels.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TwiddleToe.Tests;
     using TwiddleToe.Tests.TestBase;
 
     /// <summary>

@@ -31,6 +31,7 @@ namespace TwiddleToe.UI.Base
         {
             this.stateProvider = stateProvider;
             this.stateProvider.Subscribe(this);
+            this.StateUpdate(stateProvider.Current);
         }
 
         /// <summary>
