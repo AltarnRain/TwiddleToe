@@ -43,17 +43,7 @@ namespace TwiddleToe.Workers.Factories
         {
             var view = new TView();
 
-            ConstructorArgument[] ninjectArguments = null;
-            if (args == null)
-            {
-                ninjectArguments = new ConstructorArgument[0];
-            }
-            else
-            {
-                ninjectArguments = args;
-            }
-
-            view.DataContext = this.viewModelFactory.GetViewModel<TViewModel>(() => { view.Close(); }, ninjectArguments);
+            view.DataContext = this.viewModelFactory.GetViewModel<TViewModel>(() => { view.Close(); }, args);
 
             if (view.DataContext is IDisposable viewModel)
             {

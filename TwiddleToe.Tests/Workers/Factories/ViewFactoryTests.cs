@@ -1,4 +1,6 @@
-﻿// <copyright file="ViewFactoryTests.cs" company="Onno Invernizzi">
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TwiddleToe.Workers.Factories;
+// <copyright file="ViewFactoryTests.cs" company="Onno Invernizzi">
 // Copyright Onno Invernizzi
 // </copyright>
 
