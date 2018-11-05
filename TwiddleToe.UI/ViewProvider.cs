@@ -7,6 +7,7 @@ namespace TwiddleToe.UI
     using System.Windows;
     using TwiddleToe.Foundation.Interfaces;
     using TwiddleToe.Foundation.Interfaces.Locations;
+    using TwiddleToe.UI.Interfaces;
     using TwiddleToe.Workers.Factories;
 
     /// <summary>
@@ -35,30 +36,29 @@ namespace TwiddleToe.UI
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
         /// <returns>The created view</returns>
         public TView Show<TView, TViewModel>()
-            where TView : IBaseView, new()
+            where TView : IView, new()
             where TViewModel : IBaseViewModel
         {
             var view = this.viewFactory.Create<TView, TViewModel>();
 
-            if (view is Window window)
+
+            view.ResizeMode = ResizeMode.NoResize;
+
+            if (view is ITop)
             {
-                window.ResizeMode = ResizeMode.NoResize;
-
-                if (view is ITop)
-                {
-                    window.Top = 0;
-                }
-
-                if (view is ICenterHorizantal)
-                {
-                    window.Left = (SystemParameters.WorkArea.Width / 2) - (window.Width / 2);
-                }
-
-                if (view is ICenterVertical)
-                {
-                    window.Top = (SystemParameters.WorkArea.Height / 2) - (window.Height / 2);
-                }
+                view.Top = 0;
             }
+
+            if (view is ICenterHorizantal)
+            {
+                view.Left = (SystemParameters.WorkArea.Width / 2) - (view.Width / 2);
+            }
+
+            if (view is ICenterVertical)
+            {
+                view.Top = (SystemParameters.WorkArea.Height / 2) - (view.Height / 2);
+            }
+
 
             if (view is IShowDialog)
             {

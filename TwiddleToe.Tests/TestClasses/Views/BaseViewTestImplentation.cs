@@ -7,17 +7,58 @@ namespace TwiddleToe.Tests.TestClasses
     using System;
     using System.Windows;
     using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.UI.Interfaces;
 
     /// <summary>
     /// Test implentation of IBaseView
     /// </summary>
     /// <seealso cref="IBaseView" />
-    public abstract class BaseViewTestImplentation : Window, IBaseView
+    public abstract class BaseViewTestImplentation : IView
     {
         /// <summary>
         /// Occurs when [closed].
         /// </summary>
-        public new event EventHandler Closed;
+        public event EventHandler Closed;
+
+        /// <summary>
+        /// Gets or sets the top.
+        /// </summary>
+        /// <value>
+        /// The top.
+        /// </value>
+        public double Top { get; set; }
+
+        /// <summary>
+        /// Gets or sets the resize mode.
+        /// </summary>
+        /// <value>
+        /// The resize mode.
+        /// </value>
+        public ResizeMode ResizeMode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the left.
+        /// </summary>
+        /// <value>
+        /// The left.
+        /// </value>
+        public double Left { get; set; }
+
+        /// <summary>
+        /// Gets the width.
+        /// </summary>
+        /// <value>
+        /// The width.
+        /// </value>
+        public double Width { get; set; }
+
+        /// <summary>
+        /// Gets the height.
+        /// </summary>
+        /// <value>
+        /// The height.
+        /// </value>
+        public double Height { get; set; }
 
         /// <summary>
         /// Gets or sets the data context.
@@ -25,7 +66,7 @@ namespace TwiddleToe.Tests.TestClasses
         /// <value>
         /// The data context.
         /// </value>
-        public new object DataContext { get; set; }
+        public object DataContext { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether [show dialog called].
@@ -46,7 +87,7 @@ namespace TwiddleToe.Tests.TestClasses
         /// <summary>
         /// Closes this instance.
         /// </summary>
-        public new void Close()
+        public void Close()
         {
             // No implentation
         }
@@ -54,7 +95,7 @@ namespace TwiddleToe.Tests.TestClasses
         /// <summary>
         /// Shows this instance.
         /// </summary>
-        public new void Show()
+        public void Show()
         {
             this.ShowCalled = true;
         }
@@ -65,7 +106,7 @@ namespace TwiddleToe.Tests.TestClasses
         /// <returns>
         /// True, null, or false
         /// </returns>
-        public new bool? ShowDialog()
+        public bool? ShowDialog()
         {
             this.ShowDialogCalled = true;
             return null;
