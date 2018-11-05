@@ -4,7 +4,10 @@
 
 namespace TwiddleToe.UI.Providers
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
+    using Ninject.Parameters;
     using TwiddleToe.Foundation.Interfaces.Base;
     using TwiddleToe.Foundation.Interfaces.Display;
     using TwiddleToe.Foundation.Interfaces.Locations;
@@ -54,8 +57,11 @@ namespace TwiddleToe.UI.Providers
         /// </summary>
         /// <typeparam name="TView">The type of the view.</typeparam>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
-        /// <returns>The created view</returns>
-        public TView Show<TView, TViewModel>()
+        /// <param name="args">The arguments.</param>
+        /// <returns>
+        /// The created view
+        /// </returns>
+        public TView Show<TView, TViewModel>(IDictionary<string, object> args = null)
             where TView : class, IView, new()
             where TViewModel : IBaseViewModel
         {
@@ -64,7 +70,17 @@ namespace TwiddleToe.UI.Providers
             var isActive = this.viewRegistry.IsActive(typeof(TView));
             if (isActive == false)
             {
-                view = this.viewFactory.Create<TView, TViewModel>();
+                ConstructorArgument[] ninjectParameters;
+                if (args != null)
+                {
+                    ninjectParameters = args.Select(a => new ConstructorArgument(a.Key, a.Value)).ToArray();
+                }
+                else
+                {
+                    ninjectParameters = new ConstructorArgument[0];
+                }
+
+                view = this.viewFactory.Create<TView, TViewModel>(ninjectParameters);
 
                 // Remove the view from the view registry when it closes
                 view.Closed += (sender, e) =>
@@ -76,13 +92,16 @@ namespace TwiddleToe.UI.Providers
                 this.viewRegistry.Activated(view);
                 this.SetViewDisplayProperties(view);
 
-                if (view is IShowDialog)
+                if (view is IOffload == false)
                 {
-                    view.ShowDialog();
-                }
-                else
-                {
-                    view.Show();
+                    if (view is IShowDialog)
+                    {
+                        view.ShowDialog();
+                    }
+                    else
+                    {
+                        view.Show();
+                    }
                 }
             }
             else

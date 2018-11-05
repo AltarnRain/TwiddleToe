@@ -5,6 +5,7 @@
 namespace TwiddleToe.Workers.Factories
 {
     using Ninject;
+    using Ninject.Parameters;
     using TwiddleToe.Foundation.Events;
     using TwiddleToe.Foundation.Interfaces.Base;
 
@@ -32,13 +33,24 @@ namespace TwiddleToe.Workers.Factories
         /// </summary>
         /// <typeparam name="TViewModel">The type of the view.</typeparam>
         /// <param name="close">The close.</param>
+        /// <param name="args">The arguments.</param>
         /// <returns>
         /// A view model
         /// </returns>
-        public TViewModel GetViewModel<TViewModel>(RequestClose close)
+        public TViewModel GetViewModel<TViewModel>(RequestClose close, params ConstructorArgument[] args)
             where TViewModel : IBaseViewModel
         {
-            var viewModel = this.kernel.Get<TViewModel>();
+            ConstructorArgument[] ninjectParameters = null;
+            if (args == null)
+            {
+                ninjectParameters = new ConstructorArgument[0];
+            }
+            else
+            {
+                ninjectParameters = args;
+            }
+
+            var viewModel = this.kernel.Get<TViewModel>(args);
             viewModel.OnRequestClose += close;
 
             return viewModel;

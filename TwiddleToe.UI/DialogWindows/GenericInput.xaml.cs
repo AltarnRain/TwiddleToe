@@ -18,7 +18,7 @@ namespace TwiddleToe.UI.Views
     /// <seealso cref="ICenterScreen" />
     /// <seealso cref="IShowDialog" />
     /// <seealso cref="System.Windows.Markup.IComponentConnector" />
-    public partial class GenericInput : Window, IPopup
+    public partial class GenericInput : Window, IInput
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GenericInput"/> class.

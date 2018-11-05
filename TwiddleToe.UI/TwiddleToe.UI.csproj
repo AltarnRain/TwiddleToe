@@ -77,10 +77,13 @@
     </Compile>
     <Compile Include="Interfaces\Display\ICenterScreen.cs" />
     <Compile Include="Interfaces\Display\IEntryView.cs" />
+    <Compile Include="Interfaces\Display\IInput.cs" />
     <Compile Include="Interfaces\Display\IMainMenu.cs" />
     <Compile Include="Interfaces\Display\IPopup.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\IWorkAreaProvider.cs" />
+    <Compile Include="Providers\InputProvider.cs" />
+    <Compile Include="Models\InputResult.cs" />
     <Compile Include="Providers\WorkAreaProvider.cs" />
     <Compile Include="Models\WorkArea.cs" />
     <Compile Include="DialogViewModels\AddUserViewModel.cs" />

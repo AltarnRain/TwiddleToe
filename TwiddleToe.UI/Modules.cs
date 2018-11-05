@@ -40,6 +40,8 @@ namespace TwiddleToe.UI
             this.Bind<ViewFactory>().ToSelf().InSingletonScope();
 
             this.Bind<StateFileHandler>().ToSelf().InSingletonScope();
+
+            this.Bind<InputProvider>().ToSelf().InSingletonScope();
         }
     }
 }

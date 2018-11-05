@@ -12,13 +12,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <Label Margin="10" DataContext="{Binding Label}"/>
+            <Label Margin="10" Content="{Binding Label}"/>
             <TextBox Text="{Binding Input}" Margin="10" Grid.Row="0"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin ="10" Grid.Row="1">
-            <Button Width="60" Margin="5">Ok</Button>
-            <Button Width="60" Margin="5">Annuleren</Button>
+            <Button Command="{Binding Ok}" Width="60" Margin="5">Ok</Button>
+            <Button Command="{Binding Cancel}" Width="60" Margin="5">Annuleren</Button>
         </StackPanel>
     </Grid>
 </Window>

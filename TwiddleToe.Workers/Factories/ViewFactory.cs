@@ -5,6 +5,7 @@
 namespace TwiddleToe.Workers.Factories
 {
     using System;
+    using Ninject.Parameters;
     using TwiddleToe.Foundation.Interfaces.Base;
 
     /// <summary>
@@ -32,13 +33,27 @@ namespace TwiddleToe.Workers.Factories
         /// </summary>
         /// <typeparam name="TView">The type of the view.</typeparam>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
-        /// <returns>A view object</returns>
-        public TView Create<TView, TViewModel>()
+        /// <param name="args">The arguments.</param>
+        /// <returns>
+        /// A view object
+        /// </returns>
+        public TView Create<TView, TViewModel>(params ConstructorArgument[] args)
             where TView : IBaseView, new()
             where TViewModel : IBaseViewModel
         {
             var view = new TView();
-            view.DataContext = this.viewModelFactory.GetViewModel<TViewModel>(() => { view.Close(); });
+
+            ConstructorArgument[] ninjectArguments = null;
+            if (args == null)
+            {
+                ninjectArguments = new ConstructorArgument[0];
+            }
+            else
+            {
+                ninjectArguments = args;
+            }
+
+            view.DataContext = this.viewModelFactory.GetViewModel<TViewModel>(() => { view.Close(); }, ninjectArguments);
 
             if (view.DataContext is IDisposable viewModel)
             {

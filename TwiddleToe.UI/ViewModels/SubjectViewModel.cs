@@ -11,9 +11,7 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
-    using TwiddleToe.UI.DialogViewModels;
     using TwiddleToe.UI.Providers;
-    using TwiddleToe.UI.Views;
     using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.Providers;
 
@@ -27,8 +25,7 @@ namespace TwiddleToe.UI.ViewModels
         /// The subject provider
         /// </summary>
         private readonly SubjectProvider subjectProvider;
-
-        private readonly ViewProvider viewProvider;
+        private readonly InputProvider inputProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SubjectViewModel" /> class.
@@ -36,16 +33,16 @@ namespace TwiddleToe.UI.ViewModels
         /// <param name="subjectProvider">The subject provider.</param>
         /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
-        /// <param name="viewProvider">The view provider.</param>
+        /// <param name="inputProvider">The input provider.</param>
         public SubjectViewModel(
             SubjectProvider subjectProvider,
             StateProvider stateProvider,
             ViewModelRegistry viewModelRegistry,
-            ViewProvider viewProvider)
+            InputProvider inputProvider)
             : base(stateProvider, viewModelRegistry)
         {
             this.subjectProvider = subjectProvider;
-            this.viewProvider = viewProvider;
+            this.inputProvider = inputProvider;
             this.InitializeCommands();
         }
 
@@ -131,9 +128,14 @@ namespace TwiddleToe.UI.ViewModels
         /// </summary>
         private void InitializeCommands()
         {
-            this.AddSubject = new RelayCommnand(() => this.viewProvider.Show<GenericInput, GenericInputViewModel>());
+            this.AddSubject = new RelayCommnand(this.AddSubjectAction);
             this.RemoveSubject = new RelayCommnand(() => { }, () => false);
             this.UpdateSubject = new RelayCommnand(() => { }, () => false);
+        }
+
+        private void AddSubjectAction()
+        {
+            var result = this.inputProvider.Get("Nieuw onderwerp", "Onderwerp");
         }
     }
 }
