@@ -50,6 +50,28 @@ namespace TwiddleToe.UI.Providers
         {
             var view = this.viewFactory.Create<TView, TViewModel>();
 
+            this.SetViewDisplayProperties(view);
+
+            if (view is IShowDialog)
+            {
+                view.ShowDialog();
+            }
+            else
+            {
+                view.Show();
+            }
+
+            return view;
+        }
+
+        /// <summary>
+        /// Sets the view display properties.
+        /// </summary>
+        /// <typeparam name="TView">The type of the view.</typeparam>
+        /// <param name="view">The view.</param>
+        private void SetViewDisplayProperties<TView>(TView view)
+            where TView : IView, new()
+        {
             if (view is IResizable)
             {
                 view.ResizeMode = ResizeMode.CanResize;
@@ -61,6 +83,11 @@ namespace TwiddleToe.UI.Providers
             else
             {
                 view.ResizeMode = ResizeMode.NoResize;
+            }
+
+            if (view is IShowInTaskbar)
+            {
+                view.ShowInTaskbar = true;
             }
 
             if (view is ITop)
@@ -79,17 +106,6 @@ namespace TwiddleToe.UI.Providers
             {
                 view.Top = Calculations.GetCenterCoordinate(workArea.Height, view.Height);
             }
-
-            if (view is IShowDialog)
-            {
-                view.ShowDialog();
-            }
-            else
-            {
-                view.Show();
-            }
-
-            return view;
         }
     }
 }

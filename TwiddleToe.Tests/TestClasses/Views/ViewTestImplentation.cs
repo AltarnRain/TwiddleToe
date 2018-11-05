@@ -97,6 +97,14 @@ namespace TwiddleToe.Tests.TestClasses.Views
         public bool ShowCalled { get; private set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [show in taskbar].
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if [show in taskbar]; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowInTaskbar { get; set; }
+
+        /// <summary>
         /// Closes this instance.
         /// </summary>
         public void Close()

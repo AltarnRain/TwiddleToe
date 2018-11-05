@@ -9,6 +9,7 @@ namespace TwiddleToe.Tests.TestBase
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Tests.TestClasses;
     using TwiddleToe.Tests.TestImplementations;
+    using TwiddleToe.UI.DialogViewModels;
     using TwiddleToe.UI.Interfaces;
     using TwiddleToe.UI.Providers;
     using TwiddleToe.UI.ViewModels;

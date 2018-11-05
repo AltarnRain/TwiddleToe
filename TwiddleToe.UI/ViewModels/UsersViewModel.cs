@@ -11,6 +11,7 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
+    using TwiddleToe.UI.DialogViewModels;
     using TwiddleToe.UI.DialogWindows;
     using TwiddleToe.UI.Providers;
     using TwiddleToe.Utilities.Extentions;

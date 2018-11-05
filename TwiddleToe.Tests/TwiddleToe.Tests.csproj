@@ -65,6 +65,7 @@
     <Compile Include="Helpers\CalculationsTests.cs" />
     <Compile Include="TestClasses\Views\ViewICanMinimize.cs" />
     <Compile Include="TestClasses\Views\ViewIResizable.cs" />
+    <Compile Include="TestClasses\Views\ViewIShowInTaskbar.cs" />
     <Compile Include="TestImplementations\WorkAreaTestImplementation.cs" />
     <Compile Include="TestClasses\Views\ViewICenterHorizantal.cs" />
     <Compile Include="TestClasses\Views\ViewICenterVertical.cs" />

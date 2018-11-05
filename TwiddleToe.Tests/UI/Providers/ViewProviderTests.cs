@@ -154,5 +154,43 @@ namespace TwiddleToe.UI.Providers.Tests
                 Assert.AreEqual(ResizeMode.CanMinimize, view.ResizeMode);
             }
         }
+
+        /// <summary>
+        /// Tests the load view method.
+        /// </summary>
+        [TestMethod]
+        public void TestIShowInTaskBar()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange.
+                var viewFactory = scope.ViewProvider;
+
+                // Act
+                var view = viewFactory.Show<ViewIShowInTaskbar, BaseViewModelTestImplentation>();
+
+                // Assert
+                Assert.IsTrue(view.ShowInTaskbar);
+            }
+        }
+
+        /// <summary>
+        /// Tests the load view method.
+        /// </summary>
+        [TestMethod]
+        public void TestIDoNotShowInTaskBar()
+        {
+            using (var scope = this.StartTest())
+            {
+                // Arrange.
+                var viewFactory = scope.ViewProvider;
+
+                // Act
+                var view = viewFactory.Show<ViewICanMinimize, BaseViewModelTestImplentation>();
+
+                // Assert
+                Assert.IsFalse(view.ShowInTaskbar);
+            }
+        }
     }
 }

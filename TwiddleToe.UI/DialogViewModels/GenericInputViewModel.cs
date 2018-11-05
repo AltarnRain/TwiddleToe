@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.UI.ViewModels
+namespace TwiddleToe.UI.DialogViewModels
 {
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;

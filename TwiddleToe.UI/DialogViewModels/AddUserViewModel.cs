@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.UI.ViewModels
+namespace TwiddleToe.UI.DialogViewModels
 {
     using System.Windows.Input;
     using TwiddleToe.Foundation.Registries;

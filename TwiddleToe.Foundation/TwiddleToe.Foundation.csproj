@@ -53,6 +53,7 @@
     <Compile Include="Interfaces\DataFlags\IDeletable.cs" />
     <Compile Include="Interfaces\Display\ICanMinimize.cs" />
     <Compile Include="Interfaces\Display\IResizable.cs" />
+    <Compile Include="Interfaces\Display\IShowInTaskbar.cs" />
     <Compile Include="Interfaces\Locations\ICenterHorizantal.cs" />
     <Compile Include="Interfaces\Locations\ICenterScreen.cs" />
     <Compile Include="Interfaces\Display\IShowDialog.cs" />

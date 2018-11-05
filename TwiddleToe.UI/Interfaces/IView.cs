@@ -52,5 +52,13 @@ namespace TwiddleToe.UI.Interfaces
         /// The height.
         /// </value>
         double Height { get; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [show in taskbar].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [show in taskbar]; otherwise, <c>false</c>.
+        /// </value>
+        bool ShowInTaskbar { get; set; }
     }
 }

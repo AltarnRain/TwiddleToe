@@ -78,18 +78,19 @@
     <Compile Include="Interfaces\Display\ICenterScreen.cs" />
     <Compile Include="Interfaces\Display\IEntryView.cs" />
     <Compile Include="Interfaces\Display\IMainMenu.cs" />
+    <Compile Include="Interfaces\Display\IPopup.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\IWorkAreaProvider.cs" />
     <Compile Include="Providers\WorkAreaProvider.cs" />
     <Compile Include="Models\WorkArea.cs" />
-    <Compile Include="ViewModels\AddUserViewModel.cs" />
-    <Compile Include="ViewModels\GenericInputViewModel.cs" />
+    <Compile Include="DialogViewModels\AddUserViewModel.cs" />
+    <Compile Include="DialogViewModels\GenericInputViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Commands\RelayCommnand.cs" />
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="Providers\ViewProvider.cs" />
-    <Compile Include="Views\GenericInput.xaml.cs">
+    <Compile Include="DialogWindows\GenericInput.xaml.cs">
       <DependentUpon>GenericInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Subjects.xaml.cs">
@@ -102,7 +103,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GenericInput.xaml">
+    <Page Include="DialogWindows\GenericInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

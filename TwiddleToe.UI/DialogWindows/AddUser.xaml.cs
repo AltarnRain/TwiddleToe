@@ -5,13 +5,12 @@
 namespace TwiddleToe.UI.DialogWindows
 {
     using System.Windows;
-    using TwiddleToe.Foundation.Interfaces.Display;
-    using TwiddleToe.UI.Interfaces;
+    using TwiddleToe.UI.Interfaces.Display;
 
     /// <summary>
     /// Interaction logic for AddUser.xaml
     /// </summary>
-    public partial class AddUser : Window, IView, IShowDialog
+    public partial class AddUser : Window, IPopup
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AddUser" /> class.

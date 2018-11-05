@@ -8,6 +8,7 @@ namespace TwiddleToe.UI.Views
     using TwiddleToe.Foundation.Interfaces.Display;
     using TwiddleToe.Foundation.Interfaces.Locations;
     using TwiddleToe.UI.Interfaces;
+    using TwiddleToe.UI.Interfaces.Display;
 
     /// <summary>
     /// Generic input view.
@@ -17,7 +18,7 @@ namespace TwiddleToe.UI.Views
     /// <seealso cref="ICenterScreen" />
     /// <seealso cref="IShowDialog" />
     /// <seealso cref="System.Windows.Markup.IComponentConnector" />
-    public partial class GenericInput : Window, IView, ICenterScreen, IShowDialog
+    public partial class GenericInput : Window, IPopup
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GenericInput"/> class.
