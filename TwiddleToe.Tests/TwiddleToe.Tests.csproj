@@ -61,31 +61,39 @@
   <ItemGroup>
     <Compile Include="Base\BaseSubscriberViewModelTests.cs" />
     <Compile Include="Base\BaseViewModelTests.cs" />
-    <Compile Include="Factories\ViewFactoryTests.cs" />
-    <Compile Include="Providers\SubjectProviderTests.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Helpers\CalculationsTests.cs" />
+    <Compile Include="TestClasses\Views\ViewICanMinimize.cs" />
+    <Compile Include="TestClasses\Views\ViewIResizable.cs" />
+    <Compile Include="TestImplementations\WorkAreaTestImplementation.cs" />
+    <Compile Include="TestClasses\Views\ViewICenterHorizantal.cs" />
+    <Compile Include="TestClasses\Views\ViewICenterVertical.cs" />
+    <Compile Include="TestClasses\Views\ViewIShowDialog.cs" />
+    <Compile Include="TestClasses\Views\ViewITop.cs" />
+    <Compile Include="TestClasses\Views\ViewTestImplentation.cs" />
+    <Compile Include="Workers\Factories\ViewFactoryTests.cs" />
+    <Compile Include="Utilities\Extentions\ExtentionTests.cs" />
+    <Compile Include="Workers\Providers\SubjectProviderTests.cs" />
     <Compile Include="TestBase\ITestScope.cs" />
     <Compile Include="TestBase\ProgrammInformationTestScope.cs" />
     <Compile Include="TestBase\TestBase.cs" />
     <Compile Include="TestBase\TestScopeBase.cs" />
-    <Compile Include="TestClasses\Views\BaseViewTestImplentation.cs" />
-    <Compile Include="TestClasses\Views\DialogViewTestImplemtation.cs" />
-    <Compile Include="TestClasses\Views\ViewTestImplentation.cs" />
-    <Compile Include="ViewModels\AddUserViewModelTests.cs" />
-    <Compile Include="FileHandlers\StateFileHandlerTests.cs" />
-    <Compile Include="Providers\IdentityProviderTests.cs" />
-    <Compile Include="Providers\ProgramInformationProviderTests.cs" />
+    <Compile Include="UI\ViewModels\AddUserViewModelTests.cs" />
+    <Compile Include="Workers\FileHandlers\StateFileHandlerTests.cs" />
+    <Compile Include="Workers\Providers\IdentityProviderTests.cs" />
+    <Compile Include="Workers\Providers\ProgramInformationProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\StateProviderTests.cs" />
-    <Compile Include="Providers\UserProviderTests.cs" />
+    <Compile Include="Workers\Providers\StateProviderTests.cs" />
+    <Compile Include="Workers\Providers\UserProviderTests.cs" />
     <Compile Include="TestClasses\ViewModels\BaseSubscriberViewModelTestImplementation.cs" />
     <Compile Include="TestBase\TestScope.cs" />
     <Compile Include="TestClasses\ViewModels\BaseViewModelTestImplentation.cs" />
-    <Compile Include="TestClasses\ProgramInformationProviderTestImplementation.cs" />
-    <Compile Include="TestClasses\SubscriberTestImplementation.cs" />
-    <Compile Include="ViewModels\MainViewModelTests.cs" />
-    <Compile Include="ViewModels\SubjectViewModelTests.cs" />
-    <Compile Include="ViewModels\UsersViewModelTests.cs" />
-    <Compile Include="ViewProviderTests.cs" />
+    <Compile Include="TestImplementations\ProgramInformationProviderTestImplementation.cs" />
+    <Compile Include="TestImplementations\SubscriberTestImplementation.cs" />
+    <Compile Include="UI\ViewModels\MainViewModelTests.cs" />
+    <Compile Include="UI\ViewModels\SubjectViewModelTests.cs" />
+    <Compile Include="UI\ViewModels\UsersViewModelTests.cs" />
+    <Compile Include="UI\Providers\ViewProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -98,6 +106,10 @@
     <ProjectReference Include="..\TwiddleToe.UI\TwiddleToe.UI.csproj">
       <Project>{acf7473b-25f1-4238-a480-600f2869d3cc}</Project>
       <Name>TwiddleToe.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwiddleToe.Utilities\TwiddleToe.Utilities.csproj">
+      <Project>{790D35CE-0380-46E1-8284-2A71A6180CE8}</Project>
+      <Name>TwiddleToe.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwiddleToe.Workers\TwiddleToe.Workers.csproj">
       <Project>{88EB5126-1C0A-4BA9-9BAB-B6D7CBB018CE}</Project>
@@ -121,4 +133,5 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

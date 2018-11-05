@@ -6,7 +6,7 @@ namespace TwiddleToe.UI.Base
 {
     using System.ComponentModel;
     using TwiddleToe.Foundation.Events;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Base;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Workers.Providers;
 

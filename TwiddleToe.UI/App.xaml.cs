@@ -7,7 +7,9 @@ namespace TwiddleToe.UI.Windows
     using System.Windows;
     using Ninject;
     using TwiddleToe.Foundation.Registries;
+    using TwiddleToe.UI.Providers;
     using TwiddleToe.UI.ViewModels;
+    using TwiddleToe.UI.Views;
     using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.Providers;
 

@@ -11,6 +11,8 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
+    using TwiddleToe.UI.Providers;
+    using TwiddleToe.UI.Views;
     using TwiddleToe.UI.Windows;
     using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.Providers;
@@ -25,6 +27,7 @@ namespace TwiddleToe.UI.ViewModels
         /// The subject provider
         /// </summary>
         private readonly SubjectProvider subjectProvider;
+
         private readonly ViewProvider viewProvider;
 
         /// <summary>

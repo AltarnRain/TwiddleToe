@@ -7,8 +7,10 @@ namespace TwiddleToe.Workers.Providers
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.DataFlags;
+    using TwiddleToe.Foundation.Interfaces.StateFlags;
     using TwiddleToe.Foundation.Models;
+    using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.FileHandlers;
 
     /// <summary>
@@ -100,7 +102,7 @@ namespace TwiddleToe.Workers.Providers
                 throw new InvalidDataException("Model does not have a set Identity property");
             }
 
-            var pluralName = GetPluralName(model);
+            var pluralName = model.GetType().Name.ToPlural();
 
             if (this.state[pluralName] is List<TRecord> contents)
             {
@@ -135,7 +137,7 @@ namespace TwiddleToe.Workers.Providers
                 throw new InvalidDataException("Model does not have a set Identity property");
             }
 
-            var pluralName = GetPluralName(model);
+            var pluralName = model.GetType().Name.ToPlural();
 
             if (this.state[pluralName] is List<TRecord> contents)
             {
@@ -170,20 +172,6 @@ namespace TwiddleToe.Workers.Providers
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(state);
             var clone = Newtonsoft.Json.JsonConvert.DeserializeObject<State>(json);
             return clone;
-        }
-
-        /// <summary>
-        /// Gets the name of the plural.
-        /// </summary>
-        /// <typeparam name="TRecord">The type of the record.</typeparam>
-        /// <param name="model">The model.</param>
-        /// <returns>The plural name</returns>
-        private static string GetPluralName<TRecord>(TRecord model)
-            where TRecord : BaseModel
-        {
-            var name = model.GetType().Name;
-            var pluralName = name + "s";
-            return pluralName;
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace TwiddleToe.Foundation.Registries
 {
     using System.Collections.Generic;
     using System.Linq;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Base;
 
     /// <summary>
     /// A registry of view models active in the entire application

@@ -4,7 +4,7 @@
 
 namespace TwiddleToe.UI.Base
 {
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.StateFlags;
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Workers.Providers;
@@ -12,8 +12,8 @@ namespace TwiddleToe.UI.Base
     /// <summary>
     /// Base class for all view models that subscribe to state changes
     /// </summary>
+    /// <seealso cref="TwiddleToe.Foundation.Interfaces.StateFlags.ISubscriber" />
     /// <seealso cref="TwiddleToe.UI.Base.BaseViewModel" />
-    /// <seealso cref="TwiddleToe.Foundation.Interfaces.ISubscriber" />
     public abstract class BaseSubscriberViewModel : BaseViewModel, ISubscriber
     {
         /// <summary>

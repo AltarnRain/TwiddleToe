@@ -4,8 +4,7 @@
 
 namespace TwiddleToe.Foundation.Models
 {
-    using System;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.DataFlags;
 
     /// <summary>
     /// A subject for a question.

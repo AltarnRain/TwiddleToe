@@ -8,7 +8,9 @@ namespace TwiddleToe.Tests.TestBase
     using Ninject;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.Tests.TestClasses;
-    using TwiddleToe.UI;
+    using TwiddleToe.Tests.TestImplementations;
+    using TwiddleToe.UI.Interfaces;
+    using TwiddleToe.UI.Providers;
     using TwiddleToe.UI.ViewModels;
     using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.FileHandlers;
@@ -161,6 +163,8 @@ namespace TwiddleToe.Tests.TestBase
 
             var provider = this.Kernel.Get<IProgramInformationProvider>() as ProgramInformationProviderTestImplementation;
             provider.SetTestContext(this.TestContext);
+
+            this.Kernel.Rebind<IWorkAreaProvider>().To<WorkAreaTestImplementation>().InSingletonScope();
         }
     }
 }

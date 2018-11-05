@@ -5,7 +5,7 @@
 namespace TwiddleToe.UI.Interfaces
 {
     using System.Windows;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Base;
 
     /// <summary>
     /// Interface that describes the required methods and properties to unit tests a view.

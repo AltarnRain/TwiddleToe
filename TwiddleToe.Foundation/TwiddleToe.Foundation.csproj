@@ -48,13 +48,15 @@
   <ItemGroup>
     <Compile Include="Events\CommonEvents.cs" />
     <Compile Include="Extentions\List{T}.cs" />
-    <Compile Include="Interfaces\IBaseView.cs" />
-    <Compile Include="Interfaces\IBaseViewModel.cs" />
-    <Compile Include="Interfaces\IDeletable.cs" />
+    <Compile Include="Interfaces\Base\IBaseView.cs" />
+    <Compile Include="Interfaces\Base\IBaseViewModel.cs" />
+    <Compile Include="Interfaces\DataFlags\IDeletable.cs" />
+    <Compile Include="Interfaces\Display\ICanMinimize.cs" />
+    <Compile Include="Interfaces\Display\IResizable.cs" />
     <Compile Include="Interfaces\Locations\ICenterHorizantal.cs" />
     <Compile Include="Interfaces\Locations\ICenterScreen.cs" />
-    <Compile Include="Interfaces\IShowDialog.cs" />
-    <Compile Include="Interfaces\ISubscriber.cs" />
+    <Compile Include="Interfaces\Display\IShowDialog.cs" />
+    <Compile Include="Interfaces\StateFlags\ISubscriber.cs" />
     <Compile Include="Interfaces\Locations\ICenterVertical.cs" />
     <Compile Include="Interfaces\Locations\ITop.cs" />
     <Compile Include="Models\BaseModel.cs" />

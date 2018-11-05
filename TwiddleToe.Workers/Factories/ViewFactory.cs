@@ -5,7 +5,7 @@
 namespace TwiddleToe.Workers.Factories
 {
     using System;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Base;
 
     /// <summary>
     /// This class handles the creation of views and view models. It assigns the view model to the view

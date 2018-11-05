@@ -75,6 +75,10 @@
       <Project>{0F687B65-24D4-4626-9979-E66EA4E6C806}</Project>
       <Name>TwiddleToe.Foundation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TwiddleToe.Utilities\TwiddleToe.Utilities.csproj">
+      <Project>{790D35CE-0380-46E1-8284-2A71A6180CE8}</Project>
+      <Name>TwiddleToe.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />

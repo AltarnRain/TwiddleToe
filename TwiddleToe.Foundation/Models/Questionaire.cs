@@ -5,7 +5,7 @@
 namespace TwiddleToe.Foundation.Models
 {
     using System.Collections.Generic;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.DataFlags;
 
     /// <summary>
     /// A list of questions

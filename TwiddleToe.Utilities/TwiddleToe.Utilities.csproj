@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions\ObservableCollection{T}.cs" />
+    <Compile Include="Extentions\StringExtentions.cs" />
+    <Compile Include="Helpers\Calculations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

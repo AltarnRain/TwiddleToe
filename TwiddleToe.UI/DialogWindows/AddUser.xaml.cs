@@ -5,7 +5,7 @@
 namespace TwiddleToe.UI.DialogWindows
 {
     using System.Windows;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Display;
     using TwiddleToe.UI.Interfaces;
 
     /// <summary>

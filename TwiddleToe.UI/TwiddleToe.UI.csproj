@@ -75,32 +75,38 @@
     <Compile Include="DialogWindows\AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Display\ICenterScreen.cs" />
+    <Compile Include="Interfaces\Display\IEntryView.cs" />
+    <Compile Include="Interfaces\Display\IMainMenu.cs" />
     <Compile Include="Interfaces\IView.cs" />
+    <Compile Include="Interfaces\IWorkAreaProvider.cs" />
+    <Compile Include="Providers\WorkAreaProvider.cs" />
+    <Compile Include="Models\WorkArea.cs" />
     <Compile Include="ViewModels\AddUserViewModel.cs" />
     <Compile Include="ViewModels\GenericInputViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Commands\RelayCommnand.cs" />
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
-    <Compile Include="ViewProvider.cs" />
-    <Compile Include="Windows\GenericInput.xaml.cs">
+    <Compile Include="Providers\ViewProvider.cs" />
+    <Compile Include="Views\GenericInput.xaml.cs">
       <DependentUpon>GenericInput.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Subjects.xaml.cs">
+    <Compile Include="Views\Subjects.xaml.cs">
       <DependentUpon>Subjects.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Users.xaml.cs">
+    <Compile Include="Views\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
     <Page Include="DialogWindows\AddUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\GenericInput.xaml">
+    <Page Include="Views\GenericInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Main.xaml">
+    <Page Include="Views\Main.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -108,15 +114,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\Main.xaml.cs">
+    <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\Subjects.xaml">
+    <Page Include="Views\Subjects.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Users.xaml">
+    <Page Include="Views\Users.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

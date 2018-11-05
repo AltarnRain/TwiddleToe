@@ -6,7 +6,7 @@ namespace TwiddleToe.Workers.Factories
 {
     using Ninject;
     using TwiddleToe.Foundation.Events;
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.Base;
 
     /// <summary>
     /// A factory responsible for creating view models

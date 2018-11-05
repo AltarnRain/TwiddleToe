@@ -4,7 +4,7 @@
 
 namespace TwiddleToe.Foundation.Models
 {
-    using TwiddleToe.Foundation.Interfaces;
+    using TwiddleToe.Foundation.Interfaces.DataFlags;
 
     /// <summary>
     /// Een Persoon
