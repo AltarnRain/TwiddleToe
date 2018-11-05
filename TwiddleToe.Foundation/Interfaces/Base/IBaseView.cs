@@ -41,5 +41,11 @@ namespace TwiddleToe.Foundation.Interfaces.Base
         /// Shows this instance.
         /// </summary>
         void Show();
+
+        /// <summary>
+        /// Focuses this instance.
+        /// </summary>
+        /// <returns>A boolean</returns>
+        bool Focus();
     }
 }

@@ -34,6 +34,7 @@ namespace TwiddleToe.UI
             this.Bind<ViewProvider>().ToSelf().InSingletonScope();
 
             this.Bind<ViewModelRegistry>().ToSelf().InSingletonScope();
+            this.Bind<ViewRegistry>().ToSelf().InSingletonScope();
 
             this.Bind<ViewModelFactory>().ToSelf().InSingletonScope();
             this.Bind<ViewFactory>().ToSelf().InSingletonScope();

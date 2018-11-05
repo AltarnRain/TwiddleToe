@@ -8,6 +8,7 @@ namespace TwiddleToe.UI.Providers
     using TwiddleToe.Foundation.Interfaces.Base;
     using TwiddleToe.Foundation.Interfaces.Display;
     using TwiddleToe.Foundation.Interfaces.Locations;
+    using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Interfaces;
     using TwiddleToe.Utilities.Helpers;
     using TwiddleToe.Workers.Factories;
@@ -23,6 +24,11 @@ namespace TwiddleToe.UI.Providers
         private readonly ViewFactory viewFactory;
 
         /// <summary>
+        /// The view registry
+        /// </summary>
+        private readonly ViewRegistry viewRegistry;
+
+        /// <summary>
         /// The work area provider
         /// </summary>
         private readonly IWorkAreaProvider workAreaProvider;
@@ -31,10 +37,15 @@ namespace TwiddleToe.UI.Providers
         /// Initializes a new instance of the <see cref="ViewProvider" /> class.
         /// </summary>
         /// <param name="viewFactory">The view factory.</param>
+        /// <param name="viewRegistry">The view registry.</param>
         /// <param name="workAreaProvider">The work area provider.</param>
-        public ViewProvider(ViewFactory viewFactory, IWorkAreaProvider workAreaProvider)
+        public ViewProvider(
+            ViewFactory viewFactory,
+            ViewRegistry viewRegistry,
+            IWorkAreaProvider workAreaProvider)
         {
             this.viewFactory = viewFactory;
+            this.viewRegistry = viewRegistry;
             this.workAreaProvider = workAreaProvider;
         }
 
@@ -45,32 +56,51 @@ namespace TwiddleToe.UI.Providers
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
         /// <returns>The created view</returns>
         public TView Show<TView, TViewModel>()
-            where TView : IView, new()
+            where TView : class, IView, new()
             where TViewModel : IBaseViewModel
         {
-            var view = this.viewFactory.Create<TView, TViewModel>();
+            IView view = null;
 
-            this.SetViewDisplayProperties(view);
-
-            if (view is IShowDialog)
+            var isActive = this.viewRegistry.IsActive(typeof(TView));
+            if (isActive == false)
             {
-                view.ShowDialog();
+                view = this.viewFactory.Create<TView, TViewModel>();
+
+                // Remove the view from the view registry when it closes
+                view.Closed += (sender, e) =>
+                {
+                    this.viewRegistry.Deactivated(view);
+                };
+
+                // Register the view
+                this.viewRegistry.Activated(view);
+                this.SetViewDisplayProperties(view);
+
+                if (view is IShowDialog)
+                {
+                    view.ShowDialog();
+                }
+                else
+                {
+                    view.Show();
+                }
             }
             else
             {
-                view.Show();
+                // View is already active
+                var activeView = this.viewRegistry.GetActiveView(typeof(TView));
+                activeView.Focus();
+                view = activeView as IView;
             }
 
-            return view;
+            return view as TView;
         }
 
         /// <summary>
         /// Sets the view display properties.
         /// </summary>
-        /// <typeparam name="TView">The type of the view.</typeparam>
         /// <param name="view">The view.</param>
-        private void SetViewDisplayProperties<TView>(TView view)
-            where TView : IView, new()
+        private void SetViewDisplayProperties(IView view)
         {
             if (view is IResizable)
             {

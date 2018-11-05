@@ -140,5 +140,14 @@ namespace TwiddleToe.Tests.TestClasses.Views
         {
             return this.Closed != null;
         }
+
+        /// <summary>
+        /// Focuses this instance.
+        /// </summary>
+        /// <returns>False, no implementation</returns>
+        public bool Focus()
+        {
+            return false;
+        }
     }
 }
