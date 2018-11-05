@@ -42,19 +42,7 @@ namespace TwiddleToe.Tests.TestBase
         /// <value>
         /// The program information.
         /// </value>
-        public IProgramInformationProvider ProgramInformationProvider
-        {
-            get
-            {
-                // Unit tests testing the ProgramInformationProvider need the real ProgramInformationProvider and
-                // not a test implementation
-                this.Kernel.Rebind<IProgramInformationProvider>().To<ProgramInformationProvider>();
-                var returnValue = this.Kernel.Get<IProgramInformationProvider>();
-                this.SetTestProgramInformationProvider();
-
-                return returnValue;
-            }
-        }
+        public IProgramInformationProvider ProgramInformationProvider => this.Kernel.Get<IProgramInformationProvider>();
 
         /// <summary>
         /// Gets the user provider.
@@ -169,19 +157,10 @@ namespace TwiddleToe.Tests.TestBase
         {
             base.RegisterServices();
             this.Kernel.Load(new TwiddleToe.UI.Modules());
-
-            this.SetTestProgramInformationProvider();
-        }
-
-        /// <summary>
-        /// Sets the test program information provider. This method ensures all
-        /// classes using the ProgramInformationProvider use the TestProgramInformationProvider
-        /// </summary>
-        private void SetTestProgramInformationProvider()
-        {
             this.Kernel.Rebind<IProgramInformationProvider>().To<ProgramInformationProviderTestImplementation>().InSingletonScope();
-            var testProgramInformationProvider = this.Kernel.Get<IProgramInformationProvider>() as ProgramInformationProviderTestImplementation;
-            testProgramInformationProvider.SetTestContext(this.TestContext);
+
+            var provider = this.Kernel.Get<IProgramInformationProvider>() as ProgramInformationProviderTestImplementation;
+            provider.SetTestContext(this.TestContext);
         }
     }
 }

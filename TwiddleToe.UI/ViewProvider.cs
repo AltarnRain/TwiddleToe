@@ -14,6 +14,9 @@ namespace TwiddleToe.UI
     /// </summary>
     public class ViewProvider
     {
+        /// <summary>
+        /// The view factory
+        /// </summary>
         private readonly ViewFactory viewFactory;
 
         /// <summary>

@@ -64,6 +64,7 @@
     <Compile Include="Factories\ViewFactoryTests.cs" />
     <Compile Include="Providers\SubjectProviderTests.cs" />
     <Compile Include="TestBase\ITestScope.cs" />
+    <Compile Include="TestBase\ProgrammInformationTestScope.cs" />
     <Compile Include="TestBase\TestBase.cs" />
     <Compile Include="TestBase\TestScopeBase.cs" />
     <Compile Include="TestClasses\Views\BaseViewTestImplentation.cs" />

@@ -15,11 +15,6 @@ namespace TwiddleToe.Tests.TestBase
         where TTestScope : ITestScope, new()
     {
         /// <summary>
-        /// The kernel
-        /// </summary>
-        private IKernel kernel;
-
-        /// <summary>
         /// Gets or sets the test context.
         /// </summary>
         /// <value>
@@ -33,8 +28,6 @@ namespace TwiddleToe.Tests.TestBase
         /// <returns>A test scope</returns>
         public TTestScope StartTest()
         {
-            this.kernel = new StandardKernel();
-
             var scope = new TTestScope();
             scope.Start(this.TestContext);
             return scope;

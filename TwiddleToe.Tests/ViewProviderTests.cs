@@ -24,10 +24,10 @@ namespace TwiddleToe.UI.Tests
             using (var scope = this.StartTest())
             {
                 // Arrange.
-                var viewFactory = scope.ViewProvider;
+                var viewProvider = scope.ViewProvider;
 
                 // Act
-                var view = viewFactory.Show<ViewTestImplentation, BaseViewModelTestImplentation>();
+                var view = viewProvider.Show<ViewTestImplentation, BaseViewModelTestImplentation>();
 
                 // Assert
                 Assert.IsTrue(view.ShowCalled);

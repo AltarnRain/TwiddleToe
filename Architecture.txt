@@ -1,7 +1,7 @@
 ﻿TwiddleToe architecture. 
 
 Utilities -> General function. Cannot have any dependancies.
-	Foundation -> Data models
+	Foundation -> Data models, Interfaces, Events
 		Workers -> Providres of data models and factories that rely on absraction. 
 				   NO REREFENRCE TO PresentationFramework, etc. 
 			UI -> Windows and ViewModels, Ninject modules registration.
