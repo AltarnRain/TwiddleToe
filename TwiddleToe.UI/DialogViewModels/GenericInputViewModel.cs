@@ -4,10 +4,16 @@
 
 namespace TwiddleToe.UI.DialogViewModels
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Windows.Input;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
+    using TwiddleToe.UI.Interfaces.Input.API;
+    using TwiddleToe.UI.Interfaces.Input.Models;
+    using TwiddleToe.UI.Interfaces.Input.ViewModels;
+    using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
@@ -15,22 +21,37 @@ namespace TwiddleToe.UI.DialogViewModels
     /// </summary>
     public class GenericInputViewModel : BaseViewModel
     {
+        private readonly ViewModelFactory viewModelFactory;
+
+        /// <summary>
+        /// Gets the input.
+        /// </summary>
+        /// <value>
+        /// The input.
+        /// </value>
+        private readonly IList<IGenericInput> sourceInput;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GenericInputViewModel" /> class.
         /// </summary>
         /// <param name="viewModelRegistry">The view model registry.</param>
         /// <param name="stateProvider">The state provider.</param>
-        /// <param name="label">The label.</param>
+        /// <param name="viewModelFactory">The view model factory.</param>
         /// <param name="title">The title.</param>
+        /// <param name="inputs">The inputs.</param>
         public GenericInputViewModel(
             ViewModelRegistry viewModelRegistry,
             StateProvider stateProvider,
-            string label,
-            string title)
+            ViewModelFactory viewModelFactory,
+            string title,
+            IList<IGenericInput> inputs)
             : base(viewModelRegistry, stateProvider)
         {
-            this.Label = label;
+            this.viewModelFactory = viewModelFactory;
             this.Title = title;
+            this.sourceInput = inputs;
+
+            this.Inputs = new ObservableCollection<IInputViewModel>();
 
             this.Cancel = new RelayCommnand(() =>
             {
@@ -43,7 +64,30 @@ namespace TwiddleToe.UI.DialogViewModels
                 this.UserAccepted = true;
                 this.CloseView();
             });
+
+            var tabIndex = 0;
+
+            foreach (var input in this.sourceInput)
+            {
+                tabIndex++;
+                if (input is ITextInput)
+                {
+                    var newInput = this.viewModelFactory.GetViewModel<TextInputViewModel>();
+                    newInput.Label = ((ITextInput)input).Label;
+                    newInput.TabIndex = tabIndex;
+                    newInput.Focus = tabIndex == 1;
+                    this.Inputs.Add(newInput);
+                }
+            }
         }
+
+        /// <summary>
+        /// Gets or sets the inputs.
+        /// </summary>
+        /// <value>
+        /// The inputs.
+        /// </value>
+        public ObservableCollection<IInputViewModel> Inputs { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="GenericInputViewModel"/> is canceled.
@@ -54,36 +98,12 @@ namespace TwiddleToe.UI.DialogViewModels
         public bool UserAccepted { get; set; }
 
         /// <summary>
-        /// Gets or sets the input.
-        /// </summary>
-        /// <value>
-        /// The input.
-        /// </value>
-        public string Input { get; set; }
-
-        /// <summary>
-        /// Gets or sets the input.
-        /// </summary>
-        /// <value>
-        /// The input.
-        /// </value>
-        public string Value { get; set; }
-
-        /// <summary>
         /// Gets or sets the title.
         /// </summary>
         /// <value>
         /// The title.
         /// </value>
         public string Title { get; set; }
-
-        /// <summary>
-        /// Gets or sets the label.
-        /// </summary>
-        /// <value>
-        /// The label.
-        /// </value>
-        public string Label { get; set; }
 
         /// <summary>
         /// Gets or sets the Ok command.
@@ -100,5 +120,20 @@ namespace TwiddleToe.UI.DialogViewModels
         /// The cancel.
         /// </value>
         public ICommand Cancel { get; set; }
+
+        /// <summary>
+        /// Gets the data from the view models.
+        /// </summary>
+        /// <returns>An IList of data models.</returns>
+        internal IList<IGenericInput> GetData()
+        {
+            var returnValue = new List<IGenericInput>();
+            foreach (var input in this.Inputs)
+            {
+                returnValue.Add(input.GetData());
+            }
+
+            return returnValue;
+        }
     }
 }

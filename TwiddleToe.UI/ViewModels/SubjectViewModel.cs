@@ -4,6 +4,7 @@
 
 namespace TwiddleToe.UI.ViewModels
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
     using TwiddleToe.Foundation.Extentions;
@@ -11,6 +12,9 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
+    using TwiddleToe.UI.Interfaces.Input;
+    using TwiddleToe.UI.Interfaces.Input.API;
+    using TwiddleToe.UI.Interfaces.Input.Models;
     using TwiddleToe.UI.Providers;
     using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.Providers;
@@ -135,7 +139,12 @@ namespace TwiddleToe.UI.ViewModels
 
         private void AddSubjectAction()
         {
-            var result = this.inputProvider.Get("Nieuw onderwerp", "Onderwerp");
+            var inputs = new List<IGenericInput>
+            {
+                new TextInputModel { Label = "Onderwerk" }
+            };
+
+            var result = this.inputProvider.Get("Nieuw onderwerp", inputs);
         }
     }
 }

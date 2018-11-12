@@ -5,7 +5,9 @@
 namespace TwiddleToe.UI.Providers
 {
     using System.Collections.Generic;
+    using Ninject.Parameters;
     using TwiddleToe.UI.DialogViewModels;
+    using TwiddleToe.UI.Interfaces.Input.API;
     using TwiddleToe.UI.Models;
     using TwiddleToe.UI.Views;
 
@@ -29,17 +31,19 @@ namespace TwiddleToe.UI.Providers
         /// Gets the specified title.
         /// </summary>
         /// <param name="title">The title.</param>
-        /// <param name="label">The label.</param>
-        /// <returns>An input result</returns>
-        public InputResult Get(string title, string label)
+        /// <param name="inputs">The inputs.</param>
+        /// <returns>
+        /// An input result
+        /// </returns>
+        public InputResult Get(string title, IList<IGenericInput> inputs)
         {
-            var d = new Dictionary<string, object>
+            var arguments = new ConstructorArgument[]
             {
-                { "title", title },
-                { "label", label }
+                new ConstructorArgument("title", title),
+                new ConstructorArgument("inputs", inputs)
             };
 
-            var view = this.viewProvider.Show<GenericInput, GenericInputViewModel>(d);
+            var view = this.viewProvider.Show<GenericInput, GenericInputViewModel>(arguments);
             view.ShowDialog();
 
             var viewModel = view.DataContext as GenericInputViewModel;
@@ -49,7 +53,7 @@ namespace TwiddleToe.UI.Providers
                 return new InputResult
                 {
                     UserAccepted = true,
-                    Input = viewModel.Input
+                    Input = viewModel.GetData()
                 };
             }
             else

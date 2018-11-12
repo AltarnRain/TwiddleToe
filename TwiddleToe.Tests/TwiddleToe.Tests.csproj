@@ -74,6 +74,7 @@
     <Compile Include="TestClasses\Views\ViewIShowDialog.cs" />
     <Compile Include="TestClasses\Views\ViewITop.cs" />
     <Compile Include="TestClasses\Views\ViewTestImplentation.cs" />
+    <Compile Include="UI\Providers\InputProviderTests.cs" />
     <Compile Include="Workers\Factories\ViewFactoryTests.cs" />
     <Compile Include="Utilities\Extentions\ExtentionTests.cs" />
     <Compile Include="Workers\Providers\SubjectProviderTests.cs" />

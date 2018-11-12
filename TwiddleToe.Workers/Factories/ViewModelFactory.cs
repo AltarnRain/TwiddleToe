@@ -37,19 +37,9 @@ namespace TwiddleToe.Workers.Factories
         /// <returns>
         /// A view model
         /// </returns>
-        public TViewModel GetViewModel<TViewModel>(RequestClose close, params ConstructorArgument[] args)
+        public TViewModel GetViewModel<TViewModel>(RequestClose close = null, params ConstructorArgument[] args)
             where TViewModel : IBaseViewModel
         {
-            ConstructorArgument[] ninjectParameters = null;
-            if (args == null)
-            {
-                ninjectParameters = new ConstructorArgument[0];
-            }
-            else
-            {
-                ninjectParameters = args;
-            }
-
             var viewModel = this.kernel.Get<TViewModel>(args);
             viewModel.OnRequestClose += close;
 

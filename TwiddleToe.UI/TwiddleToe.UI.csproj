@@ -80,6 +80,11 @@
     <Compile Include="Interfaces\Display\IInput.cs" />
     <Compile Include="Interfaces\Display\IMainMenu.cs" />
     <Compile Include="Interfaces\Display\IPopup.cs" />
+    <Compile Include="Interfaces\Input\API\IGenericInput.cs" />
+    <Compile Include="Interfaces\Input\API\ITextInput.cs" />
+    <Compile Include="Interfaces\Input\Models\IInputViewModel.cs" />
+    <Compile Include="Interfaces\Input\Models\TextInputModel.cs" />
+    <Compile Include="Interfaces\Input\ViewModels\TextInputViewModel.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\IWorkAreaProvider.cs" />
     <Compile Include="Providers\InputProvider.cs" />

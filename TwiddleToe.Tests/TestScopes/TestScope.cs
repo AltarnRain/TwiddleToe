@@ -152,6 +152,14 @@ namespace TwiddleToe.Tests.TestBase
         public ViewRegistry ViewRegistry => this.Kernel.Get<ViewRegistry>();
 
         /// <summary>
+        /// Gets the input provider.
+        /// </summary>
+        /// <value>
+        /// The input provider.
+        /// </value>
+        public InputProvider InputProvider => this.Kernel.Get<InputProvider>();
+
+        /// <summary>
         /// Starts this a test scope.
         /// </summary>
         /// <param name="testContext">The test context.</param>

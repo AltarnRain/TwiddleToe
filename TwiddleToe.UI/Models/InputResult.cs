@@ -4,6 +4,10 @@
 
 namespace TwiddleToe.UI.Models
 {
+    using System.Collections.Generic;
+    using TwiddleToe.UI.Interfaces.Input;
+    using TwiddleToe.UI.Interfaces.Input.API;
+
     /// <summary>
     /// The result of a generic input
     /// </summary>
@@ -15,7 +19,7 @@ namespace TwiddleToe.UI.Models
         /// <value>
         /// The value.
         /// </value>
-        public string Input { get; set; }
+        public IList<IGenericInput> Input { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [user accepted].

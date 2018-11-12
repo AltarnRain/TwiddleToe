@@ -14,6 +14,8 @@ namespace TwiddleToe.UI.Providers
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Interfaces;
     using TwiddleToe.UI.Interfaces.Display;
+    using TwiddleToe.UI.Interfaces.Input;
+    using TwiddleToe.UI.Interfaces.Input.API;
     using TwiddleToe.Utilities.Helpers;
     using TwiddleToe.Workers.Factories;
 
@@ -62,7 +64,7 @@ namespace TwiddleToe.UI.Providers
         /// <returns>
         /// The created view
         /// </returns>
-        public TView Show<TView, TViewModel>(IDictionary<string, object> args = null)
+        public TView Show<TView, TViewModel>(params ConstructorArgument[] args)
             where TView : class, IView, new()
             where TViewModel : IBaseViewModel
         {
@@ -71,17 +73,7 @@ namespace TwiddleToe.UI.Providers
             var isActive = this.viewRegistry.IsActive(typeof(TView));
             if (isActive == false)
             {
-                ConstructorArgument[] ninjectParameters;
-                if (args != null)
-                {
-                    ninjectParameters = args.Select(a => new ConstructorArgument(a.Key, a.Value)).ToArray();
-                }
-                else
-                {
-                    ninjectParameters = new ConstructorArgument[0];
-                }
-
-                view = this.viewFactory.Create<TView, TViewModel>(ninjectParameters);
+                view = this.viewFactory.Create<TView, TViewModel>(args);
 
                 // Remove the view from the view registry when it closes
                 view.Closed += (sender, e) =>
