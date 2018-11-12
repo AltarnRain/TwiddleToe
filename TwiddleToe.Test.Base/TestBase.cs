@@ -2,10 +2,11 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Tests.TestBase
+namespace TwiddleToe.Test.Base
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;
+    using TwiddleToe.Test.Base.API;
 
     /// <summary>
     /// Base class for all unit tests.

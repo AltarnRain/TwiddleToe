@@ -5,6 +5,7 @@
 namespace TwiddleToe.Workers.Factories.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TwiddleToe.Test.Base;
     using TwiddleToe.Tests.TestBase;
     using TwiddleToe.Tests.TestClasses;
     using TwiddleToe.Tests.TestClasses.Views;

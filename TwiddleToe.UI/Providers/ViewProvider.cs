@@ -13,6 +13,7 @@ namespace TwiddleToe.UI.Providers
     using TwiddleToe.Foundation.Interfaces.Locations;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Interfaces;
+    using TwiddleToe.UI.Interfaces.Display;
     using TwiddleToe.Utilities.Helpers;
     using TwiddleToe.Workers.Factories;
 
@@ -107,9 +108,35 @@ namespace TwiddleToe.UI.Providers
             else
             {
                 // View is already active
-                var activeView = this.viewRegistry.GetActiveView(typeof(TView));
+                var activeView = this.viewRegistry.GetView(typeof(TView));
                 activeView.Focus();
                 view = activeView as IView;
+            }
+
+            if (view is IEntryView)
+            {
+                var screenHorizantalCenter = this.workAreaProvider.Get().Width / 2;
+
+                var activeEntryViews = this.viewRegistry.ActiveViews.Where(v => v is IEntryView).Select(v => v as IEntryView);
+
+                if (activeEntryViews.Any())
+                {
+                    double left;
+                    if (activeEntryViews.Count() % 2 == 0)
+                    {
+                        left = screenHorizantalCenter - (activeEntryViews.First().Width * activeEntryViews.Count() / 2);
+                    }
+                    else
+                    {
+                        left = screenHorizantalCenter - (activeEntryViews.First().Width * (activeEntryViews.Count() / 2)) - (activeEntryViews.First().Width / 2);
+                    }
+
+                    foreach (var activeEntryView in activeEntryViews)
+                    {
+                        activeEntryView.Left = left;
+                        left += activeEntryView.Width;
+                    }
+                }
             }
 
             return view as TView;

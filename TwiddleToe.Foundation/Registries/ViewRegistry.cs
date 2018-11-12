@@ -15,17 +15,17 @@ namespace TwiddleToe.Foundation.Registries
     public class ViewRegistry
     {
         /// <summary>
-        /// The active view models
-        /// </summary>
-        private readonly List<IBaseView> activeViews;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ViewRegistry"/> class.
         /// </summary>
         public ViewRegistry()
         {
-            this.activeViews = new List<IBaseView>();
+            this.ActiveViews = new List<IBaseView>();
         }
+
+        /// <summary>
+        /// Gets the active view models
+        /// </summary>
+        public List<IBaseView> ActiveViews { get; private set; }
 
         /// <summary>
         /// Gets the number of active view models.
@@ -37,7 +37,7 @@ namespace TwiddleToe.Foundation.Registries
         {
             get
             {
-                return this.activeViews.Count;
+                return this.ActiveViews.Count;
             }
         }
 
@@ -47,7 +47,7 @@ namespace TwiddleToe.Foundation.Registries
         /// <param name="view">The view.</param>
         public void Activated(IBaseView view)
         {
-            this.activeViews.Add(view);
+            this.ActiveViews.Add(view);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace TwiddleToe.Foundation.Registries
         /// <param name="view">The view.</param>
         public void Deactivated(IBaseView view)
         {
-            this.activeViews.Remove(view);
+            this.ActiveViews.Remove(view);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace TwiddleToe.Foundation.Registries
             var newViewFullName = view.FullName;
             var activeViewsFullName = new List<string>();
 
-            return this.activeViews.Select(v => v.GetType().FullName).Contains(newViewFullName);
+            return this.ActiveViews.Select(v => v.GetType().FullName).Contains(newViewFullName);
         }
 
         /// <summary>
@@ -81,12 +81,12 @@ namespace TwiddleToe.Foundation.Registries
         /// <returns>
         ///   <c>true</c> if the specified view is active; otherwise, <c>false</c>.
         /// </returns>
-        public IBaseView GetActiveView(Type view)
+        public IBaseView GetView(Type view)
         {
             var activeView = view.FullName;
             var activeViewsFullName = new List<string>();
 
-            return this.activeViews.Single(v => v.GetType().FullName == activeView);
+            return this.ActiveViews.Single(v => v.GetType().FullName == activeView);
         }
     }
 }

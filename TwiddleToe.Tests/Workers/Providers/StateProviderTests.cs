@@ -7,6 +7,7 @@ namespace TwiddleToe.Workers.Providers.Tests
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TwiddleToe.Foundation.Models;
+    using TwiddleToe.Test.Base;
     using TwiddleToe.Tests.TestBase;
     using TwiddleToe.Tests.TestClasses;
     using TwiddleToe.Tests.TestImplementations;

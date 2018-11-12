@@ -5,6 +5,7 @@
 namespace TwiddleToe.Providers.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TwiddleToe.Test.Base;
     using TwiddleToe.Tests.TestBase;
 
     /// <summary>

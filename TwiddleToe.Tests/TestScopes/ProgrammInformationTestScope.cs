@@ -6,12 +6,12 @@ namespace TwiddleToe.Tests.TestBase
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;
+    using TwiddleToe.Test.Base;
     using TwiddleToe.Workers.Providers;
 
     /// <summary>
     /// Test scope for the ProgramInformation Unit testr
     /// </summary>
-    /// <seealso cref="TwiddleToe.Tests.TestBase.TestScopeBase" />
     public class ProgrammInformationTestScope : TestScopeBase
     {
         /// <summary>

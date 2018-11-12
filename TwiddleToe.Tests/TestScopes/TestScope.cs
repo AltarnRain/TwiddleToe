@@ -7,6 +7,7 @@ namespace TwiddleToe.Tests.TestBase
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;
     using TwiddleToe.Foundation.Registries;
+    using TwiddleToe.Test.Base;
     using TwiddleToe.Tests.TestClasses;
     using TwiddleToe.Tests.TestImplementations;
     using TwiddleToe.UI.DialogViewModels;
@@ -20,7 +21,6 @@ namespace TwiddleToe.Tests.TestBase
     /// <summary>
     /// Test scope for provider unit tests.
     /// </summary>
-    /// <seealso cref="TwiddleToe.Tests.TestBase.TestScopeBase" />
     public class TestScope : TestScopeBase
     {
         /// <summary>

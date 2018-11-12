@@ -6,6 +6,7 @@ namespace TwiddleToe.Models.Tests
 {
     using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TwiddleToe.Test.Base;
     using TwiddleToe.Tests.TestBase;
 
     /// <summary>

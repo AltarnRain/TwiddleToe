@@ -5,13 +5,12 @@
 namespace TwiddleToe.UI.Views
 {
     using System.Windows;
-    using TwiddleToe.Foundation.Interfaces.Locations;
-    using TwiddleToe.UI.Interfaces;
+    using TwiddleToe.UI.Interfaces.Display;
 
     /// <summary>
     /// Interaction logic for Subjects.xaml
     /// </summary>
-    public partial class Subjects : Window, ICenterScreen, IView
+    public partial class Subjects : Window, IEntryView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Subjects"/> class.

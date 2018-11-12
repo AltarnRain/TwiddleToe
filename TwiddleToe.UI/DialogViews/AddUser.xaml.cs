@@ -2,10 +2,9 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.UI.DialogWindows
+namespace TwiddleToe.UI.DialogViews
 {
     using System.Windows;
-    using TwiddleToe.Foundation.Interfaces.Base;
     using TwiddleToe.UI.Interfaces.Display;
 
     /// <summary>

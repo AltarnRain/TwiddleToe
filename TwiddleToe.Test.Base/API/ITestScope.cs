@@ -2,7 +2,7 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Tests.TestBase
+namespace TwiddleToe.Test.Base.API
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

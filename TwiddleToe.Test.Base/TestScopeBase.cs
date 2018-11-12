@@ -2,12 +2,12 @@
 // Copyright Onno Invernizzi
 // </copyright>
 
-namespace TwiddleToe.Tests.TestBase
+namespace TwiddleToe.Test.Base
 {
-    using System;
     using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Ninject;
+    using TwiddleToe.Test.Base.API;
 
     /// <summary>
     /// Test scope for provider unit tests.

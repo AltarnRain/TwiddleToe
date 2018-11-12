@@ -12,7 +12,7 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
     using TwiddleToe.UI.DialogViewModels;
-    using TwiddleToe.UI.DialogWindows;
+    using TwiddleToe.UI.DialogViews;
     using TwiddleToe.UI.Providers;
     using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.Providers;

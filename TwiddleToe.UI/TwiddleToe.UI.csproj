@@ -72,7 +72,7 @@
     </ApplicationDefinition>
     <Compile Include="Base\BaseSubscriberViewModel.cs" />
     <Compile Include="Base\BaseViewModel.cs" />
-    <Compile Include="DialogWindows\AddUser.xaml.cs">
+    <Compile Include="DialogViews\AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Display\ICenterScreen.cs" />
@@ -93,7 +93,7 @@
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="Providers\ViewProvider.cs" />
-    <Compile Include="DialogWindows\GenericInput.xaml.cs">
+    <Compile Include="DialogViews\GenericInput.xaml.cs">
       <DependentUpon>GenericInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Subjects.xaml.cs">
@@ -102,11 +102,11 @@
     <Compile Include="Views\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
-    <Page Include="DialogWindows\AddUser.xaml">
+    <Page Include="DialogViews\AddUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DialogWindows\GenericInput.xaml">
+    <Page Include="DialogViews\GenericInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

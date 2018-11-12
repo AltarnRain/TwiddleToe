@@ -5,6 +5,7 @@
 namespace TwiddleToe.Foundation.Registries.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TwiddleToe.Test.Base;
     using TwiddleToe.Tests.TestBase;
     using TwiddleToe.Tests.TestClasses.Views;
 
@@ -109,7 +110,7 @@ namespace TwiddleToe.Foundation.Registries.Tests
                 registry.Activated(view);
 
                 // Act
-                var foundView = registry.GetActiveView(typeof(ViewTestImplentation));
+                var foundView = registry.GetView(typeof(ViewTestImplentation));
 
                 // Assert
                 Assert.AreSame(view, foundView);

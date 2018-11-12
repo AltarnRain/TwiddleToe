@@ -5,4 +5,5 @@ Utilities -> General function. Cannot have any dependancies.
 		Workers -> Providres of data models and factories that rely on absraction. 
 				   NO REREFENRCE TO PresentationFramework, etc. 
 			UI -> Windows and ViewModels, Ninject modules registration.
+				Test.Base -> Base classes for setting up test scope and the test base class.
 				Tests -> Tests for the entire application.
