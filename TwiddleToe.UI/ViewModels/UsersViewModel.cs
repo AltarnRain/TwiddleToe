@@ -162,7 +162,7 @@ namespace TwiddleToe.UI.ViewModels
                 () =>
                 {
                     var currentUser = this.CurrentUser;
-                    this.stateProvider.RemoveFromState(currentUser);
+                    this.StateProvider.RemoveFromState(currentUser);
                 },
                 () => this.CurrentUser != null);
 
@@ -171,7 +171,7 @@ namespace TwiddleToe.UI.ViewModels
                 {
                     this.CurrentUser.FirstName = this.FirstName;
                     this.CurrentUser.LastName = this.LastName;
-                    this.stateProvider.Update(this.CurrentUser);
+                    this.StateProvider.Update(this.CurrentUser);
                 },
                 () => this.CurrentUser?.FirstName != this.FirstName || this.CurrentUser?.LastName != this.LastName);
         }

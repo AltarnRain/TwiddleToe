@@ -14,6 +14,8 @@ namespace TwiddleToe.UI.DialogViewModels
     using TwiddleToe.UI.Interfaces.Input.API;
     using TwiddleToe.UI.Interfaces.Input.Models;
     using TwiddleToe.UI.Interfaces.Input.ViewModels;
+    using TwiddleToe.UI.Providers;
+    using TwiddleToe.Utilities.Helpers;
     using TwiddleToe.Workers.Factories;
     using TwiddleToe.Workers.Providers;
 
@@ -40,12 +42,14 @@ namespace TwiddleToe.UI.DialogViewModels
         /// <param name="viewModelFactory">The view model factory.</param>
         /// <param name="title">The title.</param>
         /// <param name="inputs">The inputs.</param>
+        /// <param name="workAreaProvider">The work area provider.</param>
         public GenericInputViewModel(
             ViewModelRegistry viewModelRegistry,
             StateProvider stateProvider,
             ViewModelFactory viewModelFactory,
             string title,
-            IList<IGenericInput> inputs)
+            IList<IGenericInput> inputs,
+            WorkAreaProvider workAreaProvider)
             : base(viewModelRegistry, stateProvider)
         {
             this.viewModelFactory = viewModelFactory;
@@ -78,28 +82,35 @@ namespace TwiddleToe.UI.DialogViewModels
                 tabIndex++;
                 if (input is ITextInput textInput)
                 {
-                    var newInput = this.viewModelFactory.GetViewModel<TextInputViewModel>();
+                    var newInput = this.viewModelFactory.Create<TextInputViewModel>();
                     newInput.Label = textInput.Label;
-                    newInput.Focus = textInput.Required;
+                    newInput.Required = textInput.Required;
                     this.Inputs.Add(newInput);
                 }
             }
 
             this.CalculatedHeight = 150 + (this.Inputs.Count * 53);
+
+            var workArea = workAreaProvider.Get();
+
+            this.CalculatedTop = Calculations.GetCenterCoordinate(workArea.Height, this.CalculatedHeight);
         }
 
         /// <summary>
-        /// Focuses the first input.
+        /// Gets or sets the calculated top.
         /// </summary>
-        public void FocusFirstInput()
-        {
-            foreach (var input in this.Inputs)
-            {
-                input.Focus = false;
-            }
+        /// <value>
+        /// The calculated top.
+        /// </value>
+        public double CalculatedTop { get; set; }
 
-            this.Inputs.First().Focus = true;
-        }
+        /// <summary>
+        /// Gets or sets the calculated left.
+        /// </summary>
+        /// <value>
+        /// The calculated left.
+        /// </value>
+        public double Left { get; set; }
 
         /// <summary>
         /// Gets or sets the calculated height.
@@ -148,6 +159,19 @@ namespace TwiddleToe.UI.DialogViewModels
         /// The cancel.
         /// </value>
         public ICommand Cancel { get; set; }
+
+        /// <summary>
+        /// Focuses the first input.
+        /// </summary>
+        internal void FocusFirstInput()
+        {
+            foreach (var input in this.Inputs)
+            {
+                input.Focus = false;
+            }
+
+            this.Inputs.First().Focus = true;
+        }
 
         /// <summary>
         /// Gets the data from the view models.

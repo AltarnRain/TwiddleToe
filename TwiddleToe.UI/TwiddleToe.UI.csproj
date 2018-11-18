@@ -71,7 +71,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\Base\BaseAttachedProperty.cs" />
-    <Compile Include="AttachedProperties\ContainerAttackedProperty.cs" />
     <Compile Include="AttachedProperties\TextBoxAttachedProperties.cs" />
     <Compile Include="Base\BaseSubscriberViewModel.cs" />
     <Compile Include="Base\BaseViewModel.cs" />
@@ -80,7 +79,6 @@
     </Compile>
     <Compile Include="Interfaces\Display\ICenterScreen.cs" />
     <Compile Include="Interfaces\Display\IEntryView.cs" />
-    <Compile Include="Interfaces\Display\IInput.cs" />
     <Compile Include="Interfaces\Display\IMainMenu.cs" />
     <Compile Include="Interfaces\Display\IPopup.cs" />
     <Compile Include="Interfaces\Input\API\IGenericInput.cs" />

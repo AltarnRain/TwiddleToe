@@ -37,7 +37,7 @@ namespace TwiddleToe.Workers.Factories
         /// <returns>
         /// A view model
         /// </returns>
-        public TViewModel GetViewModel<TViewModel>(RequestClose close = null, params ConstructorArgument[] args)
+        public TViewModel Create<TViewModel>(RequestClose close = null, params ConstructorArgument[] args)
             where TViewModel : IBaseViewModel
         {
             var viewModel = this.kernel.Get<TViewModel>(args);

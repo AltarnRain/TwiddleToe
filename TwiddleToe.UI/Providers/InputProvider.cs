@@ -13,21 +13,25 @@ namespace TwiddleToe.UI.Providers
     using TwiddleToe.UI.Models;
     using TwiddleToe.UI.Views;
     using TwiddleToe.Utilities.Helpers;
+    using TwiddleToe.Workers.Factories;
 
     /// <summary>
     /// Provides an input pop-up and returns the result
     /// </summary>
     public class InputProvider
     {
-        private readonly ViewProvider viewProvider;
+        private readonly ViewFactory viewFactory;
+        private readonly ViewModelFactory viewModelFactory;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InputProvider"/> class.
+        /// Initializes a new instance of the <see cref="InputProvider" /> class.
         /// </summary>
-        /// <param name="viewProvider">The view provider.</param>
-        public InputProvider(ViewProvider viewProvider)
+        /// <param name="viewFactory">The view factory.</param>
+        /// <param name="viewModelFactory">The view model factory.</param>
+        public InputProvider(ViewFactory viewFactory, ViewModelFactory viewModelFactory)
         {
-            this.viewProvider = viewProvider;
+            this.viewFactory = viewFactory;
+            this.viewModelFactory = viewModelFactory;
         }
 
         /// <summary>
@@ -46,8 +50,9 @@ namespace TwiddleToe.UI.Providers
                 new ConstructorArgument("inputs", inputs)
             };
 
-            var view = this.viewProvider.Show<GenericInput, GenericInputViewModel>(arguments);
-            var viewModel = view.DataContext as GenericInputViewModel;
+            var view = this.viewFactory.Create<GenericInput>();
+            var viewModel = this.viewModelFactory.Create<GenericInputViewModel>(() => { view.Close(); }, arguments);
+            view.DataContext = viewModel;
 
             // Hack to get the first element focused.
             if (view is Window w)

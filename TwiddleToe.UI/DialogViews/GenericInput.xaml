@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TwiddleToe.UI.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="{Binding Title}" Height="{Binding CalculatedHeight, Mode=TwoWay}" Width="400" d:DesignHeight="323">
+        Title="{Binding Title}" Top="{Binding CalculatedTop, Mode=TwoWay}" Height="{Binding CalculatedHeight, Mode=TwoWay}" Width="400" d:DesignHeight="323">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

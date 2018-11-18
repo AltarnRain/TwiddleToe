@@ -144,7 +144,7 @@ namespace TwiddleToe.UI.ViewModels
         {
             var inputs = new List<IGenericInput>
             {
-                new TextInputModel { Label = "Onderwerp" }
+                new TextInputModel { Label = "Onderwerp", Required = true }
             };
 
             var result = this.inputProvider.Get("Nieuw onderwerp", inputs);
@@ -154,7 +154,7 @@ namespace TwiddleToe.UI.ViewModels
                 if (result.Input[0] is TextInputModel model)
                 {
                     var newSubject = this.subjectProvider.Create(model.Input);
-                    this.stateProvider.Add(newSubject);
+                    this.StateProvider.Add(newSubject);
                 }
             }
         }

@@ -44,12 +44,11 @@ namespace TwiddleToe.Workers.Factories.Tests
                 var viewFactory = scope.ViewFactory;
 
                 // Act
-                var view = viewFactory.Create<ViewTestImplentation, BaseViewModelTestImplentation>();
+                var view = viewFactory.Create<ViewTestImplentation>();
 
                 // Assert
                 Assert.IsNotNull(view);
                 Assert.IsNotNull(view.DataContext);
-                Assert.IsTrue(view.ClosedWasSet());
             }
         }
     }

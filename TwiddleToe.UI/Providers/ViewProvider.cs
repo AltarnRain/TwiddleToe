@@ -4,7 +4,6 @@
 
 namespace TwiddleToe.UI.Providers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using Ninject.Parameters;
@@ -14,8 +13,6 @@ namespace TwiddleToe.UI.Providers
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Interfaces;
     using TwiddleToe.UI.Interfaces.Display;
-    using TwiddleToe.UI.Interfaces.Input;
-    using TwiddleToe.UI.Interfaces.Input.API;
     using TwiddleToe.Utilities.Helpers;
     using TwiddleToe.Workers.Factories;
 
@@ -30,8 +27,9 @@ namespace TwiddleToe.UI.Providers
         private readonly ViewFactory viewFactory;
 
         /// <summary>
-        /// The view registry
+        /// The view model factory
         /// </summary>
+        private readonly ViewModelFactory viewModelFactory;
         private readonly ViewRegistry viewRegistry;
 
         /// <summary>
@@ -43,14 +41,17 @@ namespace TwiddleToe.UI.Providers
         /// Initializes a new instance of the <see cref="ViewProvider" /> class.
         /// </summary>
         /// <param name="viewFactory">The view factory.</param>
+        /// <param name="viewModelFactory">The view model factory.</param>
         /// <param name="viewRegistry">The view registry.</param>
         /// <param name="workAreaProvider">The work area provider.</param>
         public ViewProvider(
             ViewFactory viewFactory,
+            ViewModelFactory viewModelFactory,
             ViewRegistry viewRegistry,
             IWorkAreaProvider workAreaProvider)
         {
             this.viewFactory = viewFactory;
+            this.viewModelFactory = viewModelFactory;
             this.viewRegistry = viewRegistry;
             this.workAreaProvider = workAreaProvider;
         }
@@ -68,48 +69,30 @@ namespace TwiddleToe.UI.Providers
             where TView : class, IView, new()
             where TViewModel : IBaseViewModel
         {
-            IView view = null;
+            var view = this.viewFactory.Create<TView>(args);
+            view.DataContext = this.viewModelFactory.Create<TViewModel>(() => { view.Close(); }, args);
 
-            var isActive = this.viewRegistry.IsActive(typeof(TView));
-            if (isActive == false)
+            if (view is IView v)
             {
-                view = this.viewFactory.Create<TView, TViewModel>(args);
+                this.SetViewDisplayProperties(v);
+            }
 
-                // Remove the view from the view registry when it closes
-                view.Closed += (sender, e) =>
-                {
-                    this.viewRegistry.Deactivated(view);
-                };
-
-                // Register the view
-                this.viewRegistry.Activated(view);
-                this.SetViewDisplayProperties(view);
-
-                if (view is IOffload == false)
-                {
-                    if (view is IShowDialog)
-                    {
-                        view.ShowDialog();
-                    }
-                    else
-                    {
-                        view.Show();
-                    }
-                }
+            if (view is IShowDialog)
+            {
+                view.ShowDialog();
             }
             else
             {
-                // View is already active
-                var activeView = this.viewRegistry.GetView(typeof(TView));
-                activeView.Focus();
-                view = activeView as IView;
+                view.Show();
             }
 
             if (view is IEntryView)
             {
                 var screenHorizantalCenter = this.workAreaProvider.Get().Width / 2;
 
-                var activeEntryViews = this.viewRegistry.ActiveViews.Where(v => v is IEntryView).Select(v => v as IEntryView);
+                var activeEntryViews = this.viewRegistry.ActiveViews
+                    .Where(activeView => activeView is IEntryView)
+                    .Select(activeView => activeView as IEntryView);
 
                 if (activeEntryViews.Any())
                 {

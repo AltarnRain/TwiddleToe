@@ -36,7 +36,7 @@ namespace TwiddleToe.UI.Interfaces.Input.Models
         /// <summary>
         /// Validations this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if validation is succesful</returns>
         bool Validate();
     }
 }

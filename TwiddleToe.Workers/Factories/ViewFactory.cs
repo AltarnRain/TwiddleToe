@@ -5,8 +5,10 @@
 namespace TwiddleToe.Workers.Factories
 {
     using System;
+    using Ninject;
     using Ninject.Parameters;
     using TwiddleToe.Foundation.Interfaces.Base;
+    using TwiddleToe.Foundation.Registries;
 
     /// <summary>
     /// This class handles the creation of views and view models. It assigns the view model to the view
@@ -14,43 +16,62 @@ namespace TwiddleToe.Workers.Factories
     /// </summary>
     public class ViewFactory
     {
-        /// <summary>
-        /// The view model factory
-        /// </summary>
-        private readonly ViewModelFactory viewModelFactory;
+        private readonly IKernel kernel;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ViewFactory"/> class.
+        /// The view registry
         /// </summary>
-        /// <param name="viewModelFactory">The view model factory.</param>
-        public ViewFactory(ViewModelFactory viewModelFactory)
+        private readonly ViewRegistry viewRegistry;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewFactory" /> class.
+        /// </summary>
+        /// <param name="kernel">The kernel.</param>
+        /// <param name="viewRegistry">The view registry.</param>
+        public ViewFactory(IKernel kernel, ViewRegistry viewRegistry)
         {
-            this.viewModelFactory = viewModelFactory;
+            this.kernel = kernel;
+            this.viewRegistry = viewRegistry;
         }
 
         /// <summary>
         /// Creates the view, binds the data context and its close event.
         /// </summary>
         /// <typeparam name="TView">The type of the view.</typeparam>
-        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
         /// <param name="args">The arguments.</param>
         /// <returns>
         /// A view object
         /// </returns>
-        public TView Create<TView, TViewModel>(params ConstructorArgument[] args)
-            where TView : IBaseView, new()
-            where TViewModel : IBaseViewModel
+        public IBaseView Create<TView>(params ConstructorArgument[] args)
+            where TView : IBaseView
         {
-            var view = new TView();
+            IBaseView view = default;
 
-            view.DataContext = this.viewModelFactory.GetViewModel<TViewModel>(() => { view.Close(); }, args);
-
-            if (view.DataContext is IDisposable viewModel)
+            var isActive = this.viewRegistry.IsActive(typeof(TView));
+            if (isActive == false)
             {
+                view = this.kernel.Get<TView>(args);
+
+                // Remove the view from the view registry when it closes
                 view.Closed += (sender, e) =>
                 {
-                    viewModel.Dispose();
+                    this.viewRegistry.Deactivated(view);
+
+                    if (view.DataContext is IDisposable viewModel)
+                    {
+                        viewModel.Dispose();
+                    }
                 };
+
+                // Register the view
+                this.viewRegistry.Activated(view);
+            }
+            else
+            {
+                // View is already active
+                var activeView = this.viewRegistry.GetView(typeof(TView));
+                activeView.Focus();
+                view = activeView;
             }
 
             return view;

@@ -16,12 +16,7 @@ namespace TwiddleToe.UI.Base
     /// <seealso cref="TwiddleToe.UI.Base.BaseViewModel" />
     public abstract class BaseSubscriberViewModel : BaseViewModel, ISubscriber
     {
-        /// <summary>
-        /// The state provider
-        /// </summary>
-        protected readonly StateProvider stateProvider;
-
-        /// <summary>
+          /// <summary>
         /// Initializes a new instance of the <see cref="BaseSubscriberViewModel" /> class.
         /// </summary>
         /// <param name="stateProvider">The state provider.</param>
@@ -29,10 +24,15 @@ namespace TwiddleToe.UI.Base
         public BaseSubscriberViewModel(StateProvider stateProvider, ViewModelRegistry viewModelRegistry)
             : base(viewModelRegistry, stateProvider)
         {
-            this.stateProvider = stateProvider;
-            this.stateProvider.Subscribe(this);
+            this.StateProvider = stateProvider;
+            this.StateProvider.Subscribe(this);
             this.UpdateViewModelState(stateProvider.Current);
         }
+
+        /// <summary>
+        /// Gets state provider
+        /// </summary>
+        protected StateProvider StateProvider { get; private set; }
 
         /// <summary>
         /// Finalizes an instance of the <see cref="BaseSubscriberViewModel"/> class.
@@ -40,7 +40,7 @@ namespace TwiddleToe.UI.Base
         public override void Dispose()
         {
             base.Dispose();
-            this.stateProvider.Unsubscribe(this);
+            this.StateProvider.Unsubscribe(this);
         }
 
         /// <summary>
