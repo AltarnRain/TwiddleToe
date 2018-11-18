@@ -4,10 +4,13 @@
 
 namespace TwiddleToe.UI.ViewModels
 {
+    using System.Collections.Generic;
     using System.Windows.Input;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
+    using TwiddleToe.UI.Interfaces.Input.API;
+    using TwiddleToe.UI.Interfaces.Input.Models;
     using TwiddleToe.UI.Providers;
     using TwiddleToe.UI.Views;
     using TwiddleToe.UI.Windows;
@@ -22,6 +25,7 @@ namespace TwiddleToe.UI.ViewModels
         /// The view factory
         /// </summary>
         private readonly ViewProvider viewProvider;
+        private readonly InputProvider inputProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel" /> class.
@@ -32,12 +36,32 @@ namespace TwiddleToe.UI.ViewModels
         public MainViewModel(
             ViewProvider viewProvider,
             ViewModelRegistry viewModelRegistry,
-            StateProvider stateProvider)
+            StateProvider stateProvider,
+            InputProvider inputProvider)
             : base(viewModelRegistry, stateProvider)
         {
             this.OpenUsers = new RelayCommnand(() => this.viewProvider.Show<Users, UsersViewModel>());
             this.OpenSubjects = new RelayCommnand(() => this.viewProvider.Show<Subjects, SubjectViewModel>());
+            this.TestInput = new RelayCommnand(this.TestInputAction);
+
             this.viewProvider = viewProvider;
+            this.inputProvider = inputProvider;
+        }
+
+
+        public void TestInputAction()
+        {
+  
+
+            var inputs = new List<IGenericInput>
+                {
+                    new TextInputModel { Label = "Onderwerp" },
+                    new TextInputModel { Label = "Onderwerp1" },
+                    new TextInputModel { Label = "Onderwerp2" },
+                    new TextInputModel { Label = "Onderwerp3" }
+                };
+
+            var r = this.inputProvider.Get("Proef", inputs);
         }
 
         /// <summary>
@@ -55,5 +79,8 @@ namespace TwiddleToe.UI.ViewModels
         /// The open subjects.
         /// </value>
         public ICommand OpenSubjects { get; set; }
+
+
+        public ICommand TestInput { get; set; }
     }
 }

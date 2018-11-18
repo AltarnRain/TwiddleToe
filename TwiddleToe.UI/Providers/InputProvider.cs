@@ -4,8 +4,10 @@
 
 namespace TwiddleToe.UI.Providers
 {
-    using System.Collections.Generic;
     using Ninject.Parameters;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Windows;
     using TwiddleToe.UI.DialogViewModels;
     using TwiddleToe.UI.Interfaces.Input.API;
     using TwiddleToe.UI.Models;
@@ -44,9 +46,23 @@ namespace TwiddleToe.UI.Providers
             };
 
             var view = this.viewProvider.Show<GenericInput, GenericInputViewModel>(arguments);
-            view.ShowDialog();
-
             var viewModel = view.DataContext as GenericInputViewModel;
+
+            // Hack to get the first element focused.
+            if (view is Window w)
+            {
+                w.ContentRendered += (sender, e) =>
+                {
+                    viewModel.FocusFirstInput();
+                };
+
+                w.Activated += (sender, e) =>
+                {
+                    viewModel.FocusFirstInput();
+                };
+            }
+
+            view.ShowDialog();
 
             if (viewModel.UserAccepted)
             {

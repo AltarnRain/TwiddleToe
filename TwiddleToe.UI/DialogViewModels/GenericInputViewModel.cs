@@ -4,8 +4,11 @@
 
 namespace TwiddleToe.UI.DialogViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Windows.Controls;
     using System.Windows.Input;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
@@ -74,12 +77,33 @@ namespace TwiddleToe.UI.DialogViewModels
                 {
                     var newInput = this.viewModelFactory.GetViewModel<TextInputViewModel>();
                     newInput.Label = ((ITextInput)input).Label;
-                    newInput.TabIndex = tabIndex;
-                    newInput.Focus = tabIndex == 1;
                     this.Inputs.Add(newInput);
                 }
             }
+
+            this.CalculatedHeight = 150 + (this.Inputs.Count * 53);
         }
+
+        /// <summary>
+        /// Focuses the first input.
+        /// </summary>
+        public void FocusFirstInput()
+        {
+            foreach (var input in this.Inputs)
+            {
+                input.Focus = false;
+            }
+
+            this.Inputs.First().Focus = true;
+        }
+
+        /// <summary>
+        /// Gets or sets the calculated height.
+        /// </summary>
+        /// <value>
+        /// The calculated height.
+        /// </value>
+        public double CalculatedHeight { get; set; }
 
         /// <summary>
         /// Gets or sets the inputs.

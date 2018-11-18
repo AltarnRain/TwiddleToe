@@ -13,7 +13,7 @@ namespace TwiddleToe.UI.Interfaces.Display
     /// <seealso cref="TwiddleToe.Foundation.Interfaces.Locations.ICenterHorizantal" />
     /// <seealso cref="TwiddleToe.Foundation.Interfaces.Locations.ITop" />
     /// <seealso cref="TwiddleToe.Foundation.Interfaces.Display.ICanMinimize" />
-    public interface IMainMenu : IView, ICenterScreen, ITop, ICanMinimize, IShowDialog
+    public interface IMainMenu : IView, ICenterHorizantal, ITop, ICanMinimize, IShowDialog
     {
     }
 }

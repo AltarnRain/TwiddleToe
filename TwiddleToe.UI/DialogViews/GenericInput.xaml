@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwiddleToe.UI.Views"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="167.712" Width="400">
+        Title="{Binding Title}" Height="{Binding CalculatedHeight, Mode=TwoWay}" Width="400" d:DesignHeight="323">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
+        
         <ItemsControl ItemsSource="{Binding Inputs}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <Label TabIndex="-1" Content="{Binding Label}"/>
-                        <TextBox TabIndex="{Binding TabIndex}" Margin="5" Text="{Binding Input}"/>
+                        <TextBox Style="{StaticResource FocusableTextBox}" TabIndex="{Binding TabIndex}" Margin="5" Text="{Binding Input}"/>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
