@@ -4,11 +4,9 @@
 
 namespace TwiddleToe.UI.DialogViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Windows.Controls;
     using System.Windows.Input;
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
@@ -62,10 +60,15 @@ namespace TwiddleToe.UI.DialogViewModels
                 this.CloseView();
             });
 
-            this.Ok = new RelayCommnand(() =>
+            this.Ok = new RelayCommnand(
+            () =>
             {
                 this.UserAccepted = true;
                 this.CloseView();
+            },
+            () =>
+            {
+                return this.Inputs.All(i => i.Validate());
             });
 
             var tabIndex = 0;
@@ -73,10 +76,11 @@ namespace TwiddleToe.UI.DialogViewModels
             foreach (var input in this.sourceInput)
             {
                 tabIndex++;
-                if (input is ITextInput)
+                if (input is ITextInput textInput)
                 {
                     var newInput = this.viewModelFactory.GetViewModel<TextInputViewModel>();
-                    newInput.Label = ((ITextInput)input).Label;
+                    newInput.Label = textInput.Label;
+                    newInput.Focus = textInput.Required;
                     this.Inputs.Add(newInput);
                 }
             }

@@ -125,6 +125,28 @@ namespace TwiddleToe.Workers.Providers
         }
 
         /// <summary>
+        /// Adds to state.
+        /// </summary>
+        /// <typeparam name="TRecord">The type of the record.</typeparam>
+        /// <param name="model">The model.</param>
+        public void Add<TRecord>(TRecord model)
+             where TRecord : BaseModel
+        {
+            if (string.IsNullOrWhiteSpace(model.Identity))
+            {
+                throw new InvalidDataException("Model does not have a set Identity property");
+            }
+
+            var pluralName = model.GetType().Name.ToPlural();
+
+            if (this.state[pluralName] is List<TRecord> contents)
+            {
+                contents.Add(model);
+                this.DispatchUpdatedStateToSubscribers();
+            }
+        }
+
+        /// <summary>
         /// Updates the specified current user.
         /// </summary>
         /// <typeparam name="TRecord">The type of the record.</typeparam>

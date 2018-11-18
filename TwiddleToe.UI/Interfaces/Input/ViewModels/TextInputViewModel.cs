@@ -59,6 +59,14 @@ namespace TwiddleToe.UI.Interfaces.Input.ViewModels
         public bool Focus { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="ITextInput" /> is required.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if required; otherwise, <c>false</c>.
+        /// </value>
+        public bool Required { get; set; }
+
+        /// <summary>
         /// Gets the data.
         /// </summary>
         /// <returns>The data from this view model</returns>
@@ -70,6 +78,22 @@ namespace TwiddleToe.UI.Interfaces.Input.ViewModels
             };
 
             return returnValue;
+        }
+
+        /// <summary>
+        /// Validations this instance.
+        /// </summary>
+        /// <returns>True if this view model is validated</returns>
+        public bool Validate()
+        {
+            if (this.Required)
+            {
+                return !string.IsNullOrWhiteSpace(this.Input);
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

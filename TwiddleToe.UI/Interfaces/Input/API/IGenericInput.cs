@@ -9,5 +9,12 @@ namespace TwiddleToe.UI.Interfaces.Input.API
     /// </summary>
     public interface IGenericInput
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="IGenericInput"/> is required.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if required; otherwise, <c>false</c>.
+        /// </value>
+        bool Required { get; set; }
     }
 }

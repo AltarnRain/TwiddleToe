@@ -118,10 +118,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\StackPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\TestBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

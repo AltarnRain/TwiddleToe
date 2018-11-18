@@ -29,11 +29,6 @@ namespace TwiddleToe.UI.ViewModels
         private readonly ViewProvider viewProvider;
 
         /// <summary>
-        /// The state provider
-        /// </summary>
-        private readonly StateProvider stateProvider;
-
-        /// <summary>
         /// The user provider
         /// </summary>
         private readonly UserProvider userProvider;
@@ -53,7 +48,6 @@ namespace TwiddleToe.UI.ViewModels
             : base(stateProvider, viewModelRegistry)
         {
             this.viewProvider = viewProvider;
-            this.stateProvider = stateProvider;
             this.userProvider = userProvider;
             this.InitializeCommands();
         }

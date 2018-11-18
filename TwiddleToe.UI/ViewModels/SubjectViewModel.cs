@@ -12,7 +12,6 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
-    using TwiddleToe.UI.Interfaces.Input;
     using TwiddleToe.UI.Interfaces.Input.API;
     using TwiddleToe.UI.Interfaces.Input.Models;
     using TwiddleToe.UI.Providers;
@@ -29,6 +28,10 @@ namespace TwiddleToe.UI.ViewModels
         /// The subject provider
         /// </summary>
         private readonly SubjectProvider subjectProvider;
+
+        /// <summary>
+        /// The input provider
+        /// </summary>
         private readonly InputProvider inputProvider;
 
         /// <summary>
@@ -141,10 +144,19 @@ namespace TwiddleToe.UI.ViewModels
         {
             var inputs = new List<IGenericInput>
             {
-                new TextInputModel { Label = "Onderwerk" }
+                new TextInputModel { Label = "Onderwerp" }
             };
 
             var result = this.inputProvider.Get("Nieuw onderwerp", inputs);
+
+            if (result.UserAccepted)
+            {
+                if (result.Input[0] is TextInputModel model)
+                {
+                    var newSubject = this.subjectProvider.Create(model.Input);
+                    this.stateProvider.Add(newSubject);
+                }
+            }
         }
     }
 }

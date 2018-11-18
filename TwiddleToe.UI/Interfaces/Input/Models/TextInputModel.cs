@@ -26,5 +26,13 @@ namespace TwiddleToe.UI.Interfaces.Input.Models
         /// The text input.
         /// </value>
         public string Input { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="IGenericInput" /> is required.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if required; otherwise, <c>false</c>.
+        /// </value>
+        public bool Required { get; set; }
     }
 }

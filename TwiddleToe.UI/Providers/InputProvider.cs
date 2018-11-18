@@ -4,14 +4,15 @@
 
 namespace TwiddleToe.UI.Providers
 {
-    using Ninject.Parameters;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Windows;
+    using Ninject.Parameters;
     using TwiddleToe.UI.DialogViewModels;
     using TwiddleToe.UI.Interfaces.Input.API;
     using TwiddleToe.UI.Models;
     using TwiddleToe.UI.Views;
+    using TwiddleToe.Utilities.Helpers;
 
     /// <summary>
     /// Provides an input pop-up and returns the result

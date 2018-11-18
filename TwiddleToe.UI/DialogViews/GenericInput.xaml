@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwiddleToe.UI.Views"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="{Binding Title}" Height="{Binding CalculatedHeight, Mode=TwoWay}" Width="400" d:DesignHeight="323">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +18,7 @@
                 <DataTemplate>
                     <StackPanel>
                         <Label TabIndex="-1" Content="{Binding Label}"/>
-                        <TextBox Style="{StaticResource FocusableTextBox}" TabIndex="{Binding TabIndex}" Margin="5" Text="{Binding Input}"/>
+                        <TextBox Style="{StaticResource FocusableTextBox}" TabIndex="{Binding TabIndex}" Margin="5" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

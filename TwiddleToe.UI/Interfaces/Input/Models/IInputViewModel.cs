@@ -32,5 +32,11 @@ namespace TwiddleToe.UI.Interfaces.Input.Models
         /// </summary>
         /// <returns>The data from the view model</returns>
         IGenericInput GetData();
+
+        /// <summary>
+        /// Validations this instance.
+        /// </summary>
+        /// <returns></returns>
+        bool Validate();
     }
 }

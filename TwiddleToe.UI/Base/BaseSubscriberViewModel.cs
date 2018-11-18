@@ -19,7 +19,7 @@ namespace TwiddleToe.UI.Base
         /// <summary>
         /// The state provider
         /// </summary>
-        private readonly StateProvider stateProvider;
+        protected readonly StateProvider stateProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseSubscriberViewModel" /> class.
