@@ -4,7 +4,6 @@
 
 namespace TwiddleToe.UI.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -34,6 +33,10 @@ namespace TwiddleToe.UI.ViewModels
         /// The user provider
         /// </summary>
         private readonly UserProvider userProvider;
+
+        /// <summary>
+        /// The input provider
+        /// </summary>
         private readonly InputProvider inputProvider;
 
         /// <summary>
@@ -137,7 +140,7 @@ namespace TwiddleToe.UI.ViewModels
         /// Called before updating the state. The view model inheriting from <see cref="BaseSubscriberViewModel" />
         /// decides how to implement it.
         /// </summary>
-        public override void PrepareForStateStateUpdate()
+        protected override void PrepareForStateStateUpdate()
         {
             if (this.Users == null)
             {
@@ -153,10 +156,10 @@ namespace TwiddleToe.UI.ViewModels
         /// States the update.
         /// </summary>
         /// <param name="state">The state.</param>
-        public override void HandleStateUpdate(State state)
+        protected override void HandleStateUpdate(State state)
         {
             var users = state.Users.Where(u => u.Deleted == false).ToList();
-            // users.Sort();
+            users.Sort();
             this.Users.AddRange(users);
         }
 
@@ -168,7 +171,7 @@ namespace TwiddleToe.UI.ViewModels
                 () =>
                 {
                     var currentUser = this.CurrentUser;
-                    this.StateProvider.RemoveFromState(currentUser);
+                    this.StateProvider.Remove(currentUser);
                 },
                 () => this.CurrentUser != null);
 
@@ -197,7 +200,7 @@ namespace TwiddleToe.UI.ViewModels
                 var voornaam = result.Output.ValueByLabel<TextInputModel>("Voornaam").Input;
                 var achternaam = result.Output.ValueByLabel<TextInputModel>("Achernaam").Input;
 
-                var newUser = this.userProvider.Create(voornaam, achternaam);
+                var newUser = this.userProvider.Get(voornaam, achternaam);
                 this.StateProvider.Add(newUser);
             }
         }

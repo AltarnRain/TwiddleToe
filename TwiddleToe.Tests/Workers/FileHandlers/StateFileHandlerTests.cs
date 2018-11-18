@@ -64,7 +64,7 @@ namespace TwiddleToe.Workers.FileHandlers.Tests
 
                 var state = provider.Get();
 
-                var newUser = userProvider.Create("John", "Doe");
+                var newUser = userProvider.Get("John", "Doe");
 
                 state.Users.Add(newUser);
 
@@ -92,7 +92,7 @@ namespace TwiddleToe.Workers.FileHandlers.Tests
 
                 var state = provider.Get();
 
-                var newUser = userProvider.Create("John", "Doe");
+                var newUser = userProvider.Get("John", "Doe");
 
                 state.Users.Add(newUser);
 

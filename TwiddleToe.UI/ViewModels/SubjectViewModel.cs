@@ -70,6 +70,14 @@ namespace TwiddleToe.UI.ViewModels
         public Subject CurrentSubject { get; set; }
 
         /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        /// <value>
+        /// The description.
+        /// </value>
+        public string Description { get; set; }
+
+        /// <summary>
         /// Gets or sets the add subject.
         /// </summary>
         /// <value>
@@ -102,14 +110,21 @@ namespace TwiddleToe.UI.ViewModels
         public string SelectedValue
         {
             get => this.CurrentSubject?.Identity;
-            set => this.CurrentSubject = this.Subjects.Find(value);
+            set
+            {
+                if (value != null)
+                {
+                    this.CurrentSubject = this.Subjects.Find(value);
+                    this.Description = this.CurrentSubject.Description;
+                }
+            }
         }
 
         /// <summary>
         /// Called before updating the state. The view model inheriting from <see cref="BaseSubscriberViewModel" />
         /// decides how to implement it.
         /// </summary>
-        public override void PrepareForStateStateUpdate()
+        protected override void PrepareForStateStateUpdate()
         {
             if (this.Subjects == null)
             {
@@ -125,7 +140,7 @@ namespace TwiddleToe.UI.ViewModels
         /// Called when the state is updated.
         /// </summary>
         /// <param name="state">The state.</param>
-        public override void HandleStateUpdate(State state)
+        protected override void HandleStateUpdate(State state)
         {
             this.Subjects.AddRange(state.Subjects);
         }
@@ -135,28 +150,52 @@ namespace TwiddleToe.UI.ViewModels
         /// </summary>
         private void InitializeCommands()
         {
-            this.AddSubject = new RelayCommnand(this.AddSubjectAction);
-            this.RemoveSubject = new RelayCommnand(() => { }, () => false);
-            this.UpdateSubject = new RelayCommnand(() => { }, () => false);
-        }
-
-        private void AddSubjectAction()
-        {
-            var inputs = new List<IGenericInput>
-            {
-                new TextInputModel { Label = "Onderwerp", Required = true }
-            };
-
-            var result = this.inputProvider.Get("Nieuw onderwerp", inputs);
-
-            if (result.UserAccepted)
-            {
-                if (result.Output[0] is TextInputModel model)
+            this.AddSubject = new RelayCommnand(
+                () =>
                 {
-                    var newSubject = this.subjectProvider.Create(model.Input);
-                    this.StateProvider.Add(newSubject);
-                }
-            }
+                    var inputs = new List<IGenericInput>
+                    {
+                        new TextInputModel { Label = "Onderwerp", Required = true }
+                    };
+
+                    var result = this.inputProvider.Get("Nieuw onderwerp", inputs);
+
+                    if (result.UserAccepted)
+                    {
+                        var subject = result.Output.ValueByLabel<TextInputModel>("Onderwerk").Input;
+                        var newSubject = this.subjectProvider.Create(subject);
+                        this.StateProvider.Add(newSubject);
+                    }
+                });
+
+            this.RemoveSubject = new RelayCommnand(
+                () =>
+                {
+                    if (this.CurrentSubject != null)
+                    {
+                        this.StateProvider.Remove(this.CurrentSubject);
+                    }
+                },
+                () =>
+                {
+                    return this.CurrentSubject != null;
+                });
+
+            this.UpdateSubject = new RelayCommnand(
+                () =>
+                {
+                    this.CurrentSubject.Description = this.Description;
+                    this.StateProvider.Update(this.CurrentSubject);
+                },
+                () =>
+                {
+                    if (this.CurrentSubject == null)
+                    {
+                        return false;
+                    }
+
+                    return this.CurrentSubject.Description != this.Description;
+                });
         }
     }
 }

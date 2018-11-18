@@ -40,7 +40,7 @@ namespace TwiddleToe.UI.ViewModels.Tests
             {
                 // Arrange
                 var stateProvider = scope.StateProvider;
-                var user = scope.UserProvider.Create("John", "Doe");
+                var user = scope.UserProvider.Get("John", "Doe");
                 var currentState = stateProvider.Current;
 
                 currentState.Users.Add(user);
@@ -68,7 +68,7 @@ namespace TwiddleToe.UI.ViewModels.Tests
             {
                 // Arrange
                 var stateProvider = scope.StateProvider;
-                var user = scope.UserProvider.Create("John", "Doe");
+                var user = scope.UserProvider.Get("John", "Doe");
                 var currentState = stateProvider.Current;
 
                 currentState.Users.Add(user);

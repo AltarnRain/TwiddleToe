@@ -44,19 +44,6 @@ namespace TwiddleToe.UI.Base
         }
 
         /// <summary>
-        /// Called before updating the state. The view model inheriting from <see cref="BaseSubscriberViewModel"/>
-        /// decides how to implement it.
-        /// </summary>
-        public abstract void PrepareForStateStateUpdate();
-
-        /// <summary>
-        /// Called after PreparingState. The view model inheriting from <see cref="BaseSubscriberViewModel"/>
-        /// decides how to implement it.
-        /// </summary>
-        /// <param name="state">The state.</param>
-        public abstract void HandleStateUpdate(State state);
-
-        /// <summary>
         /// Dispatches the specified state.
         /// </summary>
         /// <param name="state">The state.</param>
@@ -64,6 +51,19 @@ namespace TwiddleToe.UI.Base
         {
             this.UpdateViewModelState(state);
         }
+
+        /// <summary>
+        /// Called before updating the state. The view model inheriting from <see cref="BaseSubscriberViewModel"/>
+        /// decides how to implement it.
+        /// </summary>
+        protected abstract void PrepareForStateStateUpdate();
+
+        /// <summary>
+        /// Called after PreparingState. The view model inheriting from <see cref="BaseSubscriberViewModel"/>
+        /// decides how to implement it.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        protected abstract void HandleStateUpdate(State state);
 
         /// <summary>
         /// Updates the state of the view model.

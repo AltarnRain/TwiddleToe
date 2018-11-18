@@ -9,7 +9,6 @@ namespace TwiddleToe.Workers.Providers.Tests
     using TwiddleToe.Foundation.Models;
     using TwiddleToe.Test.Base;
     using TwiddleToe.Tests.TestBase;
-    using TwiddleToe.Tests.TestClasses;
     using TwiddleToe.Tests.TestImplementations;
 
     /// <summary>
@@ -128,14 +127,14 @@ namespace TwiddleToe.Workers.Providers.Tests
                 var userProvider = scope.UserProvider;
 
                 var state = new State();
-                var user = userProvider.Create("John", "Doe");
+                var user = userProvider.Get("John", "Doe");
 
                 state.Users.Add(user);
 
                 stateProvider.Current = state;
 
                 // Act
-                stateProvider.RemoveFromState(user);
+                stateProvider.Remove(user);
 
                 // Assert
                 var deletedRecord = stateProvider.Current.Users.Single(u => u.Identity == user.Identity);
@@ -164,7 +163,7 @@ namespace TwiddleToe.Workers.Providers.Tests
                 stateProvider.Current = state;
 
                 // Act
-                stateProvider.RemoveFromState(questionaire);
+                stateProvider.Remove(questionaire);
 
                 // Assert
                 var deletedRecord = stateProvider.Current.Users.SingleOrDefault(u => u.Identity == questionaire.Identity);
@@ -184,7 +183,7 @@ namespace TwiddleToe.Workers.Providers.Tests
                 var userProvider = scope.UserProvider;
 
                 var state = new State();
-                var user = userProvider.Create("John", "Doe");
+                var user = userProvider.Get("John", "Doe");
 
                 state.Users.Add(user);
 
@@ -200,6 +199,32 @@ namespace TwiddleToe.Workers.Providers.Tests
                 var updatedUser = stateProvider.Current.Users.Single(u => u.Identity == user.Identity);
                 Assert.AreEqual(user.FirstName, updatedUser.FirstName);
                 Assert.AreEqual(user.LastName, updatedUser.LastName);
+            }
+        }
+
+        /// <summary>
+        /// Tests adding to the state.
+        /// </summary>
+        [TestMethod]
+        public void TestAdd()
+        {
+            using (var scope = this.StartTest())
+            {
+                var stateProvider = scope.StateProvider;
+                var userProvider = scope.UserProvider;
+
+                var newUser = userProvider.Get("John", "Doe");
+
+                var currentStateCountForUsers = stateProvider.Current.Users.Count();
+
+                // Act
+                stateProvider.Add(newUser);
+
+                // Assert
+                var currentStateAfterUserAddition = stateProvider.Current.Users.Count();
+
+                Assert.AreEqual(0, currentStateCountForUsers);
+                Assert.AreEqual(1, currentStateAfterUserAddition);
             }
         }
     }

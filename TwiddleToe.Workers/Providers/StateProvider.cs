@@ -5,6 +5,7 @@
 namespace TwiddleToe.Workers.Providers
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using TwiddleToe.Foundation.Interfaces.DataFlags;
@@ -42,6 +43,13 @@ namespace TwiddleToe.Workers.Providers
             this.state = stateFileHandler.Get();
             this.subscribers = new List<ISubscriber>();
             this.stateFileHandler = stateFileHandler;
+        }
+
+        private enum ManipulationActions
+        {
+            Add,
+            Remove,
+            Update
         }
 
         /// <summary>
@@ -94,34 +102,10 @@ namespace TwiddleToe.Workers.Providers
         /// </summary>
         /// <typeparam name="TRecord">The type of the record.</typeparam>
         /// <param name="model">The model.</param>
-        public void RemoveFromState<TRecord>(TRecord model)
+        public void Remove<TRecord>(TRecord model)
             where TRecord : BaseModel
         {
-            if (string.IsNullOrWhiteSpace(model.Identity))
-            {
-                throw new InvalidDataException("Model does not have a set Identity property");
-            }
-
-            var pluralName = model.GetType().Name.ToPlural();
-
-            if (this.state[pluralName] is List<TRecord> contents)
-            {
-                var record = contents.SingleOrDefault(r => r.Identity == model.Identity);
-
-                if (record != null)
-                {
-                    if (record is IDeletable)
-                    {
-                        ((IDeletable)record).Deleted = true;
-                    }
-                    else
-                    {
-                        contents.Remove(model);
-                    }
-
-                    this.DispatchUpdatedStateToSubscribers();
-                }
-            }
+            this.ManipulateState(model, ManipulationActions.Remove);
         }
 
         /// <summary>
@@ -132,18 +116,7 @@ namespace TwiddleToe.Workers.Providers
         public void Add<TRecord>(TRecord model)
              where TRecord : BaseModel
         {
-            if (string.IsNullOrWhiteSpace(model.Identity))
-            {
-                throw new InvalidDataException("Model does not have a set Identity property");
-            }
-
-            var pluralName = model.GetType().Name.ToPlural();
-
-            if (this.state[pluralName] is List<TRecord> contents)
-            {
-                contents.Add(model);
-                this.DispatchUpdatedStateToSubscribers();
-            }
+            this.ManipulateState(model, ManipulationActions.Add);
         }
 
         /// <summary>
@@ -154,24 +127,7 @@ namespace TwiddleToe.Workers.Providers
         public void Update<TRecord>(TRecord model)
             where TRecord : BaseModel
         {
-            if (string.IsNullOrWhiteSpace(model.Identity))
-            {
-                throw new InvalidDataException("Model does not have a set Identity property");
-            }
-
-            var pluralName = model.GetType().Name.ToPlural();
-
-            if (this.state[pluralName] is List<TRecord> contents)
-            {
-                var record = contents.SingleOrDefault(r => r.Identity == model.Identity);
-
-                if (record != null)
-                {
-                    contents.Remove(record);
-                    contents.Add(model);
-                    this.DispatchUpdatedStateToSubscribers();
-                }
-            }
+            this.ManipulateState(model, ManipulationActions.Update);
         }
 
         /// <summary>
@@ -205,6 +161,60 @@ namespace TwiddleToe.Workers.Providers
             {
                 var clonedState = CloneState(this.state);
                 subscriber.Dispatch(clonedState);
+            }
+        }
+
+        private void ManipulateState<TRecord>(TRecord model, ManipulationActions action)
+            where TRecord : BaseModel
+        {
+            if (string.IsNullOrWhiteSpace(model.Identity))
+            {
+                throw new InvalidDataException("Model does not have a set Identity property");
+            }
+
+            var pluralName = model.GetType().Name.ToPlural();
+
+            if (this.state[pluralName] is List<TRecord> contents)
+            {
+                TRecord record;
+                switch (action)
+                {
+                    case ManipulationActions.Add:
+
+                        contents.Add(model);
+                        break;
+
+                    case ManipulationActions.Remove:
+                        record = contents.SingleOrDefault(r => r.Identity == model.Identity);
+
+                        if (record is IDeletable)
+                        {
+                            ((IDeletable)record).Deleted = true;
+                        }
+                        else
+                        {
+                            contents.Remove(model);
+                        }
+
+                        break;
+
+                    case ManipulationActions.Update:
+                        record = contents.SingleOrDefault(r => r.Identity == model.Identity);
+
+                        if (record != null)
+                        {
+                            contents.Remove(record);
+                            contents.Add(model);
+                        }
+
+                        break;
+
+                    default:
+                        Debugger.Break();
+                        break;
+                }
+
+                this.DispatchUpdatedStateToSubscribers();
             }
         }
     }

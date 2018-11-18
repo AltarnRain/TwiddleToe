@@ -90,6 +90,7 @@
     <Compile Include="Providers\WorkAreaProvider.cs" />
     <Compile Include="Models\WorkArea.cs" />
     <Compile Include="DialogViewModels\GenericInputViewModel.cs" />
+    <Compile Include="ViewModels\AddQuestionsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Commands\RelayCommnand.cs" />
     <Compile Include="ViewModels\SubjectViewModel.cs" />
@@ -97,6 +98,9 @@
     <Compile Include="Providers\ViewProvider.cs" />
     <Compile Include="DialogViews\GenericInput.xaml.cs">
       <DependentUpon>GenericInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddQuestionsView.xaml.cs">
+      <DependentUpon>AddQuestionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Subjects.xaml.cs">
       <DependentUpon>Subjects.xaml</DependentUpon>
@@ -109,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\TestBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddQuestionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,7 +24,7 @@ namespace TwiddleToe.Providers.Providers.Tests
             using (var scope = this.StartTest())
             {
                 // Act
-                var user = scope.UserProvider.Create("Onno", "Invernizzi");
+                var user = scope.UserProvider.Get("Onno", "Invernizzi");
 
                 // Assert
                 Assert.AreEqual("Onno", user.FirstName);

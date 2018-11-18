@@ -36,6 +36,7 @@ namespace TwiddleToe.UI.ViewModels
         {
             this.OpenUsers = new RelayCommnand(() => this.viewProvider.Show<Users, UsersViewModel>());
             this.OpenSubjects = new RelayCommnand(() => this.viewProvider.Show<Subjects, SubjectViewModel>());
+            this.OpenAddQuestions = new RelayCommnand(() => this.viewProvider.Show<AddQuestionsView, AddQuestionsViewModel>());
 
             this.viewProvider = viewProvider;
         }
@@ -55,5 +56,13 @@ namespace TwiddleToe.UI.ViewModels
         /// The open subjects.
         /// </value>
         public ICommand OpenSubjects { get; set; }
+
+        /// <summary>
+        /// Gets or sets the open add questions.
+        /// </summary>
+        /// <value>
+        /// The open add questions.
+        /// </value>
+        public ICommand OpenAddQuestions { get; set; }
     }
 }

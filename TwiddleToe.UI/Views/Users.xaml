@@ -53,7 +53,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding UpdateUser, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1">Wijzig</Button>
+                <Button Command="{Binding Update, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1">Wijzig</Button>
             </Grid>
         </StackPanel>
     </Grid>

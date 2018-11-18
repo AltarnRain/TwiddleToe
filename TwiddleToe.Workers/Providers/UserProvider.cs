@@ -41,7 +41,7 @@ namespace TwiddleToe.Workers.Providers
         /// <param name="firstName">The first name.</param>
         /// <param name="lastName">The last name.</param>
         /// <returns>A new user model</returns>
-        public User Create(string firstName, string lastName)
+        public User Get(string firstName, string lastName)
         {
             var returnValue = new User
             {

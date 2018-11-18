@@ -42,10 +42,10 @@ namespace TwiddleToe.Workers.Factories
         /// <returns>
         /// A view object
         /// </returns>
-        public IBaseView Create<TView>(params ConstructorArgument[] args)
-            where TView : IBaseView
+        public TView Create<TView>(params ConstructorArgument[] args)
+            where TView : class, IBaseView
         {
-            IBaseView view = default;
+            TView view = null;
 
             var isActive = this.viewRegistry.IsActive(typeof(TView));
             if (isActive == false)
@@ -71,7 +71,7 @@ namespace TwiddleToe.Workers.Factories
                 // View is already active
                 var activeView = this.viewRegistry.GetView(typeof(TView));
                 activeView.Focus();
-                view = activeView;
+                view = activeView as TView;
             }
 
             return view;

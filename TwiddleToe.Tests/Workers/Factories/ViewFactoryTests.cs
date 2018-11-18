@@ -48,7 +48,8 @@ namespace TwiddleToe.Workers.Factories.Tests
 
                 // Assert
                 Assert.IsNotNull(view);
-                Assert.IsNotNull(view.DataContext);
+                Assert.IsNull(view.DataContext);
+                Assert.IsTrue(view.ClosedWasSet());
             }
         }
     }
