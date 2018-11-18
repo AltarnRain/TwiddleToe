@@ -78,7 +78,6 @@
     <Compile Include="Utilities\Extentions\ExtentionTests.cs" />
     <Compile Include="Workers\Providers\SubjectProviderTests.cs" />
     <Compile Include="TestScopes\ProgrammInformationTestScope.cs" />
-    <Compile Include="UI\ViewModels\AddUserViewModelTests.cs" />
     <Compile Include="Workers\FileHandlers\StateFileHandlerTests.cs" />
     <Compile Include="Workers\Providers\IdentityProviderTests.cs" />
     <Compile Include="Workers\Providers\ProgramInformationProviderTests.cs" />

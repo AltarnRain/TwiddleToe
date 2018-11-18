@@ -4,6 +4,8 @@
 
 namespace TwiddleToe.UI.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
@@ -11,8 +13,8 @@ namespace TwiddleToe.UI.ViewModels
     using TwiddleToe.Foundation.Registries;
     using TwiddleToe.UI.Base;
     using TwiddleToe.UI.Commands;
-    using TwiddleToe.UI.DialogViewModels;
-    using TwiddleToe.UI.DialogViews;
+    using TwiddleToe.UI.Interfaces.Input.API;
+    using TwiddleToe.UI.Interfaces.Input.Models;
     using TwiddleToe.UI.Providers;
     using TwiddleToe.Utilities.Extentions;
     using TwiddleToe.Workers.Providers;
@@ -32,6 +34,7 @@ namespace TwiddleToe.UI.ViewModels
         /// The user provider
         /// </summary>
         private readonly UserProvider userProvider;
+        private readonly InputProvider inputProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UsersViewModel" /> class.
@@ -40,15 +43,18 @@ namespace TwiddleToe.UI.ViewModels
         /// <param name="stateProvider">The state provider.</param>
         /// <param name="viewModelRegistry">The view model registry.</param>
         /// <param name="userProvider">The user provider.</param>
+        /// <param name="inputProvider">The input provider.</param>
         public UsersViewModel(
             ViewProvider viewProvider,
             StateProvider stateProvider,
             ViewModelRegistry viewModelRegistry,
-            UserProvider userProvider)
+            UserProvider userProvider,
+            InputProvider inputProvider)
             : base(stateProvider, viewModelRegistry)
         {
             this.viewProvider = viewProvider;
             this.userProvider = userProvider;
+            this.inputProvider = inputProvider;
             this.InitializeCommands();
         }
 
@@ -150,13 +156,13 @@ namespace TwiddleToe.UI.ViewModels
         public override void HandleStateUpdate(State state)
         {
             var users = state.Users.Where(u => u.Deleted == false).ToList();
-            users.Sort();
+            // users.Sort();
             this.Users.AddRange(users);
         }
 
         private void InitializeCommands()
         {
-            this.AddNewUser = new RelayCommnand(() => this.viewProvider.Show<AddUser, AddUserViewModel>());
+            this.AddNewUser = new RelayCommnand(this.AddNewUserAction);
 
             this.RemoveSelectedUser = new RelayCommnand(
                 () =>
@@ -174,6 +180,26 @@ namespace TwiddleToe.UI.ViewModels
                     this.StateProvider.Update(this.CurrentUser);
                 },
                 () => this.CurrentUser?.FirstName != this.FirstName || this.CurrentUser?.LastName != this.LastName);
+        }
+
+        private void AddNewUserAction()
+        {
+            var inputs = new List<IGenericInput>
+            {
+                new TextInputModel { Label = "Voornaam", Required = true },
+                new TextInputModel { Label = "Achernaam", Required = true }
+            };
+
+            var result = this.inputProvider.Get("Nieuwe gebruiker", inputs);
+
+            if (result.UserAccepted)
+            {
+                var voornaam = result.Output.ValueByLabel<TextInputModel>("Voornaam").Input;
+                var achternaam = result.Output.ValueByLabel<TextInputModel>("Achernaam").Input;
+
+                var newUser = this.userProvider.Create(voornaam, achternaam);
+                this.StateProvider.Add(newUser);
+            }
         }
     }
 }

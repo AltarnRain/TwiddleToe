@@ -10,6 +10,14 @@ namespace TwiddleToe.UI.Interfaces.Input.API
     public interface IGenericInput
     {
         /// <summary>
+        /// Gets or sets the label.
+        /// </summary>
+        /// <value>
+        /// The label.
+        /// </value>
+        string Label { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="IGenericInput"/> is required.
         /// </summary>
         /// <value>

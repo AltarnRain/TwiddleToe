@@ -19,7 +19,7 @@ namespace TwiddleToe.UI.Models
         /// <value>
         /// The value.
         /// </value>
-        public IList<IGenericInput> Input { get; set; }
+        public IList<IGenericInput> Output { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [user accepted].

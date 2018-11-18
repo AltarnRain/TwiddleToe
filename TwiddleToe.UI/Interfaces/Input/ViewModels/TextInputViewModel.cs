@@ -74,7 +74,8 @@ namespace TwiddleToe.UI.Interfaces.Input.ViewModels
         {
             var returnValue = new TextInputModel
             {
-                Input = this.Input
+                Input = this.Input,
+                Label = this.Label,
             };
 
             return returnValue;

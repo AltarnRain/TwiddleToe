@@ -151,7 +151,7 @@ namespace TwiddleToe.UI.ViewModels
 
             if (result.UserAccepted)
             {
-                if (result.Input[0] is TextInputModel model)
+                if (result.Output[0] is TextInputModel model)
                 {
                     var newSubject = this.subjectProvider.Create(model.Input);
                     this.StateProvider.Add(newSubject);

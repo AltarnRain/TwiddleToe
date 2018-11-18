@@ -11,14 +11,6 @@ namespace TwiddleToe.UI.Interfaces.Input.API
     internal interface ITextInput : IGenericInput
     {
         /// <summary>
-        /// Gets or sets the label.
-        /// </summary>
-        /// <value>
-        /// The label.
-        /// </value>
-        string Label { get; set; }
-
-        /// <summary>
         /// Gets or sets the text input.
         /// </summary>
         /// <value>

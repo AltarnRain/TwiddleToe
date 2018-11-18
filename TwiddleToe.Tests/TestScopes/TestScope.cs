@@ -64,14 +64,6 @@ namespace TwiddleToe.Tests.TestBase
         public UsersViewModel UserViewModel => this.Kernel.Get<UsersViewModel>();
 
         /// <summary>
-        /// Gets the add user view model.
-        /// </summary>
-        /// <value>
-        /// The add user view model.
-        /// </value>
-        public AddUserViewModel AddUserViewModel => this.Kernel.Get<AddUserViewModel>();
-
-        /// <summary>
         /// Gets the main view model.
         /// </summary>
         /// <value>

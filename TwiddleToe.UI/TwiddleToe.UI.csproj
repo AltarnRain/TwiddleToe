@@ -74,13 +74,10 @@
     <Compile Include="AttachedProperties\TextBoxAttachedProperties.cs" />
     <Compile Include="Base\BaseSubscriberViewModel.cs" />
     <Compile Include="Base\BaseViewModel.cs" />
-    <Compile Include="DialogViews\AddUser.xaml.cs">
-      <DependentUpon>AddUser.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Extentions.cs" />
     <Compile Include="Interfaces\Display\ICenterScreen.cs" />
     <Compile Include="Interfaces\Display\IEntryView.cs" />
     <Compile Include="Interfaces\Display\IMainMenu.cs" />
-    <Compile Include="Interfaces\Display\IPopup.cs" />
     <Compile Include="Interfaces\Input\API\IGenericInput.cs" />
     <Compile Include="Interfaces\Input\API\ITextInput.cs" />
     <Compile Include="Interfaces\Input\Models\IInputViewModel.cs" />
@@ -92,7 +89,6 @@
     <Compile Include="Models\InputResult.cs" />
     <Compile Include="Providers\WorkAreaProvider.cs" />
     <Compile Include="Models\WorkArea.cs" />
-    <Compile Include="DialogViewModels\AddUserViewModel.cs" />
     <Compile Include="DialogViewModels\GenericInputViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Commands\RelayCommnand.cs" />
@@ -108,10 +104,6 @@
     <Compile Include="Views\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
-    <Page Include="DialogViews\AddUser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DialogViews\GenericInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

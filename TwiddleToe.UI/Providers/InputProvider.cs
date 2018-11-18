@@ -75,7 +75,7 @@ namespace TwiddleToe.UI.Providers
                 return new InputResult
                 {
                     UserAccepted = true,
-                    Input = viewModel.GetData()
+                    Output = viewModel.GetData()
                 };
             }
             else
@@ -83,7 +83,7 @@ namespace TwiddleToe.UI.Providers
                 return new InputResult
                 {
                     UserAccepted = false,
-                    Input = null,
+                    Output = null,
                 };
             }
         }
