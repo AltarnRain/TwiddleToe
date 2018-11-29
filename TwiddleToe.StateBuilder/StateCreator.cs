@@ -53,7 +53,7 @@ namespace TwiddleToe.StateDefinition
 
                 foreach (var column in table.Columns)
                 {
-                    var (property, field) = GeneratePropertyCode(column.Name, column.Type);
+                    var(property, field) = GeneratePropertyCode(column.Name, column.Type);
 
                     tableClass.Members.Add(field);
                     tableClass.Members.Add(property);
@@ -88,17 +88,17 @@ namespace TwiddleToe.StateDefinition
 
             property.HasGet = true;
             property.HasSet = true;
-            property.Comments.Add(DocumentComment($"Gets or sets the {property.Name}"));
+            property.Comments.Add(DocumentComment($"Gets or Sets the {property.Name}"));
 
             var getExpression = new CodeStatement();
 
             property.GetStatements.Add(new CodeMethodReturnStatement(
-                new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), field.Name)));
+                new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), field.Name.ToLower())));
 
             property.SetStatements.Add(
                 new CodeAssignStatement(
                     new CodeFieldReferenceExpression(
-                        new CodeThisReferenceExpression(), name),
+                        new CodeThisReferenceExpression(), field.Name.ToLower()),
                         new CodePropertySetValueReferenceExpression()));
 
             return (property, field);
@@ -159,7 +159,7 @@ namespace TwiddleToe.StateDefinition
             var newProperty = new CodeMemberProperty
             {
                 Name = name,
-                Attributes = access,
+                Attributes = access | MemberAttributes.Final,
                 Type = GetTypeReference(type)
             };
 

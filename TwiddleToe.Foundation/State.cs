@@ -22,22 +22,22 @@ namespace TwiddleToe.State {
             private int description;
             
             /// Gets or sets the Name
-            public virtual string Name {
+            public string Name {
                 get {
                     return this.name;
                 }
                 set {
-                    this.Name = value;
+                    this.name = value;
                 }
             }
             
             /// Gets or sets the Description
-            public virtual int Description {
+            public int Description {
                 get {
                     return this.description;
                 }
                 set {
-                    this.Description = value;
+                    this.description = value;
                 }
             }
         }
