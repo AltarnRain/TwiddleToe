@@ -35,7 +35,14 @@ namespace TwiddleToe.Test.Base
             var files = Directory.GetFiles(this.TestContext.DeploymentDirectory);
             foreach (var file in files)
             {
-                File.Delete(file);
+                try
+                {
+                    File.Delete(file);
+                }
+                catch
+                {
+                    // Test should not fail when a file cannot be removed.
+                }
             }
 
             this.Kernel.Dispose();

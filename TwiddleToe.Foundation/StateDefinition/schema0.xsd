@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StoredState" nillable="true" type="StoredState" />
+  <xs:complexType name="StoredState">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Tables" type="ArrayOfTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Table" nillable="true" type="Table" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Table">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Columns" type="ArrayOfColumn" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Column" nillable="true" type="Column" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Column">
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Type" type="Types" use="required" />
+    <xs:attribute name="Reference" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="Types">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Text" />
+      <xs:enumeration value="Number" />
+      <xs:enumeration value="Link" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

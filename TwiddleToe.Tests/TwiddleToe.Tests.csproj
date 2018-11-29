@@ -65,6 +65,7 @@
     <Compile Include="Helpers\CalculationsTests.cs" />
     <Compile Include="Registries\ViewModelRegistryTests.cs" />
     <Compile Include="Registries\ViewRegistryTests.cs" />
+    <Compile Include="StateBuilderTests.cs" />
     <Compile Include="TestClasses\Views\ViewICanMinimize.cs" />
     <Compile Include="TestClasses\Views\ViewIResizable.cs" />
     <Compile Include="TestClasses\Views\ViewIShowInTaskbar.cs" />
@@ -96,11 +97,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="state" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TwiddleToe.Foundation\TwiddleToe.Foundation.csproj">
       <Project>{0F687B65-24D4-4626-9979-E66EA4E6C806}</Project>
       <Name>TwiddleToe.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwiddleToe.StateBuilder\TwiddleToe.StateBuilder.csproj">
+      <Project>{CE725E38-8CEC-4C21-B3E9-ABE5DDC53961}</Project>
+      <Name>TwiddleToe.StateBuilder</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwiddleToe.Test.Base\TwiddleToe.Test.Base.csproj">
       <Project>{4230D699-2131-49C9-A5C1-E77012713D73}</Project>
@@ -136,5 +142,10 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="TestData\StateSchema.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

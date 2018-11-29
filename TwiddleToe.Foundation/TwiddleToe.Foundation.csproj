@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="State.cs" />
+    <Compile Include="StateDefinition\Column.cs" />
+    <Compile Include="StateDefinition\StoredState.cs" />
+    <Compile Include="StateDefinition\Table.cs" />
+    <Compile Include="StateDefinition\Types.cs" />
     <Compile Include="Events\CommonEvents.cs" />
     <Compile Include="Extentions\List{T}.cs" />
     <Compile Include="Interfaces\Base\IBaseView.cs" />
@@ -78,9 +83,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="StateDefinition\schema0.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="StateDefinition\StateSchema.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
 </Project>

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Utilities", "Twi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.Test.Base", "TwiddleToe.Test.Base\TwiddleToe.Test.Base.csproj", "{4230D699-2131-49C9-A5C1-E77012713D73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiddleToe.StateBuilder", "TwiddleToe.StateBuilder\TwiddleToe.StateBuilder.csproj", "{CE725E38-8CEC-4C21-B3E9-ABE5DDC53961}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{4230D699-2131-49C9-A5C1-E77012713D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4230D699-2131-49C9-A5C1-E77012713D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4230D699-2131-49C9-A5C1-E77012713D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE725E38-8CEC-4C21-B3E9-ABE5DDC53961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE725E38-8CEC-4C21-B3E9-ABE5DDC53961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE725E38-8CEC-4C21-B3E9-ABE5DDC53961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE725E38-8CEC-4C21-B3E9-ABE5DDC53961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

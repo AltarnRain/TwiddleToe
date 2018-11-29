@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StoredState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Tables>
+    <Table Name="Test">
+      <Columns>
+        <Column Name="Name" Type="Text"/>
+        <Column Name="Description" Type="Number"/>
+      </Columns>
+    </Table>
+  </Tables>
+</StoredState>

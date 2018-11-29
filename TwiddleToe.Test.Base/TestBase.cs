@@ -5,7 +5,6 @@
 namespace TwiddleToe.Test.Base
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Ninject;
     using TwiddleToe.Test.Base.API;
 
     /// <summary>
@@ -22,6 +21,20 @@ namespace TwiddleToe.Test.Base
         /// The test context.
         /// </value>
         public TestContext TestContext { get; set; }
+
+        /// <summary>
+        /// Gets the deploy folder.
+        /// </summary>
+        /// <value>
+        /// The deploy folder.
+        /// </value>
+        public string DeployFolder
+        {
+            get
+            {
+                return this.TestContext.DeploymentDirectory;
+            }
+        }
 
         /// <summary>
         /// Starts the test scope.

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TwiddleToe.UI.Base")]
+[assembly: AssemblyTitle("StateBuilder")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HP Inc.")]
-[assembly: AssemblyProduct("TwiddleToe.UI.Base")]
+[assembly: AssemblyProduct("StateBuilder")]
 [assembly: AssemblyCopyright("Copyright © HP Inc. 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3dafa78c-7fdb-4e1a-9110-ceb3e6f37692")]
+[assembly: Guid("ce725e38-8cec-4c21-b3e9-abe5ddc53961")]
 
 // Version information for an assembly consists of the following four values:
 //
