@@ -5,6 +5,7 @@
       <Columns>
         <Column Name="Name" Type="Text"/>
         <Column Name="Description" Type="Number"/>
+        <Column Name="TestType" Type="Number"/>
       </Columns>
     </Table>
   </Tables>

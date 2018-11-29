@@ -1,4 +1,4 @@
-﻿// <copyright file="StateBuilderTests.cs" company="Onno Invernizzi">
+﻿// <copyright file="StateCreatorTests.cs" company="Onno Invernizzi">
 // Copyright Onno Invernizzi
 // </copyright>
 
@@ -14,7 +14,7 @@ namespace StateDefinition.Tests
     /// Tests for the state builder.
     /// </summary>
     [TestClass]
-    public class StateBuilderTests : TestBase<TestScope>
+    public class StateCreatorTests : TestBase<TestScope>
     {
         /// <summary>
         /// Tests the state builder constructor.

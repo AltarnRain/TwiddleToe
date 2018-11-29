@@ -21,7 +21,9 @@ namespace TwiddleToe.State {
             
             private int description;
             
-            /// Gets or sets the Name
+            private int testType;
+            
+            /// Gets or Sets the Name
             public string Name {
                 get {
                     return this.name;
@@ -31,13 +33,23 @@ namespace TwiddleToe.State {
                 }
             }
             
-            /// Gets or sets the Description
+            /// Gets or Sets the Description
             public int Description {
                 get {
                     return this.description;
                 }
                 set {
                     this.description = value;
+                }
+            }
+            
+            /// Gets or Sets the TestType
+            public int TestType {
+                get {
+                    return this.testType;
+                }
+                set {
+                    this.testType = value;
                 }
             }
         }

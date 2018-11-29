@@ -7,6 +7,7 @@ namespace TwiddleToe.StateDefinition
     using System.CodeDom;
     using System.CodeDom.Compiler;
     using System.IO;
+    using System.Linq;
     using TwiddleToe.Foundation.StateDefinition;
     using TwiddleToe.Utilities.Helpers;
 
@@ -53,7 +54,7 @@ namespace TwiddleToe.StateDefinition
 
                 foreach (var column in table.Columns)
                 {
-                    var(property, field) = GeneratePropertyCode(column.Name, column.Type);
+                    var (property, field) = GeneratePropertyCode(column.Name, column.Type);
 
                     tableClass.Members.Add(field);
                     tableClass.Members.Add(property);
@@ -81,7 +82,7 @@ namespace TwiddleToe.StateDefinition
             return new CodeCommentStatement(new CodeComment(coment, true));
         }
 
-        private static(CodeMemberProperty property, CodeMemberField field) GeneratePropertyCode(string name, StateTypes type)
+        private static (CodeMemberProperty property, CodeMemberField field) GeneratePropertyCode(string name, StateTypes type)
         {
             var field = NewField(name, type);
             var property = NewProperty(name, type);
@@ -90,15 +91,13 @@ namespace TwiddleToe.StateDefinition
             property.HasSet = true;
             property.Comments.Add(DocumentComment($"Gets or Sets the {property.Name}"));
 
-            var getExpression = new CodeStatement();
-
             property.GetStatements.Add(new CodeMethodReturnStatement(
-                new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), field.Name.ToLower())));
+                new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), field.Name)));
 
             property.SetStatements.Add(
                 new CodeAssignStatement(
                     new CodeFieldReferenceExpression(
-                        new CodeThisReferenceExpression(), field.Name.ToLower()),
+                        new CodeThisReferenceExpression(), field.Name),
                         new CodePropertySetValueReferenceExpression()));
 
             return (property, field);
@@ -115,8 +114,9 @@ namespace TwiddleToe.StateDefinition
         /// </returns>
         private static CodeMemberField NewField(string name, StateTypes type, MemberAttributes access = MemberAttributes.Private)
         {
+            var fieldName = string.Concat(name.Select((c, i) => i == 0 ? char.ToLower(c) : c));
             var fieldType = GetTypeReference(type);
-            var field = new CodeMemberField(fieldType, name.ToLower())
+            var field = new CodeMemberField(fieldType, fieldName)
             {
                 Attributes = access
             };

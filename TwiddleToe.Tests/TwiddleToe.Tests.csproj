@@ -65,7 +65,7 @@
     <Compile Include="Helpers\CalculationsTests.cs" />
     <Compile Include="Registries\ViewModelRegistryTests.cs" />
     <Compile Include="Registries\ViewRegistryTests.cs" />
-    <Compile Include="StateBuilderTests.cs" />
+    <Compile Include="StateCreatorTests.cs" />
     <Compile Include="TestClasses\Views\ViewICanMinimize.cs" />
     <Compile Include="TestClasses\Views\ViewIResizable.cs" />
     <Compile Include="TestClasses\Views\ViewIShowInTaskbar.cs" />
